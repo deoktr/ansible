@@ -1,0 +1,7 @@
+virtualmachines:
+  hosts:
+    linode01:
+      ansible_host: 172.104.152.115
+      ansible_user: '{{ linode01_user }}'
+      ansible_port: 52439
+      ansible_become_pass: '{{ linode01_pass }}'

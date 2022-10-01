@@ -1,0 +1,10 @@
+- name: Suricata status
+  hosts: virtualmachines
+  tasks:
+    - name: Ping host
+      ansible.builtin.ping:
+    - name: Ensure the suricata service is running
+      service:
+        name: suricata
+        state: started
+      become: yes
