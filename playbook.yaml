@@ -3,6 +3,10 @@
   tasks:
     - name: Ping host
       ansible.builtin.ping:
+    - name: Ensure suricata is at the latest version
+      ansible.builtin.apt:
+        name: suricata
+        state: latest
     - name: Ensure the suricata service is running
       service:
         name: suricata
