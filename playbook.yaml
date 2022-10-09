@@ -3,12 +3,52 @@
   tasks:
     - name: Ping host
       ansible.builtin.ping:
+
     - name: Ensure suricata is at the latest version
       ansible.builtin.apt:
         name: suricata
         state: latest
+
     - name: Ensure the suricata service is running
       service:
         name: suricata
         state: started
+      become: yes
+
+    - name: Ensure ufw is at the latest version
+      ansible.builtin.apt:
+        name: ufw
+        state: latest
+
+    - name: Ensure the ufw service is running
+      service:
+        name: ufw
+        state: started
+      become: yes
+
+    - name: Enable UFW
+      community.general.ufw:
+        state: enabled
+        logging: 'medium'
+      become: yes
+
+    - name: UFW allow SSH
+      community.general.ufw:
+        rule: limit
+        port: '{{ linode01_ssh_port }}'
+        proto: tcp
+        direction: in
+        comment: 'SSH port'
+      become: yes
+
+    - name: UFW default allow outgoing
+      community.general.ufw:
+        policy: allow
+        direction: outgoing
+      become: yes
+
+    - name: UFW default deny incoming
+      community.general.ufw:
+        policy: deny
+        direction: incoming
       become: yes
