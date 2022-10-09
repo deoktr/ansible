@@ -16,6 +16,14 @@ ansible-vault encrypt_string
 
 Copy the output inside [group_vars/all](./group_vars/all).
 
+## Lint playbooks
+
+```bash
+ansible-lint playbook.yaml
+```
+
+Note that the configuration for the linter is located in [.config/ansible-lint.yaml](./.config/ansible-lint.yml).
+
 ## TODO
 
 - If any required package is not install, install and configure it
