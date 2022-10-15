@@ -1,46 +1,45 @@
-- name: Configure servers
-  hosts: virtualmachines
+- name: Configure honeypot
+  hosts:
+    - honey
+    - honey_master
   tasks:
     - name: Ping host
       ansible.builtin.ping:
-    - name: Ensure suricata is at the latest version
-      ansible.builtin.apt:
-        name: suricata
+    - name: Install packages
+      ansible.builtin.package:
+        name:
+          - ufw
+          - suricata
         state: latest
+      become: true
     - name: Ensure the suricata service is running
       ansible.builtin.service:
         name: suricata
         state: started
       become: true
-    - name: Ensure ufw is at the latest version
-      ansible.builtin.apt:
-        name: ufw
-        state: latest
-    - name: Ensure the ufw service is running
-      ansible.builtin.service:
-        name: ufw
-        state: started
+    - name: Configure UFW
       become: true
-    - name: Enable UFW
-      community.general.ufw:
-        state: enabled
-        logging: 'medium'
-      become: true
-    - name: UFW allow SSH
-      community.general.ufw:
-        rule: limit
-        port: '{{ linode01_ssh_port }}'
-        proto: tcp
-        direction: in
-        comment: 'SSH port'
-      become: true
-    - name: UFW default allow outgoing
-      community.general.ufw:
-        policy: allow
-        direction: outgoing
-      become: true
-    - name: UFW default deny incoming
-      community.general.ufw:
-        policy: deny
-        direction: incoming
-      become: true
+      block:
+        - name: Ensure the ufw service is running
+          ansible.builtin.service:
+            name: ufw
+            state: started
+        - name: Enable UFW
+          community.general.ufw:
+            state: enabled
+            logging: 'medium'
+        - name: UFW allow SSH
+          community.general.ufw:
+            rule: limit
+            port: '{{ ansible_port }}'
+            proto: tcp
+            direction: in
+            comment: 'SSH port'
+        - name: UFW default allow outgoing
+          community.general.ufw:
+            policy: allow
+            direction: outgoing
+        - name: UFW default deny incoming
+          community.general.ufw:
+            policy: deny
+            direction: incoming

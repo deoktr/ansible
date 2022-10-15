@@ -1,7 +1,25 @@
-virtualmachines:
+honey_master:
   hosts:
-    linode01:
+    linode_master01:
+      ansible_host: 139.162.255.26
+      ansible_user: '{{ linode_master01_user }}'
+      ansible_port: 28399
+      ansible_become_pass: '{{ linode_master01_pass }}'
+
+honey:
+  hosts:
+    linode-honey01:
       ansible_host: 172.104.152.115
-      ansible_user: '{{ linode01_user }}'
+      ansible_user: '{{ linode_honey01_user }}'
       ansible_port: 52439
-      ansible_become_pass: '{{ linode01_pass }}'
+      ansible_become_pass: '{{ linode_honey01_pass }}'
+    linode-honey02:
+      ansible_host: 172.105.56.97
+      ansible_user: '{{ linode_honey02_user }}'
+      ansible_port: 6989
+      ansible_become_pass: '{{ linode_honey02_pass }}'
+    linode-honey03:
+      ansible_host: 172.104.169.135
+      ansible_user: '{{ linode_honey03_user }}'
+      ansible_port: 21122
+      ansible_become_pass: '{{ linode_honey03_pass }}'
