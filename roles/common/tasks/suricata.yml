@@ -1,0 +1,47 @@
+- name: Install suricata
+  ansible.builtin.package:
+    name:
+      - suricata
+    state: latest
+  become: true
+
+- name: Configure suricata
+  ansible.builtin.copy:
+    src: suricata.yaml
+    dest: /etc/suricata/suricata.yaml
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  become: true
+  notify:
+    - Reload suricata
+
+- name: Add suricata custom rules
+  ansible.builtin.template:
+    src: custom.rules.j2
+    dest: /var/lib/suricata/rules/custom.rules
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  become: true
+  notify:
+    - Reload suricata
+
+- name: Ensure the suricata is running and enabled
+  ansible.builtin.service:
+    name: suricata
+    state: started
+    enabled: true
+  become: true
+
+- name: Suricata update cron job
+  ansible.builtin.cron:
+    name: suricata update
+    hour: 3
+    minute: 30
+    job: suricata-update
+  become: true
+  notify:
+    - Suricata update rules

@@ -1,0 +1,6 @@
+---
+- hosts:
+  - honey
+  - honey_master
+  roles:
+    - common

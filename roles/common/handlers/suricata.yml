@@ -1,0 +1,9 @@
+- name: Reload suricata
+  become: true
+  ansible.builtin.service:
+    name: suricata
+    state: reloaded
+
+- name: Suricata update rules
+  become: true
+  ansible.builtin.shell: suricata-update

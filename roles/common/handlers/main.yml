@@ -1,0 +1,5 @@
+- name: Suricata handlers
+  import_tasks: suricata.yml
+
+- name: SSHD handlers
+  import_tasks: sshd.yml

@@ -1,0 +1,22 @@
+# Specific alert for custom SSH port
+alert ip any any -> $HOME_NET {{ ansible_port }} (msg:"Custom SSH port {{ ansible_port }} connection"; priority:2; classtype:bad-unknown; sid:1; rev:1;)
+
+# GeoIP to and from home net
+alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from RU"; geoip: src,RU; priority:4; classtype:bad-unknown; sid:100; rev:1;)
+alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from CN"; geoip: src,CN; priority:4; classtype:bad-unknown; sid:101; rev:1;)
+alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from IR"; geoip: src,IR; priority:4; classtype:bad-unknown; sid:102; rev:1;)
+alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from RO"; geoip: src,RO; priority:4; classtype:bad-unknown; sid:103; rev:1;)
+alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from HU"; geoip: src,HU; priority:4; classtype:bad-unknown; sid:104; rev:1;)
+alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to RU"; geoip: dst,RU; priority:4; classtype:bad-unknown; sid:200; rev:1;)
+alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to CN"; geoip: dst,CN; priority:4; classtype:bad-unknown; sid:201; rev:1;)
+alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to IR"; geoip: dst,IR; priority:4; classtype:bad-unknown; sid:202; rev:1;)
+alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to RO"; geoip: dst,RO; priority:4; classtype:bad-unknown; sid:203; rev:1;)
+alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to HU"; geoip: dst,HU; priority:4; classtype:bad-unknown; sid:204; rev:1;)
+
+# Alert on GIF with 1x1 pixels (tracking)
+alert http any any -> any any (msg:"FILE tracking GIF (1x1 pixel)"; filemagic:"GIF image data, version 89a, 1 x 1|00|"; sid:21; rev:1;)
+
+# Alert and store files from black list checksum: md5 or sha1 or sha256
+#alert http any any -> any any (msg:"Black list checksum match and extract MD5"; filemd5:fileextraction-chksum.list; filestore; sid:28; rev:1;)
+#alert http any any -> any any (msg:"Black list checksum match and extract SHA1"; filesha1:fileextraction-chksum.list; filestore; sid:29; rev:1;)
+#alert http any any -> any any (msg:"Black list checksum match and extract SHA256"; filesha256:fileextraction-chksum.list; filestore; sid:30; rev:1;)
