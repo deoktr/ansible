@@ -30,4 +30,7 @@ Note that the configuration for the linter is located in [.config/ansible-lint.y
 - If any package is not up to date update it and restart it
 - Check for UFW configuration
 - Setup and configure SSH
+- Add crontab to update suricata rules
+- Update suricata rules during the script
+- Restart suricata if the config changes
 

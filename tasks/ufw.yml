@@ -1,0 +1,30 @@
+---
+
+- name: Install UFW
+  ansible.builtin.package:
+    name:
+      - ufw
+    state: latest
+- name: Ensure the UFW service is running
+  ansible.builtin.service:
+    name: ufw
+    state: started
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled
+    logging: 'medium'
+- name: UFW allow SSH
+  community.general.ufw:
+    rule: limit
+    port: '{{ ansible_port }}'
+    proto: tcp
+    direction: in
+    comment: 'SSH port'
+- name: UFW default allow outgoing
+  community.general.ufw:
+    policy: allow
+    direction: outgoing
+- name: UFW default deny incoming
+  community.general.ufw:
+    policy: deny
+    direction: incoming
