@@ -4,3 +4,8 @@
   - honey_master
   roles:
     - common
+
+- hosts:
+  - honey
+  roles:
+    - honeypot

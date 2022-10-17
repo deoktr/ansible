@@ -1,0 +1,30 @@
+- name: Install python3 and pip
+  ansible.builtin.package:
+    name:
+      - python3
+      - python3-pip
+    state: latest
+  become: true
+
+- name: Install honeypots python package
+  ansible.builtin.pip:
+    name: honeypots
+  become: true
+
+- name: Create honeypots service
+  ansible.builtin.copy:
+    src: ssh-honeypot.service
+    dest: /etc/systemd/system/ssh-honeypot.service
+    owner: root
+    group: root
+    mode: 0777
+  become: true
+  register: honeypot_service
+
+- name: Ensure SSH honeypot is started and enabled
+  ansible.builtin.systemd:
+    name: ssh-honeypot
+    state: started
+    enabled: true
+    daemon_reload: true
+  become: true

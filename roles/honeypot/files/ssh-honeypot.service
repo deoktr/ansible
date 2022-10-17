@@ -1,0 +1,10 @@
+[Unit]
+Description=SSH honeypot
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -m honeypots --setup ssh --termination-strategy signal
+Type=simple
+
+[Install]
+WantedBy=default.target

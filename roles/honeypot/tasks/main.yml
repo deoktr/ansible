@@ -1,0 +1,5 @@
+- name: UFW tasks
+  import_tasks: ufw.yml
+
+- name: Honeypot tasks
+  import_tasks: honeypot.yml

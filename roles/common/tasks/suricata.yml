@@ -29,7 +29,7 @@
   notify:
     - Reload suricata
 
-- name: Ensure the suricata is running and enabled
+- name: Ensure suricata is running and enabled
   ansible.builtin.service:
     name: suricata
     state: started
