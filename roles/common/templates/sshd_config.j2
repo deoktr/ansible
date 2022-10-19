@@ -110,4 +110,4 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	PermitTTY no
 #	ForceCommand cvs server
 
-AllowGroups sshusers
+AllowGroups {{ ssh_group_name }}

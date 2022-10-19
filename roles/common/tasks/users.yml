@@ -1,0 +1,33 @@
+- name: Add users
+  ansible.builtin.user:
+    name: '{{ item.name }}'
+    comment: '{{ item.comment }}'
+    password: "{{ lookup('password', 'credentials/' + item.name + '/password.txt encrypt=md5_crypt') }}"
+    uid: '{{ item.uid }}'
+    groups: sudo,sshusers
+    shell: /bin/bash
+    # expires:  # to make the account expire after a certain time
+    password_expire_max: 30
+    update_password: on_create
+  with_items: '{{ users }}'
+  become: true
+  register: add_users
+
+- name: Create authorized_keys to enable ssh
+  ansible.builtin.copy:
+    src: 'users/{{ item.name }}/authorized_keys'
+    dest: '/home/{{ item.name }}/.ssh/'
+    owner: '{{ item.name }}'
+    group: '{{ item.name }}'
+    mode: 0600
+    backup: true
+  with_items: '{{ users }}'
+  become: true
+
+# TODO change it to a handler ?
+- name: Mark password as expired for new users
+  ansible.builtin.shell:
+    cmd: 'passwd --expire {{ item.name }}'
+  with_items: '{{ add_users.results }}'
+  when: 'item.changed'
+  become: true

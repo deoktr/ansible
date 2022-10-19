@@ -1,6 +1,9 @@
 - name: SSHD tasks
   import_tasks: sshd.yml
 
+- name: Users tasks
+  import_tasks: users.yml
+
 - name: Cron tasks
   import_tasks: cron.yml
 

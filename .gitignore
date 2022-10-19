@@ -1,1 +1,3 @@
+credentials/
 group_vars/
+roles/common/files/users/

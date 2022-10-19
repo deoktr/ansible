@@ -1,3 +1,9 @@
+- name: Ensure group ssh group exists with correct gid
+  ansible.builtin.group:
+    name: sshusers
+    gid: '{{ ssh_group_gid }}'
+  become: true
+
 - name: Configure SSHD
   ansible.builtin.template:
     src: sshd_config.j2
