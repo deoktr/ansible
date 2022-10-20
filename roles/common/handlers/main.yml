@@ -1,3 +1,6 @@
+- name: Users handlers
+  import_tasks: users.yml
+
 - name: Suricata handlers
   import_tasks: suricata.yml
 
