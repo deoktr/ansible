@@ -5,6 +5,8 @@ Port {{ ansible_port }}
 #ListenAddress 0.0.0.0
 #ListenAddress ::
 
+Protocol 2
+
 #HostKey /etc/ssh/ssh_host_rsa_key
 #HostKey /etc/ssh/ssh_host_ecdsa_key
 #HostKey /etc/ssh/ssh_host_ed25519_key
@@ -73,8 +75,8 @@ ChallengeResponseAuthentication no
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
 
-#AllowAgentForwarding yes
-#AllowTcpForwarding yes
+AllowAgentForwarding no
+AllowTcpForwarding no
 GatewayPorts no
 X11Forwarding no
 #X11DisplayOffset 10
@@ -87,10 +89,10 @@ PermitUserEnvironment no
 #Compression delayed
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
-#UseDNS no
+UseDNS no
 #PidFile /var/run/sshd.pid
 #MaxStartups 10:30:100
-#PermitTunnel no
+PermitTunnel no
 #ChrootDirectory none
 #VersionAddendum none
 

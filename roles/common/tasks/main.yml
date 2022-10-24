@@ -4,11 +4,14 @@
 - name: Users tasks
   import_tasks: users.yml
 
+- name: Sysctl tasks
+  import_tasks: sysctl.yml
+
+- name: PAM tasks
+  import_tasks: pam.yml
+
 - name: Cron tasks
   import_tasks: cron.yml
 
-- name: Suricata tasks
-  import_tasks: suricata.yml
-
-- name: UFW tasks
-  import_tasks: ufw.yml
+#- name: UFW tasks
+#  import_tasks: ufw.yml

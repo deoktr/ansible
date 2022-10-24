@@ -1,0 +1,19 @@
+- name: Configure login.defs
+  ansible.builtin.copy:
+    src: login.defs
+    dest: /etc/login.defs
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  become: true
+
+- name: Configure pam.d/passwd
+  ansible.builtin.copy:
+    src: pam.d/passwd
+    dest: /etc/pam.d/passwd
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  become: true

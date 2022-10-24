@@ -5,7 +5,7 @@
 Run the playbook:
 
 ```bash
-ansible-playbook --ask-vault-password -i inventory.yaml playbook.yaml
+ansible-playbook --ask-vault-password -i inventory.yaml play.yaml
 ```
 
 ## Create vaulted var
@@ -27,3 +27,6 @@ Note that the configuration for the linter is located in [.config/ansible-lint.y
 ## TODO
 
 - If any package is not up to date update it and restart it
+- Configure Bash to enable colors, history
+- Add timeout to remote shell with `TMOUT`, will it break Tmux ?
+
