@@ -1,5 +1,6 @@
 - name: Expire new passwords
   ansible.builtin.shell:
     cmd: 'passwd --expire {{ item }}'
-  loop: "{{ added_users.results | selectattr('state', 'equalto', 'present') | selectattr('changed', 'equalto', true) | map(attribute='item') | map(attribute='name') | list }}"
+  loop: "{{ updated_users.results | selectattr('state', 'equalto', 'present') | selectattr('changed', 'equalto', true) | map(attribute='item') | map(attribute='name') | list }}"
   become: true
+  listen: "updated users"

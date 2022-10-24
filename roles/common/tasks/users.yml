@@ -13,17 +13,17 @@
     expires: "{{ item.expires | default(-1) }}"
   with_items: '{{ users }}'
   become: true
-  register: added_users
-  notify: Expire new passwords
+  register: updated_users
+  notify: "updated users"
 
 - name: Create authorized_keys to enable ssh
   ansible.builtin.copy:
-    src: 'users/{{ item.name }}/authorized_keys'
-    dest: '/home/{{ item.name }}/.ssh/'
-    owner: '{{ item.name }}'
-    group: '{{ item.name }}'
+    src: 'users/{{ item }}/authorized_keys'
+    dest: '/home/{{ item }}/.ssh/'
+    owner: '{{ item }}'
+    group: '{{ item }}'
     mode: 0600
     backup: true
-  with_items: '{{ users }}'
+  loop: "{{ updated_users.results | selectattr('state', 'equalto', 'present') | map(attribute='item') | map(attribute='name') | list }}"
   ignore_errors: true
   become: true
