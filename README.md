@@ -29,4 +29,6 @@ Note that the configuration for the linter is located in [.config/ansible-lint.y
 - If any package is not up to date update it and restart it
 - Configure Bash to enable colors, history
 - Add timeout to remote shell with `TMOUT`, will it break Tmux ?
+- Add variable to change the SSH port
+- Add configuration file for bash
 
