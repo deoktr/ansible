@@ -1,19 +1,60 @@
-- name: Configure login.defs
+- name: Install libcrack
+  ansible.builtin.package:
+    name:
+      - libpam-cracklib
+    state: latest
+  become: true
+
+#- name: Configure login.defs
+#  ansible.builtin.copy:
+#    src: login.defs
+#    dest: /etc/login.defs
+#    owner: root
+#    group: root
+#    mode: 0644
+#    backup: true
+#  become: true
+
+- name: Add password user doc
   ansible.builtin.copy:
-    src: login.defs
-    dest: /etc/login.defs
+    src: pam/good-password.txt
+    dest: /usr/share/doc/
     owner: root
     group: root
     mode: 0644
     backup: true
   become: true
 
-- name: Configure pam.d/passwd
+- name: Configure common-password
   ansible.builtin.copy:
-    src: pam.d/passwd
-    dest: /etc/pam.d/passwd
+    src: pam/common-password
+    dest: /etc/pam.d/common-password
     owner: root
     group: root
     mode: 0644
     backup: true
   become: true
+
+# when we install libcrack it will update common-password so we could directly
+# edit it with the ansible package, but imo it's better to change the file and
+# be absolutely certain that it's taken into account
+#- name: Add strong password requirements
+#  community.general.pamd:
+#    name: common-password
+#    type: password
+#    control: requisite
+#    module_path: pam_cracklib.so
+#    module_arguments: 'retry=3
+#      minlen=12
+#      minclass=3
+#      dcredit=0
+#      ucredit=-1
+#      lcredit=-1
+#      ocredit=-1
+#      maxrepeat=1
+#      maxsequence=1
+#      gecoscheck
+#      reject_username
+#      enforce_for_root'
+#    backup: true
+#  become: true

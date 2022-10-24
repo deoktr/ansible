@@ -1,3 +1,5 @@
+# There is a module to manage sysctl
+# https://docs.ansible.com/ansible/latest/collections/ansible/posix/sysctl_module.html#ansible-collections-ansible-posix-sysctl-module
 - name: Configure sysctl
   ansible.builtin.template:
     src: sysctl.conf.j2
