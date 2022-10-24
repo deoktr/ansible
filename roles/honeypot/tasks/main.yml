@@ -1,5 +1,8 @@
 - name: UFW tasks
   import_tasks: ufw.yml
 
+- name: Suricata tasks
+  import_tasks: suricata.yml
+
 - name: Honeypot tasks
   import_tasks: honeypot.yml

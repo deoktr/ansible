@@ -15,6 +15,7 @@
   become: true
   register: added_users
   notify: Expire new passwords
+  when: users
 
 - name: Create authorized_keys to enable ssh
   ansible.builtin.copy:
@@ -27,3 +28,4 @@
   with_items: '{{ users }}'
   ignore_errors: true
   become: true
+  when: users

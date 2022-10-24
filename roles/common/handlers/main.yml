@@ -1,8 +1,8 @@
 - name: Users handlers
   import_tasks: users.yml
 
-- name: Suricata handlers
-  import_tasks: suricata.yml
-
 - name: SSHD handlers
   import_tasks: sshd.yml
+
+- name: Sysctl handlers
+  import_tasks: sysctl.yml
