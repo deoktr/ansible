@@ -14,5 +14,4 @@
     validate: /usr/sbin/sshd -t -f %s
     backup: true
   become: true
-  notify:
-    - Reload sshd
+  notify: Reload sshd

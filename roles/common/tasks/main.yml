@@ -1,5 +1,5 @@
-- name: SSHD tasks
-  import_tasks: sshd.yml
+#- name: SSHD tasks
+#  import_tasks: sshd.yml
 
 - name: Users tasks
   import_tasks: users.yml
@@ -10,8 +10,11 @@
 - name: PAM tasks
   import_tasks: pam.yml
 
-- name: Cron tasks
-  import_tasks: cron.yml
+- name: Auditd tasks
+  import_tasks: auditd.yml
+
+#- name: Cron tasks
+#  import_tasks: cron.yml
 
 #- name: UFW tasks
 #  import_tasks: ufw.yml

@@ -31,4 +31,10 @@ Note that the configuration for the linter is located in [.config/ansible-lint.y
 - Add timeout to remote shell with `TMOUT`, will it break Tmux ?
 - Add variable to change the SSH port
 - Add configuration file for bash
+- Add option to disable user instead of deleting
+- Remove every file permissions for non root users on logs, or at least write
+- Add auditd
+- Remove debian_chroot from .bashrc
+- Run app in docker on the server
+- Restrict sudo usage to a group
 

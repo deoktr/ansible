@@ -6,3 +6,6 @@
 
 - name: Sysctl handlers
   import_tasks: sysctl.yml
+
+- name: Auditd handlers
+  import_tasks: auditd.yml
