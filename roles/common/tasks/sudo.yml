@@ -1,0 +1,18 @@
+# R57 - Groupe dédié à l'usage de sudo
+- name: Restrict permissions for sudo executable
+  ansible.builtin.file:
+    path: /usr/bin/sudo
+    owner: root
+    group: sudo
+    mode: u=rws,g=rx,o-rwx
+
+# R58 - Directives de configuration sudo
+- name: Update sudoers file
+  ansible.builtin.copy:
+    src: 'sudoers'
+    dest: '/etc/sudoers'
+    owner: 'root'
+    group: 'root'
+    mode: 0440
+    backup: true
+  become: true

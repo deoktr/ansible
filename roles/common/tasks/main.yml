@@ -10,6 +10,9 @@
 - name: PAM tasks
   import_tasks: pam.yml
 
+- name: Sudo tasks
+  import_tasks: sudo.yml
+
 - name: Auditd tasks
   import_tasks: auditd.yml
 

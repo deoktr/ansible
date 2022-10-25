@@ -29,13 +29,3 @@
   ignore_errors: true
   become: true
   when: users
-
-- name: Update sudoers file
-  ansible.builtin.copy:
-    src: 'sudoers'
-    dest: '/etc/sudoers'
-    owner: 'root'
-    group: 'root'
-    mode: 0440
-    backup: true
-  become: true
