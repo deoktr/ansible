@@ -5,19 +5,19 @@
     state: latest
   become: true
 
-#- name: Configure login.defs
-#  ansible.builtin.copy:
-#    src: login.defs
-#    dest: /etc/login.defs
-#    owner: root
-#    group: root
-#    mode: 0644
-#    backup: true
-#  become: true
+- name: Configure login.defs
+  ansible.builtin.copy:
+    src: login.defs
+    dest: /etc/login.defs
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  become: true
 
 - name: Add password user doc
   ansible.builtin.copy:
-    src: pam/good-password.txt
+    src: good-password.txt
     dest: /usr/share/doc/
     owner: root
     group: root
@@ -27,7 +27,7 @@
 
 - name: Configure common-password
   ansible.builtin.copy:
-    src: pam/common-password
+    src: common-password
     dest: /etc/pam.d/common-password
     owner: root
     group: root
