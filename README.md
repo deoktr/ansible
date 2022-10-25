@@ -1,5 +1,7 @@
 # Ansible
 
+- [ANSSI Guide hardening GNU/Linux](https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/)
+
 ## Usage
 
 Run the playbook:
@@ -37,4 +39,5 @@ Note that the configuration for the linter is located in [.config/ansible-lint.y
 - Remove debian_chroot from .bashrc
 - Run app in docker on the server
 - Restrict sudo usage to a group
+- Kill all process of a user we want to delete
 

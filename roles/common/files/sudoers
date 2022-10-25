@@ -4,6 +4,7 @@
 # R58 - Directives de configuration sudo
 #   Les directives suivantes doivent être activées par défaut :
 #       * noexec appliquer le tag NOEXEC par defaut sur les commandes ;
+#           /!\ DOESN'T WORK WITH ANSIBLE /!\
 #       * requiretty imposer à l’utilisateur d’avoir un tty de login ;
 #       * use_pty utiliser un pseudo-tty lorsqu’une commande est exécutée ;
 #       * umask=0027 forcer umask à un masque plus restrictif ;
@@ -42,7 +43,7 @@
 #
 # See the man page for details on how to write a sudoers file.
 #
-Defaults	noexec
+#Defaults	noexec
 Defaults	requiretty
 Defaults	use_pty
 Defaults	umask=0027
@@ -61,12 +62,9 @@ Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b
 # User privilege specification
 root	ALL=(ALL:ALL) ALL
 
-# Members of the admin group may gain root privileges
-%admin ALL=(ALL) ALL
-
 # Allow members of group sudo to execute any command
 %sudo	ALL=(ALL:ALL) ALL
 
-# See sudoers(5) for more information on "#include" directives:
+# See sudoers(5) for more information on "@include" directives:
 
-#includedir /etc/sudoers.d
+@includedir /etc/sudoers.d

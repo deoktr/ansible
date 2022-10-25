@@ -5,6 +5,7 @@
     owner: root
     group: sudo
     mode: u=rws,g=rx,o-rwx
+  become: true
 
 # R58 - Directives de configuration sudo
 - name: Update sudoers file
