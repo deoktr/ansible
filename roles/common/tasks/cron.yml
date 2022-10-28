@@ -3,11 +3,9 @@
     name:
       - cron
     state: latest
-  become: true
 
 - name: Ensure cron is running and enabled
   ansible.builtin.service:
     name: cron
     state: started
     enabled: true
-  become: true

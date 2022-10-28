@@ -5,4 +5,3 @@
     proto: tcp
     direction: in
     comment: 'SSH honeypot port'
-  become: true

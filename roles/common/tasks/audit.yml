@@ -1,18 +1,15 @@
-- name: Install auditd
+- name: Ensure audit is installed
   ansible.builtin.package:
-    name:
-      - auditd
+    name: auditd
     state: latest
-  become: true
 
-- name: Ensure auditd is running and enabled
+- name: Ensure audit is running and enabled
   ansible.builtin.service:
     name: auditd
     state: started
     enabled: true
-  become: true
 
-- name: Add auditd rules
+- name: Add audit rules
   ansible.builtin.copy:
     src: audit.rules
     dest: /etc/audit/rules.d/
@@ -20,5 +17,4 @@
     group: root
     mode: 0644
     backup: true
-  become: true
   notify: Reload auditd

@@ -1,14 +1,15 @@
 - name: Install
   ansible.builtin.import_tasks: install.yml
 
-- name: SSHD tasks
-  ansible.builtin.import_tasks: sshd.yml
+- name: SSH tasks
+  ansible.builtin.import_tasks: ssh.yml
 
 - name: Users tasks
   ansible.builtin.import_tasks: users.yml
 
 - name: Sysctl tasks
   ansible.builtin.import_tasks: sysctl.yml
+  when: ansible_virtualization_type != "docker"
 
 - name: PAM tasks
   ansible.builtin.import_tasks: pam.yml
@@ -16,11 +17,12 @@
 - name: Sudo tasks
   ansible.builtin.import_tasks: sudo.yml
 
-- name: Auditd tasks
-  ansible.builtin.import_tasks: auditd.yml
+- name: Audit tasks
+  ansible.builtin.import_tasks: audit.yml
 
 - name: Cron tasks
   ansible.builtin.import_tasks: cron.yml
 
 - name: UFW tasks
   ansible.builtin.import_tasks: ufw.yml
+  when: ansible_virtualization_type != "docker"

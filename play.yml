@@ -1,11 +1,14 @@
 ---
 - hosts:
-  - honey
-  - honey_master
+  - test
+  #- honey
+  #- honey_master
   roles:
-    - common
+    - role: common
+      become: true
 
 - hosts:
   - honey
   roles:
-    - honeypot
+    - role: honeypot
+      become: true

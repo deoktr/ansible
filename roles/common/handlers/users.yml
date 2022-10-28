@@ -9,7 +9,6 @@
          map(attribute='name') | \
          list \
   }}"
-  become: true
   listen: "updated users"
 
 - name: Init .bashrc
@@ -29,5 +28,4 @@
          list \
   }}"
   ignore_errors: true
-  become: true
   listen: "updated users"

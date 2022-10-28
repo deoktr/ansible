@@ -3,7 +3,6 @@
     name:
       - suricata
     state: latest
-  become: true
 
 - name: Configure suricata
   ansible.builtin.copy:
@@ -13,7 +12,6 @@
     group: root
     mode: 0644
     backup: true
-  become: true
   notify:
     - Reload suricata
 
@@ -25,7 +23,6 @@
     group: root
     mode: 0644
     backup: true
-  become: true
   notify:
     - Reload suricata
 
@@ -34,7 +31,6 @@
     name: suricata
     state: started
     enabled: true
-  become: true
 
 - name: Suricata update cron job
   ansible.builtin.cron:
@@ -42,6 +38,5 @@
     hour: 3
     minute: 30
     job: suricata-update
-  become: true
   notify:
     - Suricata update rules

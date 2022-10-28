@@ -3,20 +3,17 @@
     name:
       - ufw
     state: latest
-  become: true
 
 - name: Ensure the UFW service is running and enabled
   ansible.builtin.service:
     name: ufw
     state: started
     enabled: true
-  become: true
 
 - name: Enable UFW and set logging level
   community.general.ufw:
     state: enabled
     logging: 'medium'
-  become: true
 
 - name: UFW allow SSH
   community.general.ufw:
@@ -25,16 +22,13 @@
     proto: tcp
     direction: in
     comment: 'SSH port'
-  become: true
 
 - name: UFW default allow outgoing
   community.general.ufw:
     policy: allow
     direction: outgoing
-  become: true
 
 - name: UFW default deny incoming
   community.general.ufw:
     policy: deny
     direction: incoming
-  become: true

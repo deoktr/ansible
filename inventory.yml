@@ -23,3 +23,10 @@ honey:
       ansible_user: '{{ linode_honey03_user }}'
       ansible_port: 21122
       ansible_become_pass: '{{ linode_honey03_pass }}'
+
+test:
+  hosts:
+    docker01:
+      ansible_host: 172.17.0.2
+      ansible_user: root
+      ansible_become_pass: root

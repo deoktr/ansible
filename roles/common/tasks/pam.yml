@@ -3,7 +3,6 @@
     name:
       - libpam-cracklib
     state: latest
-  become: true
 
 - name: Configure login.defs
   ansible.builtin.copy:
@@ -13,7 +12,6 @@
     group: root
     mode: 0644
     backup: true
-  become: true
 
 - name: Add password user doc
   ansible.builtin.copy:
@@ -23,7 +21,6 @@
     group: root
     mode: 0644
     backup: true
-  become: true
 
 - name: Configure common-password
   ansible.builtin.copy:
@@ -33,7 +30,6 @@
     group: root
     mode: 0644
     backup: true
-  become: true
 
 # when we install libcrack it will update common-password so we could directly
 # edit it with the ansible package, but imo it's better to change the file and
@@ -57,4 +53,3 @@
 #       reject_username
 #       enforce_for_root'
 #     backup: true
-#   become: true

@@ -1,6 +1,9 @@
 # Ansible
 
+Linux hardening ansible roles for Debian based Linux server.
+
 - [ANSSI Guide hardening GNU/Linux](https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/)
+- [NIST National Checklist for Red Hat Enterprise Linux](https://ncp.nist.gov/checklist/909)
 
 ## Usage
 
@@ -25,6 +28,34 @@ ansible-lint roles
 ```
 
 Note that the configuration for the linter is located in [.config/ansible-lint.yaml](./.config/ansible-lint.yml).
+
+## Docker
+
+### Build
+
+```bash
+docker build -t ubuntu_sshd_image .
+docker run -d -P --add-host=host.docker.internal:host-gateway --name ubuntu_sshd_container ubuntu_sshd_image
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ubuntu_sshd_container
+ssh-keygen -f "~/.ssh/known_hosts" -R "172.17.0.2"
+ssh-copy-id root@172.17.0.2
+```
+
+The password is `root`.
+
+You will be able to ping the host with:
+
+```bash
+ping host.docker.internal
+```
+
+### Clean
+
+```bash
+docker rm ubuntu_sshd_container
+docker rmi ubuntu_sshd_image
+```
+
 
 ## TODO
 
