@@ -5,4 +5,3 @@ ssh_group_name: sshusers
 ssh_group_gid: 1700
 
 users:
-

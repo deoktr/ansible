@@ -1,26 +1,26 @@
 - name: Install
-  import_tasks: install.yml
+  ansible.builtin.import_tasks: install.yml
 
 - name: SSHD tasks
-  import_tasks: sshd.yml
+  ansible.builtin.import_tasks: sshd.yml
 
 - name: Users tasks
-  import_tasks: users.yml
+  ansible.builtin.import_tasks: users.yml
 
 - name: Sysctl tasks
-  import_tasks: sysctl.yml
+  ansible.builtin.import_tasks: sysctl.yml
 
 - name: PAM tasks
-  import_tasks: pam.yml
+  ansible.builtin.import_tasks: pam.yml
 
 - name: Sudo tasks
-  import_tasks: sudo.yml
+  ansible.builtin.import_tasks: sudo.yml
 
 - name: Auditd tasks
-  import_tasks: auditd.yml
+  ansible.builtin.import_tasks: auditd.yml
 
 - name: Cron tasks
-  import_tasks: cron.yml
+  ansible.builtin.import_tasks: cron.yml
 
 - name: UFW tasks
-  import_tasks: ufw.yml
+  ansible.builtin.import_tasks: ufw.yml

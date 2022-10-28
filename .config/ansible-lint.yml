@@ -1,2 +1,9 @@
 skip_list:
   - package-latest  # Package installs should not use latest.
+  - command-instead-of-shell
+
+exclude_paths:
+  - ../roles/common/files/
+  - ../roles/common/templates/
+  - ../roles/honeypot/files/
+  - ../roles/honeypot/templates/

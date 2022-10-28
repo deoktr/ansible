@@ -1,5 +1,4 @@
 - name: Reload auditd
-  become: true
   ansible.builtin.service:
     name: auditd
     state: reloaded

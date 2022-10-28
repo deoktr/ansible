@@ -21,7 +21,7 @@ Copy the output inside [group_vars/all](./group_vars/all).
 ## Lint playbooks
 
 ```bash
-ansible-lint playbook.yaml
+ansible-lint roles
 ```
 
 Note that the configuration for the linter is located in [.config/ansible-lint.yaml](./.config/ansible-lint.yml).
