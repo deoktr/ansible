@@ -5,6 +5,7 @@ Port {{ ansible_port }}
 #ListenAddress 0.0.0.0
 #ListenAddress ::
 
+# NT007(R1) - Allow Only SSH Protocol 2
 Protocol 2
 
 #HostKey /etc/ssh/ssh_host_rsa_key
@@ -46,6 +47,8 @@ MaxSessions 5
 
 # To disable tunneled clear text passwords, change to no here!
 PasswordAuthentication no
+
+# NT007(R17) - Disable SSH Access via Empty Passwords
 PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
@@ -82,7 +85,7 @@ X11Forwarding no
 #X11DisplayOffset 10
 #X11UseLocalhost yes
 #PermitTTY yes
-PrintMotd no
+PrintMotd yes
 #PrintLastLog yes
 #TCPKeepAlive yes
 PermitUserEnvironment no

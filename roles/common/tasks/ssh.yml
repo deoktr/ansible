@@ -13,3 +13,8 @@
     validate: /usr/sbin/sshd -t -f %s
     backup: true
   notify: Reload sshd
+
+- name: Ensure MOTD banner is correct
+  ansible.builtin.copy:
+    src: motd
+    dest: /etc/motd

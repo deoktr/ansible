@@ -20,9 +20,18 @@
 - name: Audit tasks
   ansible.builtin.import_tasks: audit.yml
 
+- name: rsyslog tasks
+  ansible.builtin.import_tasks: rsyslog.yml
+
+- name: NTP
+  ansible.builtin.import_tasks: ntp.yml
+
 - name: Cron tasks
   ansible.builtin.import_tasks: cron.yml
 
 - name: UFW tasks
   ansible.builtin.import_tasks: ufw.yml
   when: ansible_virtualization_type != "docker"
+
+- name: Uninstall
+  ansible.builtin.import_tasks: uninstall.yml

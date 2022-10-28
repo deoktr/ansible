@@ -1,0 +1,11 @@
+# NT007(R02) - Uninstall the ssl compliant telnet server
+- name: Ensure Telnet is uninstalled
+  ansible.builtin.package:
+    name: telnet
+    state: absent
+
+# NT28(R1) - Uninstall Sendmail Package
+- name: Ensure Sendmail is uninstalled
+  ansible.builtin.package:
+    name: sendmail
+    state: absent

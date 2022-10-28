@@ -1,3 +1,8 @@
-- name: Run the equivalent of "apt-get update" as a separate step
-  ansible.builtin.apt:
-    update_cache: true
+- name: Security patches are up to date
+  ansible.builtin.package:
+    name: "*"
+    state: latest
+
+# - name: Run the equivalent of "apt-get update" as a separate step
+#   ansible.builtin.apt:
+#     update_cache: true

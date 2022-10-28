@@ -5,6 +5,7 @@ Linux hardening ansible roles for Debian based Linux server.
 - [ANSSI Guide hardening GNU/Linux](https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/)
 - [NIST National Checklist for Red Hat Enterprise Linux](https://ncp.nist.gov/checklist/909)
 - [OpenSCAP](https://github.com/OpenSCAP/openscap)
+- [ANSSI Secure OpenSSH](https://www.ssi.gouv.fr/administration/guide/recommandations-pour-un-usage-securise-dopenssh/)
 
 ## Usage
 
