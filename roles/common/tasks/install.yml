@@ -1,8 +1,9 @@
+- name: Run "apt-get update"
+  ansible.builtin.apt:
+    update_cache: true
+  when: ansible_distribution=='Debian'
+
 - name: Security patches are up to date
   ansible.builtin.package:
     name: "*"
     state: latest
-
-# - name: Run the equivalent of "apt-get update" as a separate step
-#   ansible.builtin.apt:
-#     update_cache: true

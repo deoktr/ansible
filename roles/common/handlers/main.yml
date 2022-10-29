@@ -1,11 +1,11 @@
 - name: Users handlers
   ansible.builtin.import_tasks: users.yml
 
-- name: SSHD handlers
-  ansible.builtin.import_tasks: sshd.yml
+- name: SSH handlers
+  ansible.builtin.import_tasks: ssh.yml
 
 - name: Sysctl handlers
   ansible.builtin.import_tasks: sysctl.yml
 
-- name: Auditd handlers
-  ansible.builtin.import_tasks: auditd.yml
+- name: Audit handlers
+  ansible.builtin.import_tasks: audit.yml

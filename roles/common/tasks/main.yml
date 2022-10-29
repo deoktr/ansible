@@ -9,10 +9,10 @@
 
 - name: Sysctl tasks
   ansible.builtin.import_tasks: sysctl.yml
-  when: ansible_virtualization_type != "docker"
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
 
-- name: PAM tasks
-  ansible.builtin.import_tasks: pam.yml
+# - name: PAM tasks
+#   ansible.builtin.import_tasks: pam.yml
 
 - name: Sudo tasks
   ansible.builtin.import_tasks: sudo.yml
@@ -22,6 +22,7 @@
 
 - name: rsyslog tasks
   ansible.builtin.import_tasks: rsyslog.yml
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
 
 - name: NTP
   ansible.builtin.import_tasks: ntp.yml
@@ -31,7 +32,7 @@
 
 - name: UFW tasks
   ansible.builtin.import_tasks: ufw.yml
-  when: ansible_virtualization_type != "docker"
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
 
 - name: Uninstall
   ansible.builtin.import_tasks: uninstall.yml

@@ -1,3 +1,5 @@
+# we only want to expire passwords if the user is not the current (used to
+# modify the server via Ansible)
 - name: Expire new passwords
   ansible.builtin.shell:
     cmd: 'passwd --expire {{ item }}'
@@ -9,14 +11,15 @@
          map(attribute='name') | \
          list \
   }}"
+  when: ansible_user_id != item
   listen: "updated users"
 
 - name: Init .bashrc
   ansible.builtin.copy:
-    src: '.bashrc'
-    dest: '/home/{{ item }}/.bashrc'
-    owner: '{{ item }}'
-    group: '{{ item }}'
+    src: ".bashrc"
+    dest: "/home/{{ item }}/.bashrc"
+    owner: "{{ item }}"
+    group: "{{ item }}"
     mode: 0644
     backup: true
   loop: "{{ \

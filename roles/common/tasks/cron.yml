@@ -1,7 +1,6 @@
 - name: Install cron
   ansible.builtin.package:
-    name:
-      - cron
+    name: cron
     state: latest
 
 - name: Ensure cron is running and enabled

@@ -1,55 +1,61 @@
-- name: Install libcrack
-  ansible.builtin.package:
-    name:
-      - libpam-cracklib
-    state: latest
+- name: Configure libpam
+  # packages have different names on other distribs, it's hard to keep tracks
+  # of all of them, it works for Debian now, we filter to avoid errors
+  when: ansible_distribution=='Debian'
+  block:
+    - name: Ensure libcrack is installed
+      ansible.builtin.package:
+        name: libpam-cracklib
+        state: latest
 
-- name: Configure login.defs
-  ansible.builtin.copy:
-    src: login.defs
-    dest: /etc/login.defs
-    owner: root
-    group: root
-    mode: 0644
-    backup: true
+    - name: Configure login.defs
+      ansible.builtin.copy:
+        src: login.defs
+        dest: /etc/login.defs
+        owner: root
+        group: root
+        mode: 0644
+        backup: true
 
-- name: Add password user doc
-  ansible.builtin.copy:
-    src: good-password.txt
-    dest: /usr/share/doc/
-    owner: root
-    group: root
-    mode: 0644
-    backup: true
+    - name: Add password user doc
+      ansible.builtin.copy:
+        src: good-password.txt
+        dest: /usr/share/doc/
+        owner: root
+        group: root
+        mode: 0644
+        backup: true
 
-- name: Configure common-password
-  ansible.builtin.copy:
-    src: common-password
-    dest: /etc/pam.d/common-password
-    owner: root
-    group: root
-    mode: 0644
-    backup: true
+    # ANSSI-PB-028: R31 - Utiliser des mots de passe robustes
+    - name: Configure common-password
+      ansible.builtin.copy:
+        src: common-password
+        dest: /etc/pam.d/common-password
+        owner: root
+        group: root
+        mode: 0644
+        backup: true
 
-# when we install libcrack it will update common-password so we could directly
-# edit it with the ansible package, but imo it's better to change the file and
-# be absolutely certain that it's taken into account
-# - name: Add strong password requirements
-#   community.general.pamd:
-#     name: common-password
-#     type: password
-#     control: requisite
-#     module_path: pam_cracklib.so
-#     module_arguments: 'retry=3
-#       minlen=12
-#       minclass=3
-#       dcredit=0
-#       ucredit=-1
-#       lcredit=-1
-#       ocredit=-1
-#       maxrepeat=1
-#       maxsequence=1
-#       gecoscheck
-#       reject_username
-#       enforce_for_root'
-#     backup: true
+    # ANSSI-PB-028: R31 - Utiliser des mots de passe robustes
+    # - name: Add strong password requirements
+    #   community.general.pamd:
+    #     name: common-password
+    #     new_type: password
+    #     new_control: requisite
+    #     new_module_path: pam_cracklib.so
+    #     module_arguments: 'retry=3
+    #       minlen=12
+    #       dcredit=0
+    #       ucredit=-1
+    #       lcredit=-1
+    #       ocredit=-1
+    #       maxrepeat=1
+    #       maxsequence=1
+    #       gecoscheck
+    #       reject_username
+    #       enforce_for_root'
+    #     state: before
+    #     type: password
+    #     control: requisite
+    #     module_path: pam_deny.so
+    #     backup: true

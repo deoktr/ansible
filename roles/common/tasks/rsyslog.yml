@@ -2,11 +2,9 @@
   ansible.builtin.package:
     name: rsyslog
     state: latest
-  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
 
 - name: Ensure service rsyslog is running and enabled
   ansible.builtin.service:
     name: rsyslog
     state: started
     enabled: true
-  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"

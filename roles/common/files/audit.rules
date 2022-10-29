@@ -29,3 +29,7 @@
 
 # Verrouillage de la configuration de auditd
 -e 2
+
+# R33 - Assurer l'imputabilité des actions d'administration
+# Journalisation de la création de tout processus
+-a exit ,always -F arch=b64 -S execve ,execveat

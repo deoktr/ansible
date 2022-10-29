@@ -1,27 +1,35 @@
+- name: Ensure group sudo exists
+  ansible.builtin.group:
+    name: sudo
+    state: present
+
 - name: Add users
   ansible.builtin.user:
-    name: '{{ item.name }}'
+    name: "{{ item.name }}"
     comment: "{{ item.comment | default('') }}"
     password: "{{ lookup('password', 'credentials/' + item.name + '/password.txt encrypt=md5_crypt') }}"
-    uid: '{{ item.uid }}'
+    uid: "{{ item.uid }}"
     groups: sudo,sshusers
     shell: /bin/bash
     password_expire_max: 30
     update_password: on_create
-    remove: '{{ item.remove | default(false) }}'  # remove home if the user is deleted
+    remove: "{{ item.remove | default(false) }}"  # remove home if the user is deleted
+    # ANSSI-BP-028: R30 - Désactiver les comptes utilisateur inutilisés
     state: "{{ item.state | default('present') }}"  # to remove an account set state to 'absent'
     expires: "{{ item.expires | default(-1) }}"
-  with_items: '{{ users }}'
+  with_items: "{{ users }}"
   register: updated_users
   notify: "updated users"
   when: users
 
+# TODO skip instead of fail when no local file exist
+# TODO gather facts about local files
 - name: Create authorized_keys to enable ssh
   ansible.builtin.copy:
-    src: 'users/{{ item }}/authorized_keys'
-    dest: '/home/{{ item }}/.ssh/'
-    owner: '{{ item }}'
-    group: '{{ item }}'
+    src: "users/{{ item }}/authorized_keys"
+    dest: "/home/{{ item }}/.ssh/"
+    owner: "{{ item }}"
+    group: "{{ item }}"
     mode: 0600
     backup: true
   loop: "{{ \
