@@ -28,8 +28,8 @@
 
     # ANSSI-PB-028: R31 - Utiliser des mots de passe robustes
     - name: Configure common-password
-      ansible.builtin.copy:
-        src: common-password
+      ansible.builtin.template:
+        src: common-password.j2
         dest: /etc/pam.d/common-password
         owner: root
         group: root

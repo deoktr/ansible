@@ -7,3 +7,8 @@
   ansible.builtin.package:
     name: "*"
     state: latest
+  register: updated_packages
+
+- name: Print updated
+  ansible.builtin.debug:
+    msg: "{{ updated_packages.stdout_lines }}"
