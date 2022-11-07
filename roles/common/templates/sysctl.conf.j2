@@ -10,6 +10,7 @@
 # Uncomment the following to stop low-level messages on console
 #kernel.printk = 3 4 1 3
 
+
 ##############################################################3
 # Functions previously found in netbase
 #
@@ -17,21 +18,21 @@
 # Enable Spoof protection (reverse-path filter)
 # Turn on Source Address Verification in all interfaces to prevent some
 # spoofing attacks
-net.ipv4.conf.default.rp_filter=1
-net.ipv4.conf.all.rp_filter=1
+net.ipv4.conf.default.rp_filter = 1
+net.ipv4.conf.all.rp_filter = 1
 
 # Enable TCP/IP SYN cookies
 # See http://lwn.net/Articles/277146/
 # Note: This may impact IPv6 TCP sessions too
-net.ipv4.tcp_syncookies=1
+net.ipv4.tcp_syncookies = 1
 
 # Disable packet forwarding for IPv4
-net.ipv4.ip_forward=0
+net.ipv4.ip_forward = 0
 
 # Uncomment the next line to enable packet forwarding for IPv6
 #  Enabling this option disables Stateless Address Autoconfiguration
 #  based on Router Advertisements for this host
-#net.ipv6.conf.all.forwarding=1
+net.ipv6.conf.all.forwarding = 0
 
 
 ###################################################################
@@ -59,6 +60,7 @@ net.ipv6.conf.default.accept_source_route = 0
 
 # Log Martian Packets
 net.ipv4.conf.all.log_martians = 1
+net.ipv4.conf.default.log_martians = 1
 
 
 ###################################################################
@@ -66,7 +68,7 @@ net.ipv4.conf.all.log_martians = 1
 # 0=disable, 1=enable all, >1 bitmask of sysrq functions
 # See https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
 # for what other values do
-kernel.sysrq=0
+kernel.sysrq = 0
 
 
 ###################################################################
@@ -150,9 +152,10 @@ kernel.modules_disabled = 1
 # ANSSI-BP-028: R9 - Paramétrer les options de configuration du noyau
 #
 # Restreint l'usage du BPF noyau aux utilisateurs privilégiés
-kernel. unprivileged_bpf_disabled =1
-# Arrête complètement le système en cas de comportement inattendu du noyau Linux
-kernel.panic_on_oops =1
+kernel. unprivileged_bpf_disabled = 1
+# Arrête complètement le système en cas de comportement inattendu du noyau
+# Linux
+kernel.panic_on_oops = 1
 
 ###################################################################
 # ANSSI-BP-028: R11 - Activer et configurer le LSM Yama
@@ -178,17 +181,18 @@ net.ipv4.conf.all.accept_redirects = 0
 net.ipv4.conf.default.accept_redirects = 0
 net.ipv4.conf.all.shared_media = 0
 net.ipv4.conf.default.shared_media = 0
-# Empêche le noyau Linux de gérer la table ARP globalement. Par défaut , il peut
-# répondre à une requête ARP d'une interface X avec les informations d'une
+# Empêche le noyau Linux de gérer la table ARP globalement. Par défaut , il
+# peut répondre à une requête ARP d'une interface X avec les informations d'une
 # interface Y. Ce comportement est problématique pour les routeurs et les
 # équipements d'un système en haute disponibilité (VRRP ...).
 net.ipv4.conf.all.arp_filter = 1
-# Ne répond aux sollicitations ARP que si l'adresse source et destination sont sur
-# le même réseau et sur l'interface sur laquelle le paquet a été reçu. Il est à
-# noter que la configuration de cette option est à étudier selon le cas d'usage.
+# Ne répond aux sollicitations ARP que si l'adresse source et destination sont
+# sur le même réseau et sur l'interface sur laquelle le paquet a été reçu. Il
+# est à noter que la configuration de cette option est à étudier selon le cas
+# d'usage.
 net.ipv4.conf.all.arp_ignore = 2
-# Refuse le routage de paquet dont l'adresse source ou destination est celle de la
-# boucle locale. Cela interdit l'émission de paquet ayant comme source 127/8.
+# Refuse le routage de paquet dont l'adresse source ou destination est celle de
+# la boucle locale. Cela interdit l'émission de paquet ayant comme source 127/8
 net.ipv4.conf.all.route_localnet = 0
 # Ignore les sollicitations de type gratuitous ARP. Cette configuration est
 # efficace contre les attaques de type ARP poisoning mais ne s'applique qu 'en
@@ -213,17 +217,33 @@ net.ipv6.conf.all.disable_ipv6 = 1
 # configuration CONFIG_COREDUMP=n
 fs.suid_dumpable = 0
 # Disponible à partir de la version 4.19 du noyau Linux , permet d'interdire
-# l'ouverture des FIFOS et des fichiers "réguliers" qui ne sont pas la propriété
-# de l'utilisateur dans les dossiers sticky en écriture pour tout le monde.
+# l'ouverture des FIFOS et des fichiers "réguliers" qui ne sont pas la
+# propriété de l'utilisateur dans les dossiers sticky en écriture pour tout le
+# monde.
 fs.protected_fifos = 2
 fs.protected_regular = 2
 # Restreint la création de liens symboliques à des fichiers dont l'utilisateur
-# est propriétaire. Cette option fait partie des mécanismes de prévention contre
-# les vulnérabilités de la famille Time of Check - Time of Use (Time of Check -
-# Time of Use)
+# est propriétaire. Cette option fait partie des mécanismes de prévention
+# contre les vulnérabilités de la famille Time of Check - Time of Use (Time of
+# Check - Time of Use)
 fs.protected_symlinks = 1
 # Restreint la création de liens durs à des fichiers dont l'utilisateur est
 # propriétaire. Ce sysctl fait partie des mécanismes de prévention contre les
-# vulnérabilités Time of Check - Time of Use , mais aussi contre la possibilité de
-# conserver des accès à des fichiers obsolètes
+# vulnérabilités Time of Check - Time of Use , mais aussi contre la possibilité
+# de conserver des accès à des fichiers obsolètes
 fs.protected_hardinks = 1
+
+
+###################################################################
+# CIS
+#
+
+# 3.3.5 Ensure broadcast ICMP requests are ignored
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# 3.3.6 Ensure bogus ICMP responses are ignored
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+
+# 3.3.9 Ensure IPv6 router advertisements are not accepted
+net.ipv6.conf.all.accept_ra = 0
+net.ipv6.conf.default.accept_ra = 0

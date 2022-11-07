@@ -1,4 +1,5 @@
 # NT007(R02) - Uninstall the ssl compliant telnet server
+# CIS 2.3.4 Ensure telnet client is not installed
 - name: Ensure Telnet is uninstalled
   ansible.builtin.package:
     name: telnet
@@ -8,4 +9,22 @@
 - name: Ensure Sendmail is uninstalled
   ansible.builtin.package:
     name: sendmail
+    state: absent
+
+# CIS 1.6.3 Ensure prelink is disabled
+- name: Ensure prelink is uninstalled
+  ansible.builtin.package:
+    name: prelink
+    state: absent
+
+# CIS 2.3.3 Ensure talk client is not installed
+- name: Ensure talk is uninstalled
+  ansible.builtin.package:
+    name: talk
+    state: absent
+
+# CIS 2.3.5 Ensure LDAP client is not installed
+- name: Ensure LDAP client is uninstalled
+  ansible.builtin.package:
+    name: ldap-utils
     state: absent
