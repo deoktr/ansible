@@ -3,12 +3,8 @@
     update_cache: true
   when: ansible_distribution=='Debian'
 
-- name: Security patches are up to date
+- name: Ensure security patches are up to date
   ansible.builtin.package:
     name: "*"
     state: latest
   register: updated_packages
-
-- name: Print updated
-  ansible.builtin.debug:
-    msg: "{{ updated_packages.stdout_lines }}"
