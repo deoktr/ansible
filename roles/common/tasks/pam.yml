@@ -5,7 +5,7 @@
   block:
     - name: Ensure libcrack is installed
       ansible.builtin.package:
-        name: libpam-cracklib
+        name: libpam-pwquality
         state: latest
 
     - name: Configure login.defs
@@ -42,7 +42,7 @@
     #     name: common-password
     #     new_type: password
     #     new_control: requisite
-    #     new_module_path: pam_cracklib.so
+    #     new_module_path: pam_pwquality.so
     #     module_arguments: 'retry=3
     #       minlen=12
     #       dcredit=0
