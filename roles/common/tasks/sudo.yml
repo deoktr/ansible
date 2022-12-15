@@ -1,4 +1,3 @@
-# R57 - Groupe dédié à l'usage de sudo
 - name: Restrict permissions for sudo executable
   ansible.builtin.file:
     path: /usr/bin/sudo
@@ -6,7 +5,6 @@
     group: sudo
     mode: u=rws,g=rx,o-rwx
 
-# R58 - Directives de configuration sudo
 - name: Update sudoers file
   ansible.builtin.template:
     src: sudoers.j2
@@ -15,3 +13,17 @@
     group: root
     mode: 0440
     backup: true
+
+- name: Ensure group sudo exists
+  ansible.builtin.group:
+    name: sudo
+    state: present
+
+# TODO make a list of sudo users
+- name: Add users to sudo group
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    groups: sudo
+    append: yes
+  with_items: "{{ users }}"
+  when: users

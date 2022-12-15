@@ -1,21 +1,12 @@
-- name: Configure libpam
+- name: Configure pwquality
   # packages have different names on other distribs, it's hard to keep tracks
   # of all of them, it works for Debian now, we filter to avoid errors
   when: ansible_distribution=='Debian'
   block:
-    - name: Ensure libcrack is installed
+    - name: Ensure libpam-pwquality is installed
       ansible.builtin.package:
         name: libpam-pwquality
         state: latest
-
-    - name: Configure login.defs
-      ansible.builtin.copy:
-        src: login.defs
-        dest: /etc/login.defs
-        owner: root
-        group: root
-        mode: 0644
-        backup: true
 
     - name: Add password user doc
       ansible.builtin.copy:
@@ -24,10 +15,16 @@
         owner: root
         group: root
         mode: 0644
-        backup: true
 
-    # ANSSI-PB-028: R31 - Utiliser des mots de passe robustes
-    - name: Configure common-password
+    - name: Add pwquality config
+      ansible.builtin.template:
+        src: pwquality.conf
+        dest: /etc/security/
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Add common-password pam config
       ansible.builtin.template:
         src: common-password.j2
         dest: /etc/pam.d/common-password
@@ -36,26 +33,16 @@
         mode: 0644
         backup: true
 
-    # ANSSI-PB-028: R31 - Utiliser des mots de passe robustes
-    # - name: Add strong password requirements
-    #   community.general.pamd:
-    #     name: common-password
-    #     new_type: password
-    #     new_control: requisite
-    #     new_module_path: pam_pwquality.so
-    #     module_arguments: 'retry=3
-    #       minlen=12
-    #       dcredit=0
-    #       ucredit=-1
-    #       lcredit=-1
-    #       ocredit=-1
-    #       maxrepeat=1
-    #       maxsequence=1
-    #       gecoscheck
-    #       reject_username
-    #       enforce_for_root'
-    #     state: before
-    #     type: password
-    #     control: requisite
-    #     module_path: pam_deny.so
-    #     backup: true
+# TODO faire en fichier
+- name: Add su pam config
+  community.general.pamd:
+    name: su
+    new_type: auth
+    new_control: required
+    new_module_path: pam_wheel.so
+    module_arguments: use_uid root_only
+    state: before
+    type: auth
+    control: sufficient
+    module_path: pam_rootok.so
+

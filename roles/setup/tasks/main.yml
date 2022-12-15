@@ -1,0 +1,5 @@
+- name: Install
+  ansible.builtin.import_tasks: install.yml
+
+- name: Uninstall
+  ansible.builtin.import_tasks: uninstall.yml

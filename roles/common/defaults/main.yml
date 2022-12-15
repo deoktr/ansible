@@ -6,4 +6,4 @@ ssh_group_gid: 1700
 
 users:
 
-file_header: "Caution: This File is Managed By Ansible - DO NOT EDIT MANUALLY."
+file_header: "DO NOT EDIT: This File is Managed By Ansible."

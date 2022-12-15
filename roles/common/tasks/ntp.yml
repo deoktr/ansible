@@ -1,10 +1,9 @@
-# NT012(R03) - Install the NTP service
+# TODO configure NTP with the server as a variable in a template
 - name: Ensure ntp is installed
   ansible.builtin.package:
     name: ntp
     state: present
 
-# NT012(R03) - Enable the NTP Daemon
 - name: Ensure the ntp service is running and enabled
   ansible.builtin.service:
     name: ntp

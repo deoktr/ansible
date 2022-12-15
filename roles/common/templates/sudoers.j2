@@ -1,50 +1,10 @@
 # {{ file_header }}
 #
-# This file MUST be edited with the 'visudo' command as root.
-#
-# R58 - Directives de configuration sudo
-#   Les directives suivantes doivent être activées par défaut :
-#       * noexec appliquer le tag NOEXEC par defaut sur les commandes ;
-#           /!\ DOESN'T WORK WITH ANSIBLE /!\
-#       * requiretty imposer à l’utilisateur d’avoir un tty de login ;
-#       * use_pty utiliser un pseudo-tty lorsqu’une commande est exécutée ;
-#       * umask=0027 forcer umask à un masque plus restrictif ;
-#       * ignore_dot ignorer le ’.’ dans $PATH ;
-#       * env_reset réinitialiser les variables d’environnement ;
-#       * passwd_timeout=1 allouer 1 minute pour entrer son mot de passe.
-#
-# R59 - Authentification des utilisateurs exécutant sudo
-#   Une authentification de l’utilisateur appelant doit être effectuée avant toute
-#   exécution de commande par sudo. Le mot-clé NOPASSWD ne doit pas être utilisé.
-#
-# R60 - Privilèges des utilisateurs cibles pour une commande sudo
-#   Les utilisateurs cibles d’une règle doivent autant que possible être des utilisateurs
-#   non privilégiés (c’est-à-dire non root).
-#
-# R61 - Limitation du nombre de commandes nécessitant l'option EXEC
-#   Les commandes nécessitant l’exécution de sous-processus (tag EXEC) doivent être
-#   explicitement listées et réduites autant que possible au strict minimum.
-#
-# R62 - Du bon usage de la négation dans une spécification sudo
-#   Les spécifications de commandes ne doivent pas faire intervenir de négation.
-#
-# R63 - Arguments explicites dans les spécifications sudo
-#   Toutes les commandes du fichier sudoers doivent préciser strictement les arguments
-#   autorisés à être utilisés pour un utilisateur donné.
-#   L’usage de * (wildcard) dans les règles doit être autant que possible évité. L’absence
-#   d’arguments auprès d’une commande doit être spécifiée par la présence d’une chaîne
-#   vide (””).
-#
-# R64 - Du bon usage de sudoedit
-#   L’édition d’un fichier par sudo doit être réalisée au travers de la commande
-#   sudoedit.
-#
 # Please consider adding local content in /etc/sudoers.d/ instead of
 # directly modifying this file.
 #
-# See the man page for details on how to write a sudoers file.
-#
-#Defaults	noexec
+
+#Defaults	noexec  # breaks Ansible
 Defaults	requiretty
 Defaults	use_pty
 Defaults	umask=0027

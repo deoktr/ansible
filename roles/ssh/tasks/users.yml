@@ -1,0 +1,33 @@
+- name: Ensure group ssh exists
+  ansible.builtin.group:
+    name: "{{ ssh_group_name }}"
+    gid: "{{ ssh_group_gid }}"
+    state: present
+
+- name: Add users to ssh group
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: "{{ ssh_group_name }}"
+    append: yes
+  with_items: "{{ users }}"
+  when: users
+
+# TODO skip instead of fail when no local file exist
+# TODO gather facts about local files
+- name: Create authorized_keys to enable ssh
+  ansible.builtin.copy:
+    src: "users/{{ item }}/authorized_keys"
+    dest: "/home/{{ item }}/.ssh/"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: 0600
+    backup: true
+  loop: "{{ \
+         updated_users.results | \
+         selectattr('state', 'equalto', 'present') | \
+         map(attribute='item') | \
+         map(attribute='name') | \
+         list \
+  }}"
+  ignore_errors: true
+  when: users

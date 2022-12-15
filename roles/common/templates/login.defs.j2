@@ -1,0 +1,84 @@
+# {{ file_header }}
+#
+# /etc/login.defs - Configuration control definitions for the login package.
+#
+# Three items must be defined:  MAIL_DIR, ENV_SUPATH, and ENV_PATH.
+# If unspecified, some arbitrary (and possibly incorrect) value will
+# be assumed.  All other items are optional - if not specified then
+# the described action or option will be inhibited.
+#
+
+MAIL_DIR        /var/mail
+#MAIL_FILE      .mail
+
+FAILLOG_ENAB		yes
+
+LOG_UNKFAIL_ENAB	no
+
+LOG_OK_LOGINS		no
+
+SYSLOG_SU_ENAB		yes
+SYSLOG_SG_ENAB		yes
+
+#SULOG_FILE	/var/log/sulog
+
+#TTYTYPE_FILE	/etc/ttytype
+
+FTMP_FILE	/var/log/btmp
+
+SU_NAME		su
+
+HUSHLOGIN_FILE	.hushlogin
+#HUSHLOGIN_FILE	/etc/hushlogins
+
+ENV_SUPATH	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV_PATH	PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+
+TTYGROUP	tty
+TTYPERM		0600
+
+ERASECHAR	0177
+KILLCHAR	025
+UMASK		0077
+
+PASS_MAX_DAYS	365
+PASS_MIN_DAYS	1
+PASS_WARN_AGE	15
+
+UID_MIN			 1000
+UID_MAX			60000
+# System accounts
+#SYS_UID_MIN		  100
+#SYS_UID_MAX		  999
+
+GID_MIN			 1000
+GID_MAX			60000
+# System accounts
+#SYS_GID_MIN		  100
+#SYS_GID_MAX		  999
+
+LOGIN_RETRIES		5
+
+LOGIN_TIMEOUT		60
+
+CHFN_RESTRICT		rwh
+
+DEFAULT_HOME	yes
+
+#USERDEL_CMD	/usr/sbin/userdel_local
+
+USERGROUPS_ENAB yes
+
+# FAKE_SHELL /bin/fakeshell
+
+#CONSOLE	/etc/consoles
+#CONSOLE	console:tty01:tty02:tty03:tty04
+
+#CONSOLE_GROUPS		floppy:audio:cdrom
+
+#MD5_CRYPT_ENAB	no
+
+ENCRYPT_METHOD SHA512
+
+SHA_CRYPT_MIN_ROUNDS 65536
+# SHA_CRYPT_MAX_ROUNDS 120000
