@@ -11,8 +11,8 @@
 - name: MOTD tasks
   ansible.builtin.import_tasks: motd.yml
 
-#- name: Sudo tasks
-#  ansible.builtin.import_tasks: sudo.yml
+- name: Sudo tasks
+  ansible.builtin.import_tasks: sudo.yml
 
 #- name: Audit tasks
 #  ansible.builtin.import_tasks: audit.yml

@@ -7,6 +7,15 @@
     mode: 0644
     backup: true
 
+- name: Configure useradd default
+  ansible.builtin.template:
+    src: useradd.j2
+    dest: /etc/default/useradd
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+
 - name: Add users
   ansible.builtin.user:
     name: "{{ item.name }}"

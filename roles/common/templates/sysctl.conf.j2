@@ -7,242 +7,78 @@
 
 #kernel.domainname = example.com
 
-# Uncomment the following to stop low-level messages on console
-#kernel.printk = 3 4 1 3
-
-
-##############################################################3
-# Functions previously found in netbase
-#
-
-# Enable Spoof protection (reverse-path filter)
-# Turn on Source Address Verification in all interfaces to prevent some
-# spoofing attacks
 net.ipv4.conf.default.rp_filter = 1
 net.ipv4.conf.all.rp_filter = 1
-
-# Enable TCP/IP SYN cookies
-# See http://lwn.net/Articles/277146/
-# Note: This may impact IPv6 TCP sessions too
 net.ipv4.tcp_syncookies = 1
-
-# Disable packet forwarding for IPv4
 net.ipv4.ip_forward = 0
-
-# Uncomment the next line to enable packet forwarding for IPv6
-#  Enabling this option disables Stateless Address Autoconfiguration
-#  based on Router Advertisements for this host
 net.ipv6.conf.all.forwarding = 0
-
-
-###################################################################
-# Additional settings - these settings can improve the network
-# security of the host and prevent against some network attacks
-# including spoofing attacks and man in the middle attacks through
-# redirection. Some network environments, however, require that these
-# settings are disabled so review and enable them as needed.
-
-# Do not accept ICMP redirects (prevent MITM attacks)
 net.ipv4.conf.all.accept_redirects = 0
 net.ipv4.conf.default.accept_redirects = 0
 net.ipv6.conf.all.accept_redirects = 0
 net.ipv6.conf.default.accept_redirects = 0
-
-# Do not send ICMP redirects (we are not a router)
 net.ipv4.conf.all.send_redirects = 0
 net.ipv4.conf.default.send_redirects = 0
-
-# Do not accept IP source route packets (we are not a router)
 net.ipv4.conf.all.accept_source_route = 0
 net.ipv4.conf.default.accept_source_route = 0
 net.ipv6.conf.all.accept_source_route = 0
 net.ipv6.conf.default.accept_source_route = 0
-
-# Log Martian Packets
 net.ipv4.conf.all.log_martians = 1
 net.ipv4.conf.default.log_martians = 1
-
-
-###################################################################
-# Magic system request Key
-# 0=disable, 1=enable all, >1 bitmask of sysrq functions
-# See https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
-# for what other values do
 kernel.sysrq = 0
-
-
-###################################################################
-# ANSSI - RECOMMANDATIONS DE CONFIGURATION D'UN SYSTÈME GNU/LINUX 2019
-#
-
-###################################################################
-# R22 - Paramétrage des sysctl réseau
-#
-# Refuse ICMP redirects
 net.ipv4.conf.all.accept_redirects = 0
 net.ipv4.conf.all.secure_redirects = 0
 net.ipv4.conf.default.accept_redirects = 0
 net.ipv4.conf.default.secure_redirects = 0
-# RFC 1337
 net.ipv4.tcp_rfc1337 = 1
-# Ignorer les réponses non conformes à la RFC 1122
 net.ipv4.icmp_ignore_bogus_error_responses = 1
-# Augmenter la plage pour les ports éphémères
 net.ipv4.ip_local_port_range = 32768 65535
-# Désactiver le support des "router solicitations"
 net.ipv6.conf.all.router_solicitations = 0
 net.ipv6.conf.default.router_solicitations = 0
-# Ne pas accepter les "router preferences" par "router advertisements"
 net.ipv6.conf.all.accept_ra_rtr_pref = 0
 net.ipv6.conf.default.accept_ra_rtr_pref = 0
-# Pas de configuration auto des prefix par "router advertisements"
 net.ipv6.conf.all.accept_ra_pinfo = 0
 net.ipv6.conf.default.accept_ra_pinfo = 0
-# Pas d'apprentissage du routeur par défaut par "router advertisements"
 net.ipv6.conf.all.accept_ra_defrtr = 0
 net.ipv6.conf.default.accept_ra_defrtr = 0
-# Pas de configuration auto des adresses à partir des "router advertisements "
 net.ipv6.conf.all.autoconf = 0
 net.ipv6.conf.default.autoconf = 0
-# Ne pas accepter les ICMP de type redirect
 net.ipv6.conf.all.accept_redirects = 0
 net.ipv6.conf.default.accept_redirects = 0
-# Refuser les packets de source routing
-# Nombre maximal d'adresses autoconfigurées par interface
 net.ipv6.conf.all.max_addresses = 1
 net.ipv6.conf.default.max_addresses = 1
-
-###################################################################
-# R23 - Paramétrage des sysctl système
-#
-# Pas de core dump des exécutables setuid
 fs.suid_dumpable = 0
-# Interdiction de déréférencer des liens vers des fichiers dont
-# l'utilisateur courant n'est pas le propriétaire
-# Peut empêcher certains programmes de fonctionner correctement
 fs.protected_symlinks = 1
 fs.protected_hardlinks = 1
-# Activation de l'ASLR
 kernel.randomize_va_space = 2
-# Interdiction de mapper de la mémoire dans les adresses basses (0)
 vm.mmap_min_addr = 65536
-# Espace de choix plus grand pour les valeurs de PID
 kernel.pid_max = 65536
-# Obfuscation des adresses mémoire kernel, y compris aux utilisateurs root
 kernel.kptr_restrict = 2
-# Restriction d'accès au buffer dmesg
 kernel.dmesg_restrict = 1
-# Restreint l'utilisation du sous système perf
 kernel.perf_event_paranoid = 2
 kernel.perf_event_max_sample_rate = 1
 kernel.perf_cpu_time_max_percent = 1
-
-###################################################################
-# R24 - Désactivation du chargement des modules noyau
-#
-# Interdiction de chargement des modules (sauf ceux déjà chargés à
-# ce point) par modification du fichier /etc/sysctl.conf
 kernel.modules_disabled = 1
-
-###################################################################
-# ANSSI - RECOMMANDATIONS DE CONFIGURATION D'UN SYSTÈME GNU/LINUX 2022
-#
-
-###################################################################
-# ANSSI-BP-028: R9 - Paramétrer les options de configuration du noyau
-#
-# Restreint l'usage du BPF noyau aux utilisateurs privilégiés
 kernel.unprivileged_bpf_disabled = 1
-# Arrête complètement le système en cas de comportement inattendu du noyau
-# Linux
 kernel.panic_on_oops = 1
-
-###################################################################
-# ANSSI-BP-028: R11 - Activer et configurer le LSM Yama
-#
 kernel.yama.ptrace_scope = 1
-
-###################################################################
-# ANSSI-BP-028: R12 - Paramétrer les options de configuration du réseau IPv4
-#
-# Atténuation de l'effet de dispersion du JIT noyau au coût d'un compromis sur
-# les performances associées.
 net.core.bpf_jit_harden = 2
-# Considère comme invalides les paquets reçus de l'extérieur ayant comme source
-# le réseau 127/8.
 net.ipv4.conf.all.accept_local = 0
-# Refuse la réception de paquet ICMP redirect. Le paramétrage suggéré de cette
-# option est à considérer fortement dans le cas de routeurs qui ne doivent pas
-# dépendre d'un élément extérieur pour déterminer le calcul d'une route. Même
-# pour le cas de machines non -routeurs , ce paramétrage prémunit contre les
-# détournements de trafic avec des paquets de type ICMP redirect.
 net.ipv4.conf.all.accept_redirects = 0
 net.ipv4.conf.default.accept_redirects = 0
 net.ipv4.conf.all.shared_media = 0
 net.ipv4.conf.default.shared_media = 0
-# Empêche le noyau Linux de gérer la table ARP globalement. Par défaut , il
-# peut répondre à une requête ARP d'une interface X avec les informations d'une
-# interface Y. Ce comportement est problématique pour les routeurs et les
-# équipements d'un système en haute disponibilité (VRRP ...).
 net.ipv4.conf.all.arp_filter = 1
-# Ne répond aux sollicitations ARP que si l'adresse source et destination sont
-# sur le même réseau et sur l'interface sur laquelle le paquet a été reçu. Il
-# est à noter que la configuration de cette option est à étudier selon le cas
-# d'usage.
 net.ipv4.conf.all.arp_ignore = 2
-# Refuse le routage de paquet dont l'adresse source ou destination est celle de
-# la boucle locale. Cela interdit l'émission de paquet ayant comme source 127/8
 net.ipv4.conf.all.route_localnet = 0
-# Ignore les sollicitations de type gratuitous ARP. Cette configuration est
-# efficace contre les attaques de type ARP poisoning mais ne s'applique qu 'en
-# association avec un ou plusieurs proxy ARP maîtrisés. Elle peut également
-# être problématique sur un réseau avec des équipements en haute disponibilité
-# (VRRP ...)
 net.ipv4.conf.all.drop_gratuitous_arp = 1
-
-###################################################################
-# ANSSI-BP-028: R13 - Désactiver le plan IPv6
-#
-# Quand IPv6 n’est pas utilisé, il est recommandé de désactiver la pile IPv6.
 net.ipv6.conf.default.disable_ipv6 = 1
 net.ipv6.conf.all.disable_ipv6 = 1
-
-###################################################################
-# ANSSI-BP-028: R14 - Paramétrer les options de configuration des systèmes de
-# fichiers
-#
-# Désactive la création de coredump pour les exécutables setuid
-# Notez qu 'il est possible de désactiver tous les coredumps avec la
-# configuration CONFIG_COREDUMP=n
 fs.suid_dumpable = 0
-# Disponible à partir de la version 4.19 du noyau Linux , permet d'interdire
-# l'ouverture des FIFOS et des fichiers "réguliers" qui ne sont pas la
-# propriété de l'utilisateur dans les dossiers sticky en écriture pour tout le
-# monde.
 fs.protected_fifos = 2
 fs.protected_regular = 2
-# Restreint la création de liens symboliques à des fichiers dont l'utilisateur
-# est propriétaire. Cette option fait partie des mécanismes de prévention
-# contre les vulnérabilités de la famille Time of Check - Time of Use (Time of
-# Check - Time of Use)
 fs.protected_symlinks = 1
-# Restreint la création de liens durs à des fichiers dont l'utilisateur est
-# propriétaire. Ce sysctl fait partie des mécanismes de prévention contre les
-# vulnérabilités Time of Check - Time of Use , mais aussi contre la possibilité
-# de conserver des accès à des fichiers obsolètes
 fs.protected_hardinks = 1
-
-
-###################################################################
-# CIS
-#
-
-# 3.3.5 Ensure broadcast ICMP requests are ignored
 net.ipv4.icmp_echo_ignore_broadcasts = 1
-
-# 3.3.6 Ensure bogus ICMP responses are ignored
 net.ipv4.icmp_ignore_bogus_error_responses = 1
-
-# 3.3.9 Ensure IPv6 router advertisements are not accepted
 net.ipv6.conf.all.accept_ra = 0
 net.ipv6.conf.default.accept_ra = 0

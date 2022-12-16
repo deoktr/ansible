@@ -3,6 +3,3 @@
 
 - name: Sysctl handlers
   ansible.builtin.import_tasks: sysctl.yml
-
-- name: Audit handlers
-  ansible.builtin.import_tasks: audit.yml

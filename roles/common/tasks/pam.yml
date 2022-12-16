@@ -9,7 +9,7 @@
         state: latest
 
     - name: Add password user doc
-      ansible.builtin.copy:
+      ansible.builtin.template:
         src: good-password.txt
         dest: /usr/share/doc/
         owner: root
@@ -32,17 +32,3 @@
         group: root
         mode: 0644
         backup: true
-
-# TODO faire en fichier
-- name: Add su pam config
-  community.general.pamd:
-    name: su
-    new_type: auth
-    new_control: required
-    new_module_path: pam_wheel.so
-    module_arguments: use_uid root_only
-    state: before
-    type: auth
-    control: sufficient
-    module_path: pam_rootok.so
-

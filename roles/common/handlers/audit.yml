@@ -1,5 +1,0 @@
-- name: Reload audit
-  ansible.builtin.service:
-    name: auditd
-    state: reloaded
-  ignore_errors: true

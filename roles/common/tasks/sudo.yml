@@ -1,9 +1,9 @@
-- name: Restrict permissions for sudo executable
-  ansible.builtin.file:
-    path: /usr/bin/sudo
-    owner: root
-    group: sudo
-    mode: u=rws,g=rx,o-rwx
+#- name: Restrict permissions for sudo executable
+#  ansible.builtin.file:
+#    path: /usr/bin/sudo
+#    owner: root
+#    group: sudo
+#    mode: u=rws,g=rx,o-rwx
 
 - name: Update sudoers file
   ansible.builtin.template:
