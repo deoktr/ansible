@@ -32,3 +32,31 @@
   community.general.ufw:
     policy: deny
     direction: incoming
+
+- name: UFW allow loopback in
+  community.general.ufw:
+    rule: allow
+    interface: lo
+    direction: in
+    comment: 'loopback interface'
+
+- name: UFW allow loopback out
+  community.general.ufw:
+    rule: allow
+    interface: lo
+    direction: out
+    comment: 'loopback interface'
+
+- name: UFW deny 127.0.0.0/8 in
+  community.general.ufw:
+    rule: deny
+    src: '127.0.0.0/8'
+    direction: in
+    comment: 'loopback'
+
+- name: UFW deny ::1 in
+  community.general.ufw:
+    rule: deny
+    src: '::1'
+    direction: in
+    comment: 'loopback'

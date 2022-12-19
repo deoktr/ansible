@@ -28,7 +28,7 @@ FTMP_FILE	/var/log/btmp
 
 SU_NAME		su
 
-HUSHLOGIN_FILE	.hushlogin
+#HUSHLOGIN_FILE	.hushlogin
 #HUSHLOGIN_FILE	/etc/hushlogins
 
 ENV_SUPATH	PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -43,7 +43,7 @@ UMASK		0077
 
 PASS_MAX_DAYS	{{ pass_max_days }}
 PASS_MIN_DAYS	1
-PASS_WARN_AGE	15
+PASS_WARN_AGE	7
 
 UID_MIN			 1000
 UID_MAX			60000

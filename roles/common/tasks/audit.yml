@@ -9,7 +9,6 @@
     state: started
     enabled: true
 
-# should restart system if it changes
 - name: Add audit rules
   ansible.builtin.template:
     src: audit.rules.j2
@@ -18,3 +17,4 @@
     group: root
     mode: 0644
     backup: true
+  notify: Reboot

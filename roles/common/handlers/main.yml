@@ -3,3 +3,7 @@
 
 - name: Sysctl handlers
   ansible.builtin.import_tasks: sysctl.yml
+
+# reboot last
+- name: System handlers
+  ansible.builtin.import_tasks: system.yml

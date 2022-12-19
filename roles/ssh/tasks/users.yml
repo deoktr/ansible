@@ -12,8 +12,8 @@
   with_items: "{{ users }}"
   when: users
 
-# TODO skip instead of fail when no local file exist
-# TODO gather facts about local files
+# TODO use: ansible.posix.authorized_key
+# https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html
 - name: Create authorized_keys to enable ssh
   ansible.builtin.copy:
     src: "users/{{ item }}/authorized_keys"

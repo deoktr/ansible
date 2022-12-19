@@ -1,0 +1,18 @@
+- name: Add Ansible user
+  ansible.builtin.user:
+    name: ansible
+    comment: Ansible management account
+    password: "{{ lookup('password', 'credentials/ansible/' + ansible_host + ' encrypt=md5_crypt') }}"
+    shell: /bin/bash
+    update_password: always
+    generate_ssh_key: true
+    ssh_key_type: ed25519
+
+- name: Create ansible authorized_keys to enable ssh
+  ansible.builtin.copy:
+    src: ansible_authorized_keys
+    dest: /home/ansible/.ssh/authorized_keys
+    owner: ansible
+    group: ansible
+    mode: 0600
+    backup: true
