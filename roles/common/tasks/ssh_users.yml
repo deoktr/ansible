@@ -1,12 +1,6 @@
-- name: Ensure group ssh exists
-  ansible.builtin.group:
-    name: "{{ ssh_group_name }}"
-    gid: "{{ ssh_group_gid }}"
-    state: present
-
 - name: Add users to ssh group
   ansible.builtin.user:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     groups: "{{ ssh_group_name }}"
     append: yes
   with_items: "{{ users }}"

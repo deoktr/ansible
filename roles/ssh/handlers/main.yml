@@ -1,2 +1,0 @@
-- name: SSH handlers
-  ansible.builtin.import_tasks: ssh.yml

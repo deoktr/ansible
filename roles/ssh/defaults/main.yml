@@ -1,9 +1,0 @@
-ansible_port: 22
-
-ssh_group_name: sshusers
-ssh_group_gid: 1700
-
-# list of users that should be allowed SSH access
-ssh_users:
-
-file_header: "Caution: This File is Managed By Ansible - DO NOT EDIT MANUALLY."

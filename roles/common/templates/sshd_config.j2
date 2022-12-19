@@ -1,0 +1,41 @@
+# {{ file_header }}
+#
+# This file is include other sshd config files, from /etc/ssh/sshd_config.d/
+# to customize it add a file ending with .conf in it.
+#
+
+Include /etc/ssh/sshd_config.d/*.conf
+
+Port {{ ansible_port }}
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+Protocol 2
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+SyslogFacility AUTH
+LogLevel VERBOSE
+LoginGraceTime 60
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 2
+MaxSessions 5
+HostbasedAuthentication no
+IgnoreRhosts yes
+PasswordAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+UsePAM yes
+AllowAgentForwarding no
+AllowTcpForwarding no
+GatewayPorts no
+X11Forwarding no
+PrintMotd no
+PermitUserEnvironment no
+ClientAliveCountMax 0
+UseDNS no
+PermitTunnel no
+MaxStartups 10:30:60
+AcceptEnv LANG LC_*
+AllowGroups {{ ssh_group_name }}

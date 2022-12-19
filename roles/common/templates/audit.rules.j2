@@ -1,37 +1,32 @@
 # {{ file_header }}
-#
-# ANSSI - RECOMMANDATIONS DE CONFIGURATION D'UN SYSTÈME GNU/LINUX
-# R50 Journalisation de l'activité par auditd
 
-# Exécution de insmod , rmmod et modprobe
+# log insmod, rmmod, and modprobe
 -w /sbin/insmod -p x
 -w /sbin/modprobe -p x
 -w /sbin/rmmod -p x
 -w /etc/passwd -p wa -k user-modify
 
-# Journaliser les modifications dans /etc/
+# log edition in /etc/
 -w /etc/ -p wa
 
-# Surveillance de montage/démontage
+# monitor mount and umount command
 -a exit ,always -S mount -S umount2
 
-# Appels de syscalls x86 suspects
+# x86 syscalls
 -a exit ,always -S ioperm -S modify_ldt
 
-# Appels de syscalls qui doivent être rares et surveillés de près
+# syscalls that should be rare
 -a exit ,always -S get_kernel_syms -S ptrace
 -a exit ,always -S prctl
 
-# Rajout du monitoring pour la création ou suppression de fichiers
-# Ces règles peuvent avoir des conséquences importantes sur les
-# performances du système
+# Monitor the creation and removal of file, this can have a big impact on
+# system perfs
 -a exit ,always -F arch=b64 -S unlink -S rmdir -S rename
 -a exit ,always -F arch=b64 -S creat -S open -S openat -F exit=-EACCESS
 -a exit ,always -F arch=b64 -S truncate -S ftruncate -F exit=-EACCESS
 
-# Verrouillage de la configuration de auditd
+# Lock auditd config, need restart to take effect
 -e 2
 
-# R33 - Assurer l'imputabilité des actions d'administration
-# Journalisation de la création de tout processus
+# Monitor the creation of new process
 -a exit ,always -F arch=b64 -S execve ,execveat

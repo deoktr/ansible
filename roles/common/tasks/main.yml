@@ -1,8 +1,14 @@
 - name: Ansible
   ansible.builtin.import_tasks: ansible.yml
 
+- name: SSH tasks
+  ansible.builtin.import_tasks: ssh.yml
+
 - name: Users tasks
   ansible.builtin.import_tasks: users.yml
+
+- name: SSH users tasks
+  ansible.builtin.import_tasks: ssh_users.yml
 
 - name: Sysctl tasks
   ansible.builtin.import_tasks: sysctl.yml
