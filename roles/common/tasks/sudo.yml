@@ -27,7 +27,7 @@
   when: users
   notify: Reboot
 
-- name: Update sudoers file
+- name: Configure sudo
   ansible.builtin.template:
     src: sudoers.j2
     dest: /etc/sudoers
@@ -35,3 +35,8 @@
     group: root
     mode: 0440
     backup: true
+
+- name: Create sudo config folder
+  ansible.builtin.file:
+    path: /etc/sudoers.d
+    state: directory

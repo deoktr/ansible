@@ -10,6 +10,10 @@
 - name: SSH users tasks
   ansible.builtin.import_tasks: ssh_users.yml
 
+# configure IF GRUB is installed
+- name: GRUB tasks
+  ansible.builtin.import_tasks: grub.yml
+
 - name: Sysctl tasks
   ansible.builtin.import_tasks: sysctl.yml
   when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
