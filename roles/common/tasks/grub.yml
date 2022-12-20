@@ -4,7 +4,6 @@
     owner: root
     group: root
     mode: 0600
-    backup: true
 
 - name: GRUB disable IPv6
   ansible.builtin.replace:

@@ -25,8 +25,8 @@
 -a exit ,always -F arch=b64 -S creat -S open -S openat -F exit=-EACCESS
 -a exit ,always -F arch=b64 -S truncate -S ftruncate -F exit=-EACCESS
 
-# Lock auditd config, need restart to take effect
--e 2
-
 # Monitor the creation of new process
 -a exit ,always -F arch=b64 -S execve ,execveat
+
+# Lock auditd config, need restart to take effect
+-e 2

@@ -11,3 +11,5 @@ users:
 file_header: "DO NOT EDIT: This File is Managed By Ansible."
 
 pass_max_days: 30
+
+grub_backlog_limit: 8192

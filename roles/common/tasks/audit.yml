@@ -1,6 +1,8 @@
 - name: Ensure audit is installed
   ansible.builtin.package:
-    name: auditd
+    name:
+      - auditd
+      - audispd-plugins
     state: latest
 
 - name: Ensure audit is running and enabled
@@ -12,9 +14,27 @@
 - name: Add audit rules
   ansible.builtin.template:
     src: audit.rules.j2
-    dest: /etc/audit/rules.d/
+    dest: /etc/audit/rules.d/audit.rules
     owner: root
     group: root
     mode: 0644
     backup: true
   notify: Reboot
+
+- name: Ensure auditd is enabled in the bootloader configuration
+  ansible.builtin.replace:
+    dest: /etc/default/grub
+    regexp: '^(GRUB_CMDLINE_LINUX=(?!.*audit)\"[^\"]*)(\".*)'
+    replace: '\1 audit=1\2'
+  notify:
+    - Update GRUB
+    - Reboot
+
+- name: Ensure auditd_backlog_limit is sufficient
+  ansible.builtin.replace:
+    dest: /etc/default/grub
+    regexp: '^(GRUB_CMDLINE_LINUX=(?!.*audit_backlog_limit)\"[^\"]*)(\".*)'
+    replace: '\1 audit_backlog_limit={{ grub_backlog_limit }}\2'
+  notify:
+    - Update GRUB
+    - Reboot
