@@ -1,7 +1,6 @@
 - name: Install UFW
   ansible.builtin.package:
-    name:
-      - ufw
+    name: ufw
     state: latest
 
 - name: Ensure the UFW service is running and enabled

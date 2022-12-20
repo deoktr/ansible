@@ -2,7 +2,7 @@
 - name: Ensure ntp is installed
   ansible.builtin.package:
     name: ntp
-    state: present
+    state: latest
 
 - name: Ensure the ntp service is running and enabled
   ansible.builtin.service:

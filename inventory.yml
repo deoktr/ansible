@@ -27,6 +27,6 @@
 test:
   hosts:
     docker01:
-      ansible_host: 192.168.56.104
+      ansible_host: 192.168.56.106
       ansible_user: ansible
-      ansible_become_pass: AzCkpul6VIUbyrL9UY,T
+      ansible_become_pass: clZ3eJ3.7KWP6iK4v.,m

@@ -1,3 +1,9 @@
+- name: Install OpenSSH server
+  ansible.builtin.package:
+    name: openssh-server
+    state: latest
+  notify: Reload sshd
+
 - name: Ensure group ssh exists
   ansible.builtin.group:
     name: "{{ ssh_group_name }}"

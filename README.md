@@ -62,15 +62,30 @@ docker rmi ubuntu_sshd_image
 ## TODO
 
 - If any package is not up to date update it and restart it
-- Configure Bash to enable colors, history
 - Add timeout to remote shell with `TMOUT`, will it break Tmux ?
 - Add variable to change the SSH port
-- Add configuration file for bash
 - Add option to disable user instead of deleting
 - Remove every file permissions for non root users on logs, or at least write
-- Add auditd
 - Remove debian_chroot from .bashrc
 - Run app in docker on the server
-- Restrict sudo usage to a group
 - Kill all process of a user we want to delete
+- Find a solution for when rebooting if the ssh port changes
+    Maybe don't change the ssh port ?
+- Control the presence of SSH server with a variable
+
+## Debian
+
+On Debian there is a few things you'll need to do before starting the Ansible
+script, you'll need to install sudo, add it to the user, reboot for the change
+to take effect.
+
+```
+apt install sudo
+usermod -aG sudo $USER
+reboot
+```
+
+Then you can start the ansible script.
+
+Or you can directly start it from root user via SSH.
 
