@@ -9,8 +9,8 @@
         state: latest
 
     - name: Add pam password user doc
-      ansible.builtin.copy:
-        src: good-password.txt
+      ansible.builtin.template:
+        src: good-password.txt.j2
         dest: /usr/share/doc/good-password.txt
         owner: root
         group: root
@@ -26,9 +26,45 @@
 
     - name: Add common-password pam config
       ansible.builtin.template:
-        src: common-password.j2
+        src: pam.d/common-password.j2
         dest: /etc/pam.d/common-password
         owner: root
         group: root
         mode: 0644
         backup: true
+
+- name: Add pam login config
+  ansible.builtin.template:
+    src: pam.d/login.j2
+    dest: /etc/pam.d/login
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+
+- name: Add pam sshd config
+  ansible.builtin.template:
+    src: pam.d/sshd.j2
+    dest: /etc/pam.d/sshd
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+
+- name: Add pam su config
+  ansible.builtin.template:
+    src: pam.d/su.j2
+    dest: /etc/pam.d/su
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+
+- name: Add pam su-l config
+  ansible.builtin.template:
+    src: pam.d/su-l.j2
+    dest: /etc/pam.d/su-l
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
