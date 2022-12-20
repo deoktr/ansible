@@ -1,11 +1,16 @@
-- name: Configure GRUB
-  ansible.builtin.template:
-    src: grub.j2
-    dest: /etc/default/grub
+- name: Ensure permissions on bootloader config are configured
+  ansible.builtin.file:
+    path: /boot/grub/grub.cfg
     owner: root
     group: root
     mode: 0600
     backup: true
+
+- name: GRUB disable IPv6
+  ansible.builtin.replace:
+    dest: /etc/default/grub
+    regexp: '^(GRUB_CMDLINE_LINUX=(?!.*ipv6.disable)\"[^\"]*)(\".*)'
+    replace: '\1 ipv6.disable=1\2'
   notify:
     - Update GRUB
     - Reboot

@@ -30,7 +30,7 @@
 - name: Audit tasks
   ansible.builtin.import_tasks: audit.yml
 
-- name: rsyslog tasks
+- name: Rsyslog tasks
   ansible.builtin.import_tasks: rsyslog.yml
   when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
 
@@ -43,3 +43,6 @@
 - name: UFW tasks
   ansible.builtin.import_tasks: ufw.yml
   when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+
+- name: AppArmor tasks
+  ansible.builtin.import_tasks: apparmor.yml

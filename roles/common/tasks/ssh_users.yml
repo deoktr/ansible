@@ -2,7 +2,7 @@
   ansible.builtin.user:
     name: "{{ item.name }}"
     groups: "{{ ssh_group_name }}"
-    append: yes
+    append: true
   with_items: "{{ users }}"
   when: users
 

@@ -13,7 +13,7 @@
   ansible.builtin.user:
     name: ansible
     groups: "{{ ssh_group_name }}"
-    append: yes
+    append: true
 
 - name: Configure SSH
   ansible.builtin.template:
@@ -30,3 +30,4 @@
   ansible.builtin.file:
     path: /etc/ssh/sshd_config.d
     state: directory
+    mode: 0755

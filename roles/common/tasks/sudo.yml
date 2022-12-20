@@ -1,9 +1,9 @@
-#- name: Restrict permissions for sudo executable
-#  ansible.builtin.file:
-#    path: /usr/bin/sudo
-#    owner: root
-#    group: sudo
-#    mode: u=rws,g=rx,o-rwx
+# - name: Restrict permissions for sudo executable
+#   ansible.builtin.file:
+#     path: /usr/bin/sudo
+#     owner: root
+#     group: sudo
+#     mode: u=rws,g=rx,o-rwx
 
 - name: Ensure group sudo exists
   ansible.builtin.group:
@@ -14,7 +14,7 @@
   ansible.builtin.user:
     name: ansible
     groups: sudo
-    append: yes
+    append: true
   notify: Reboot
 
 # TODO make a list of sudo users
@@ -22,7 +22,7 @@
   ansible.builtin.user:
     name: "{{ item.name }}"
     groups: sudo
-    append: yes
+    append: true
   with_items: "{{ users }}"
   when: users
   notify: Reboot
@@ -40,3 +40,4 @@
   ansible.builtin.file:
     path: /etc/sudoers.d
     state: directory
+    mode: 0755

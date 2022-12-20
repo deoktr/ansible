@@ -1,0 +1,13 @@
+- name: Ensure apparmor is installed
+  ansible.builtin.package:
+    name: apparmor
+    state: latest
+
+- name: Ensure AppArmor is enabled in the bootloader configuration
+  ansible.builtin.replace:
+    dest: /etc/default/grub
+    regexp: '^(GRUB_CMDLINE_LINUX=(?!.*apparmor)\"[^\"]*)(\".*)'
+    replace: '\1 apparmor=1 security=apparmor\2'
+  notify:
+    - Update GRUB
+    - Reboot
