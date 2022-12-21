@@ -1,6 +1,9 @@
 - name: Users handlers
   ansible.builtin.import_tasks: users.yml
 
+- name: Audit handlers
+  ansible.builtin.import_tasks: audit.yml
+
 - name: GRUB handlers
   ansible.builtin.import_tasks: grub.yml
 

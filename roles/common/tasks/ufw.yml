@@ -11,20 +11,19 @@
 
 - name: Enable UFW and set logging level
   community.general.ufw:
-    state: enabled
-    logging: 'medium'
+    logging: medium
 
 - name: UFW allow SSH
   community.general.ufw:
     rule: limit
-    port: '{{ ansible_port }}'
+    port: "{{ ansible_port }}"
     proto: tcp
     direction: in
-    comment: 'SSH port'
+    comment: SSH
 
-- name: UFW default allow outgoing
+- name: UFW default deny outgoing
   community.general.ufw:
-    policy: allow
+    policy: deny
     direction: outgoing
 
 - name: UFW default deny incoming
@@ -32,26 +31,31 @@
     policy: deny
     direction: incoming
 
+- name: UFW default deny routed
+  community.general.ufw:
+    policy: deny
+    direction: routed
+
 - name: UFW allow loopback in
   community.general.ufw:
     rule: allow
     interface: lo
     direction: in
-    comment: 'loopback interface'
+    comment: loopback interface
 
 - name: UFW allow loopback out
   community.general.ufw:
     rule: allow
     interface: lo
     direction: out
-    comment: 'loopback interface'
+    comment: loopback interface
 
 - name: UFW deny 127.0.0.0/8 in
   community.general.ufw:
     rule: deny
-    src: '127.0.0.0/8'
+    src: 127.0.0.0/8
     direction: in
-    comment: 'loopback'
+    comment: loopback
 
 # IPv6 is disabled
 # - name: UFW deny ::1 in
@@ -60,3 +64,22 @@
 #     src: '::1'
 #     direction: in
 #     comment: 'loopback'
+
+- name: UFW allow out 53
+  community.general.ufw:
+    rule: allow
+    port: 53
+    direction: out
+    comment: DNS
+
+# required for apt to connect to remote repository
+- name: UFW allow http out for apt
+  community.general.ufw:
+    rule: allow
+    port: http
+    direction: out
+    comment: HTTP required for apt
+
+- name: Enable UFW and set logging level
+  community.general.ufw:
+    state: enabled
