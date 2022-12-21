@@ -79,7 +79,7 @@ On Debian there is a few things you'll need to do before starting the Ansible
 script, you'll need to install sudo, add it to the user, reboot for the change
 to take effect.
 
-```
+```bash
 apt install sudo
 usermod -aG sudo $USER
 reboot

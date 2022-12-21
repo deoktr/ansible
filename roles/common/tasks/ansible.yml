@@ -5,8 +5,14 @@
     password: "{{ lookup('password', 'credentials/ansible/' + ansible_host + ' encrypt=md5_crypt') }}"
     shell: /bin/bash
     update_password: always
-    generate_ssh_key: true
-    ssh_key_type: ed25519
+    home: /home/ansible
+  notify: Ansible message
+
+- name: Ensure ansible .ssh folder exist
+  ansible.builtin.file:
+    path: /home/ansible/.ssh
+    state: directory
+    mode: 0700
 
 - name: Create ansible authorized_keys to enable ssh
   ansible.builtin.copy:

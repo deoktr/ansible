@@ -1,2 +1,9 @@
+- name: Ansible message
+  ansible.builtin.debug:
+    msg: The user was not Ansible and thus was probably not \
+      added to the ssh users group and will not be able to reconnect when the \
+      server reboot. You can safely stop the script now.
+
 - name: Reboot
   ansible.builtin.reboot:
+  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
