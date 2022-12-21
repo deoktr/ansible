@@ -1,14 +1,14 @@
-# - name: Restrict permissions for sudo executable
-#   ansible.builtin.file:
-#     path: /usr/bin/sudo
-#     owner: root
-#     group: sudo
-#     mode: u=rws,g=rx,o-rwx
-
 - name: Ensure group sudo exists
   ansible.builtin.group:
     name: sudo
     state: present
+
+- name: Restrict permissions for sudo executable
+  ansible.builtin.file:
+    path: /usr/bin/sudo
+    owner: root
+    group: sudo
+    mode: u=rws,g=rx,o-rwx
 
 - name: Add Ansible user to sudo group
   ansible.builtin.user:

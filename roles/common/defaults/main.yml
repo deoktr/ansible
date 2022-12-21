@@ -2,11 +2,8 @@
 
 ansible_port: 22
 
-# TODO add a variable to control if we use a group for ssh users or not
 ssh_group_name: sshusers
 ssh_group_gid: 1700
-
-users:
 
 file_header: "DO NOT EDIT: This File is Managed By Ansible."
 
@@ -15,3 +12,5 @@ pass_max_days: 30
 grub_backlog_limit: 8192
 
 uid_min: 1000
+
+users:

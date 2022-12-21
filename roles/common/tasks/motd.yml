@@ -1,26 +1,14 @@
 # TODO remove files in /etc/update-motd.d/
 # or add our and remove the 10-uname file
 
-- name: Ensure motd is configured
+- name: Ensure motd are configured
   ansible.builtin.copy:
     src: motd
-    dest: /etc/motd
+    dest: "{{ item }}"
     owner: root
     group: root
     mode: 0644
-
-- name: Ensure motd is configured
-  ansible.builtin.copy:
-    src: motd
-    dest: /etc/issue
-    owner: root
-    group: root
-    mode: 0644
-
-- name: Ensure motd is configured
-  ansible.builtin.copy:
-    src: motd
-    dest: /etc/issue.net
-    owner: root
-    group: root
-    mode: 0644
+  with_items:
+    - /etc/motd
+    - /etc/issue
+    - /etc/issue.net

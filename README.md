@@ -72,6 +72,7 @@ docker rmi ubuntu_sshd_image
 - Find a solution for when rebooting if the ssh port changes
     Maybe don't change the ssh port ?
 - Control the presence of SSH server with a variable
+- Add option to enable IPv6
 
 ## Debian
 
