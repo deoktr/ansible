@@ -1,6 +1,6 @@
 - name: Configure login.defs
   ansible.builtin.template:
-    src: login.defs.j2
+    src: etc/login.defs.j2
     dest: /etc/login.defs
     owner: root
     group: root
@@ -9,7 +9,7 @@
 
 - name: Configure useradd default
   ansible.builtin.template:
-    src: useradd.j2
+    src: etc/default/useradd.j2
     dest: /etc/default/useradd
     owner: root
     group: root

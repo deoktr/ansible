@@ -18,7 +18,7 @@
 
     - name: Add pwquality config
       ansible.builtin.template:
-        src: pwquality.conf.j2
+        src: etc/security/pwquality.conf.j2
         dest: /etc/security/pwquality.conf
         owner: root
         group: root
@@ -26,45 +26,20 @@
 
     - name: Add common-password pam config
       ansible.builtin.template:
-        src: pam.d/common-password.j2
+        src: etc/pam.d/common-password.j2
         dest: /etc/pam.d/common-password
         owner: root
         group: root
         mode: 0644
         backup: true
 
-- name: Add pam login config
+- name: Add pam configs
   ansible.builtin.template:
-    src: pam.d/login.j2
-    dest: /etc/pam.d/login
+    src: "{{ item }}"
+    dest: "/etc/pam.d/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
     mode: 0644
     backup: true
-
-- name: Add pam sshd config
-  ansible.builtin.template:
-    src: pam.d/sshd.j2
-    dest: /etc/pam.d/sshd
-    owner: root
-    group: root
-    mode: 0644
-    backup: true
-
-- name: Add pam su config
-  ansible.builtin.template:
-    src: pam.d/su.j2
-    dest: /etc/pam.d/su
-    owner: root
-    group: root
-    mode: 0644
-    backup: true
-
-- name: Add pam su-l config
-  ansible.builtin.template:
-    src: pam.d/su-l.j2
-    dest: /etc/pam.d/su-l
-    owner: root
-    group: root
-    mode: 0644
-    backup: true
+  with_fileglob:
+    - templates/etc/pam.d/*.j2

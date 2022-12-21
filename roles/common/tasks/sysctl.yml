@@ -3,7 +3,7 @@
 
 - name: Configure sysctl
   ansible.builtin.template:
-    src: sysctl.conf.j2
+    src: etc/sysctl.conf.j2
     dest: /etc/sysctl.conf
     owner: root
     group: root
