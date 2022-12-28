@@ -23,6 +23,7 @@
         owner: root
         group: root
         mode: 0644
+        backup: true
 
     - name: Add common-password pam config
       ansible.builtin.template:
@@ -32,6 +33,15 @@
         group: root
         mode: 0644
         backup: true
+
+- name: Add pam faillock config
+  ansible.builtin.template:
+    src: etc/security/faillock.conf.j2
+    dest: /etc/security/faillock.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
 
 - name: Add pam configs
   ansible.builtin.template:

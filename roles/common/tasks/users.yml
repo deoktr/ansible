@@ -32,3 +32,11 @@
   register: updated_users
   notify: "updated users"
   when: users
+
+- name: Configure shell timeout
+  ansible.builtin.template:
+    src: etc/profile.d/autologout.sh.j2
+    dest: /etc/profile.d/autologout.sh
+    owner: root
+    group: root
+    mode: 0644
