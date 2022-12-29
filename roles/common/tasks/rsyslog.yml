@@ -17,6 +17,7 @@
     group: root
     mode: 0640
     backup: true
+  notify: Restart journald
 
 - name: Configure rsyslog
   ansible.builtin.template:
