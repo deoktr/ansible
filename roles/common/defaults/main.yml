@@ -14,3 +14,5 @@ grub_backlog_limit: 8192
 uid_min: 1000
 
 users:
+
+rsyslog_server:

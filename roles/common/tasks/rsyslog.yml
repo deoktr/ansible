@@ -8,3 +8,40 @@
     name: rsyslog
     state: started
     enabled: true
+
+- name: Configure journald to send logs to rsyslog
+  ansible.builtin.template:
+    src: etc/systemd/journald.conf.j2
+    dest: /etc/systemd/journald.conf
+    owner: root
+    group: root
+    mode: 0640
+    backup: true
+
+- name: Configure rsyslog
+  ansible.builtin.template:
+    src: etc/rsyslog.conf.j2
+    dest: /etc/rsyslog.conf
+    owner: root
+    group: root
+    mode: 0640
+    backup: true
+  notify: Restart rsyslog
+
+# TODO maybe add a check when the rsyslog_server variable is not present so
+# that the 00-omfwd file is removed if the variable is removed
+- name: Configure remote rsyslog
+  ansible.builtin.template:
+    src: etc/rsyslog.d/00-omfwd.conf.j2
+    dest: /etc/rsyslog.d/00-omfwd.conf
+    owner: root
+    group: root
+    mode: 0640
+    backup: true
+  when: rsyslog_server
+  notify: Restart rsyslog
+
+- name: Enable remote rsyslog
+  ansible.builtin.debug:
+    msg: Please add a remote rsyslog server.
+  when: not rsyslog_server

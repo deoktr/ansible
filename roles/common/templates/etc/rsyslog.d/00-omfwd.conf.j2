@@ -1,0 +1,13 @@
+# {{ file_header }}
+#
+# This file configure remote logging
+#
+
+*.* action(\
+	type="omfwd"\
+	target="{{ rsyslog_server }}"\
+	port="514"\
+	protocol="tcp"\
+	action.resumeRetryCount="100"\
+	queue.type="LinkedList"\
+	queue.size="1000")

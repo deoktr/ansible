@@ -1,6 +1,9 @@
 - name: Users handlers
   ansible.builtin.import_tasks: users.yml
 
+- name: Rsyslog handlers
+  ansible.builtin.import_tasks: rsyslog.yml
+
 - name: Audit handlers
   ansible.builtin.import_tasks: audit.yml
 
