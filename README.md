@@ -86,7 +86,8 @@ usermod -aG sudo $USER
 reboot
 ```
 
-Then you can start the ansible script.
+Then you can start the ansible script, it will stop after changing the ansible
+user password, update it in inventory and restart it.
 
 Or you can directly start it from root user via SSH.
 
