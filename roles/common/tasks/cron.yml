@@ -8,3 +8,25 @@
     name: cron
     state: started
     enabled: true
+
+- name: Ensure permissions on /etc/crontab are configured
+  ansible.builtin.file:
+    path: /etc/crontab
+    state: file
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Ensure permissions on /etc/cron.* are configured
+  ansible.builtin.file:
+    path: '/etc/cron.{{ item }}'
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+  with_items:
+    - d
+    - hourly
+    - daily
+    - weekly
+    - monthly
