@@ -12,6 +12,8 @@
   ansible.builtin.file:
     path: /home/ansible/.ssh
     state: directory
+    owner: ansible
+    group: ansible
     mode: 0700
 
 # TODO create unique ssh keys for each servers, like for the password

@@ -80,6 +80,6 @@
     direction: out
     comment: HTTP required for apt
 
-- name: Enable UFW and set logging level
+- name: Enable UFW
   community.general.ufw:
     state: enabled
