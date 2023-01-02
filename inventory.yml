@@ -30,15 +30,15 @@ test:
     #   ansible_host: 172.17.0.2
     #   ansible_user: root
     #   ansible_become_pass: root
-    # vm01:
+    # vm0103:
     #   ansible_host: 192.168.56.103
     #   ansible_user: ansible
     #   ansible_become_pass: fes0egj-m5czqlscIutg
-    # vm02:
-    #   ansible_host: 192.168.56.106
-    #   ansible_user: ansible
-    #   ansible_become_pass: clZ3eJ3.7KWP6iK4v.,m
-    vm03:
-      ansible_host: 192.168.56.104
+    vm106:
+      ansible_host: 192.168.56.106
       ansible_user: ansible
-      ansible_become_pass: AzCkpul6VIUbyrL9UY,T
+      ansible_become_pass: clZ3eJ3.7KWP6iK4v.,m
+    # vm104:
+    #   ansible_host: 192.168.56.104
+    #   ansible_user: ansible
+    #   ansible_become_pass: AzCkpul6VIUbyrL9UY,T
