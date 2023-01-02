@@ -1,24 +1,30 @@
-- name: Ensure Telnet is uninstalled
+- name: Ensure packages are uninstalled
   ansible.builtin.package:
-    name: telnet
+    name: "{{ item }}"
     state: absent
-
-- name: Ensure Sendmail is uninstalled
-  ansible.builtin.package:
-    name: sendmail
-    state: absent
-
-- name: Ensure prelink is uninstalled
-  ansible.builtin.package:
-    name: prelink
-    state: absent
-
-- name: Ensure talk is uninstalled
-  ansible.builtin.package:
-    name: talk
-    state: absent
-
-- name: Ensure LDAP client is uninstalled
-  ansible.builtin.package:
-    name: ldap-utils
-    state: absent
+  with_items:
+    - telnet          # replaced by SSH
+    - sendmail
+    - talk
+    - ldap-utils      # if LDAP is not used
+    - prelink         # can interfer with AIDE
+    - apport          # can expose sensitive datas
+    - gdm3            # GNOME display manager
+    - chrony          # use ntp instead
+    - avahi-daemon    # auto network discovery
+    - cups            # printing
+    - isc-dhcp-server  # DHCP server
+    - slapd
+    - nfs-kernel-server
+    - bind9           # DNS server
+    - vsftpd          # FTP/SFTP server
+    - apache2         # HTTP server
+    - dovecot-imapd   # IMAP server
+    - dovecot-pop3d   # POP3 server
+    - samba           # Samba network share server
+    - squid           # HTTP Proxy server
+    - snmp            # SNMP server
+    - nis             # insecure
+    - rsh-client      # replaced by SSH
+    - rpcbind
+    - iptables-persistent  # use UFW instead

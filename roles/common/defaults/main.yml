@@ -16,3 +16,8 @@ uid_min: 1000
 users:
 
 rsyslog_server:
+
+chrony_pools:
+  - 2.debian.pool.ntp.org
+
+chrony_servers:

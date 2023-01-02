@@ -1,3 +1,6 @@
+- name: Chrony handlers
+  ansible.builtin.import_tasks: chrony.yml
+
 - name: Users handlers
   ansible.builtin.import_tasks: users.yml
 

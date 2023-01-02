@@ -3,6 +3,9 @@
 - hosts:
   - test
   roles:
+    # - role: setup
+    #   become: true
+    #   tags: common
     - role: common
       become: true
       tags: common

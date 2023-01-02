@@ -51,9 +51,9 @@
   when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
   tags: rsyslog
 
-- name: NTP
-  ansible.builtin.import_tasks: ntp.yml
-  tags: ntp
+- name: Chrony
+  ansible.builtin.import_tasks: chrony.yml
+  tags: chrony
 
 - name: Cron tasks
   ansible.builtin.import_tasks: cron.yml
