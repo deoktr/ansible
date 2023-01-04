@@ -1,0 +1,32 @@
+- name: Ensure ntp is not installed
+  ansible.builtin.package:
+    name: ntp
+    state: absent
+
+- name: Ensure the systemd-timesyncd service is not running and masked
+  ansible.builtin.systemd:
+    name: systemd-timesyncd.service
+    state: stopped
+    masked: true
+
+- name: Ensure chrony is installed
+  ansible.builtin.package:
+    name: chrony
+    state: latest
+
+- name: Ensure the chrony service is running and enabled
+  ansible.builtin.service:
+    name: chrony
+    state: started
+    enabled: true
+
+# TODO add an error message if neither chrony_pools nor chrony_servers are set
+- name: Configure chrony
+  ansible.builtin.template:
+    src: chrony.conf.j2
+    dest: /etc/chrony/chrony.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  notify: Restart chrony

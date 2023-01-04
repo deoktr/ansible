@@ -1,0 +1,6 @@
+- name: GRUB handlers
+  ansible.builtin.import_tasks: grub.yml
+
+# reboot last
+- name: System handlers
+  ansible.builtin.import_tasks: system.yml

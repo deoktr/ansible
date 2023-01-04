@@ -1,0 +1,35 @@
+- name: Ensure libpam-pwquality is installed
+  ansible.builtin.package:
+    name: libpam-pwquality
+    state: latest
+  when: ansible_distribution=='Debian'
+
+- name: Add pam password user doc
+  ansible.builtin.template:
+    src: good-password.txt.j2
+    dest: /usr/share/doc/good-password.txt
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add pam lib configs
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/security/{{ item | basename | regex_replace('\\.j2$', '') }}"
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  with_fileglob:
+    - templates/security/*.j2
+
+- name: Add pam configs
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/pam.d/{{ item | basename | regex_replace('\\.j2$', '') }}"
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  with_fileglob:
+    - templates/pam.d/*.j2

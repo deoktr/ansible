@@ -1,0 +1,5 @@
+file_header: "DO NOT EDIT: This File is Managed By Ansible."
+
+pass_max_days: 30
+
+uid_min: 1000

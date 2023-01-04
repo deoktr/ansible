@@ -1,11 +1,62 @@
 ---
 
-- hosts:
-  - test
+- hosts: "*"
+  become: true
   roles:
+    # must be included
+    - role: shared
+
+    # should run it only once when installing
+    # to avoid removing necessary packages
     # - role: setup
     #   become: true
-    #   tags: common
-    - role: common
-      become: true
-      tags: common
+    #   tags: setup
+
+    - role: ansible
+      tags: ansible
+
+    - role: ufw
+      tags: ufw
+
+    - role: sudo
+      tags: sudo
+
+    - role: sshd
+      tags: sshd
+
+    - role: pam
+      tags: pam
+
+    - role: chrony
+      tags: chrony
+
+    - role: audit
+      tags: audit
+
+    - role: sysctl
+      tags: sysctl
+
+    - role: grub
+      tags: grub
+
+    - role: motd
+      tags: motd
+
+    - role: cron
+      tags: cron
+
+    - role: apparmor
+      tags: apparmor
+
+    - role: rsyslog
+      tags: rsyslog
+
+    - role: users
+      tags: users
+
+
+- hosts: honeypots
+  become: true
+  roles:
+    - role: suricata
+      tags: users

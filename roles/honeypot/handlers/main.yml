@@ -1,2 +1,0 @@
-- name: Suricata handlers
-  ansible.builtin.import_tasks: suricata.yml

@@ -1,0 +1,3 @@
+# GRUB
+
+Configure GRUB.

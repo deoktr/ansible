@@ -1,8 +1,5 @@
 - name: UFW tasks
   ansible.builtin.import_tasks: ufw.yml
 
-- name: Suricata tasks
-  ansible.builtin.import_tasks: suricata.yml
-
 - name: Honeypot tasks
   ansible.builtin.import_tasks: honeypot.yml

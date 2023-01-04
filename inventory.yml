@@ -5,8 +5,8 @@
 #      ansible_user: '{{ linode_master01_user }}'
 #      ansible_port: 28399
 #      ansible_become_pass: '{{ linode_master01_pass }}'
-#
-#honey:
+
+#honeypots:
 #  hosts:
 #    linode-honey01:
 #      ansible_host: 172.104.152.115
@@ -24,7 +24,7 @@
 #      ansible_port: 21122
 #      ansible_become_pass: '{{ linode_honey03_pass }}'
 
-test:
+virtualbox:
   hosts:
     # docker01:
     #   ansible_host: 172.17.0.2

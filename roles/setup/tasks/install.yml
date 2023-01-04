@@ -1,4 +1,4 @@
-- name: Run "apt-get update"
+- name: Run apt-get update
   ansible.builtin.apt:
     update_cache: true
   when: ansible_distribution=='Debian'

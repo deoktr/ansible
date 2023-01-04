@@ -1,5 +1,6 @@
-- name: Install
-  ansible.builtin.import_tasks: install.yml
-
+# uninstall first to avoid having to download updates for removed packages
 - name: Uninstall
   ansible.builtin.import_tasks: uninstall.yml
+
+- name: Install
+  ansible.builtin.import_tasks: install.yml
