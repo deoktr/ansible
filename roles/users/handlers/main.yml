@@ -2,7 +2,7 @@
 # modify the server via Ansible)
 - name: Expire new passwords
   ansible.builtin.shell:
-    cmd: 'passwd --expire {{ item }}'
+    cmd: "passwd --expire {{ item }}"
   loop: "{{ \
          updated_users.results | \
          selectattr('state', 'equalto', 'present') | \

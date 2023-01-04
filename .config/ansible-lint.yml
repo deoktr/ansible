@@ -3,7 +3,5 @@ skip_list:
   - command-instead-of-shell
 
 exclude_paths:
-  - ../roles/common/files/
-  - ../roles/common/templates/
-  - ../roles/honeypot/files/
-  - ../roles/honeypot/templates/
+  - ../roles/suricata/files/suricata.yaml
+  - ../roles/motd/defaults/main.yml
