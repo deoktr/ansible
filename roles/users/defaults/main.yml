@@ -1,1 +1,5 @@
+pass_min_days: 1
+
+pass_warn_age: 7
+
 users:

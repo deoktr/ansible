@@ -3,8 +3,8 @@
 
 - name: Ensure motd are configured
   ansible.builtin.copy:
-    src: motd
     dest: "{{ item }}"
+    content: "\n{{ motd_content }}\n\n"
     owner: root
     group: root
     mode: 0644

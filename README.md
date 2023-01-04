@@ -15,6 +15,15 @@ Run the playbook:
 ansible-playbook --ask-vault-password -i inventory.yaml play.yaml
 ```
 
+## Variables
+
+To add variables create a file called `all` in `group_vars`:
+
+```bash
+mkdir group_vars
+touch group_vars/all
+```
+
 ## Create vaulted var
 
 ```bash
@@ -58,12 +67,10 @@ docker rm ubuntu_sshd_container
 docker rmi ubuntu_sshd_image
 ```
 
-
 ## TODO
 
 - If any package is not up to date update it and restart it
 - Add timeout to remote shell with `TMOUT`, will it break Tmux ?
-- Add variable to change the SSH port
 - Add option to disable user instead of deleting
 - Remove every file permissions for non root users on logs, or at least write
 - Remove debian_chroot from .bashrc
