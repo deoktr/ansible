@@ -2,7 +2,7 @@
   ansible.builtin.package:
     name: libpam-pwquality
     state: latest
-  when: ansible_distribution=='Debian'
+  when: ansible_distribution=="Debian"
 
 - name: Add pam password user doc
   ansible.builtin.template:

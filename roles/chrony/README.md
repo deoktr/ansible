@@ -1,0 +1,3 @@
+# chrony
+
+NTP client setup.
