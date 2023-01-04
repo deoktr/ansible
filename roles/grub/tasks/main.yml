@@ -4,12 +4,3 @@
     owner: root
     group: root
     mode: 0600
-
-- name: GRUB disable IPv6
-  ansible.builtin.replace:
-    dest: /etc/default/grub
-    regexp: '^(GRUB_CMDLINE_LINUX=(?!.*ipv6.disable)\"[^\"]*)(\".*)'
-    replace: '\1 ipv6.disable=1\2'
-  notify:
-    - Update GRUB
-    - Reboot

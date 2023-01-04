@@ -3,8 +3,6 @@
 - hosts: "*"
   become: true
   roles:
-    # must be included
-    - role: shared
 
     # should run it only once when installing
     # to avoid removing necessary packages
@@ -53,6 +51,12 @@
 
     - role: users
       tags: users
+
+    - role: network
+      tags: network
+
+    # must be included
+    - role: shared
 
 
 - hosts: honeypots
