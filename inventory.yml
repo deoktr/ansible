@@ -24,7 +24,7 @@
 #      ansible_port: 21122
 #      ansible_become_pass: '{{ linode_honey03_pass }}'
 
-virtualbox:
+servers:
   hosts:
     # docker01:
     #   ansible_host: 172.17.0.2
@@ -34,11 +34,29 @@ virtualbox:
     #   ansible_host: 192.168.56.103
     #   ansible_user: ansible
     #   ansible_become_pass: fes0egj-m5czqlscIutg
-    vm106:
-      ansible_host: 192.168.56.106
-      ansible_user: ansible
-      ansible_become_pass: clZ3eJ3.7KWP6iK4v.,m
+    # vm106:
+    #   ansible_host: 192.168.56.106
+    #   ansible_user: ansible
+    #   ansible_become_pass: clZ3eJ3.7KWP6iK4v.,m
+    #   apt_server: http://192.168.1.242:3142
     # vm104:
     #   ansible_host: 192.168.56.104
     #   ansible_user: ansible
     #   ansible_become_pass: AzCkpul6VIUbyrL9UY,T
+    debian02:
+      ansible_host: 192.168.56.109
+      ansible_user: ansible
+      ansible_become_pass: Se2f99lyvUUCNALIWVzl
+      apt_server: 192.168.56.108
+    debian03:
+      ansible_host: 192.168.56.110
+      ansible_user: ansible
+      ansible_become_pass: 2sEQ5ggwH.Lg37K8klPq
+      apt_server: 192.168.56.108
+
+update_servers:
+  hosts:
+    debian01:
+      ansible_host: 192.168.56.108
+      ansible_user: ansible
+      ansible_become_pass: KFicme:e_9xHDeSkdjk1

@@ -6,7 +6,6 @@
     shell: /bin/bash
     update_password: always
     home: /home/ansible
-  notify: Ansible message
 
 - name: Ensure ansible .ssh folder exist
   ansible.builtin.file:

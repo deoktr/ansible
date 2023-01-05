@@ -1,0 +1,29 @@
+- name: Ensure apt-cacher-ng is installed
+  ansible.builtin.package:
+    name: apt-cacher-ng
+    state: latest
+
+- name: Ensure apt-cacher-ng is running and enabled
+  ansible.builtin.service:
+    name: apt-cacher-ng
+    state: started
+    enabled: true
+
+- name: Configure apt-cacher-ng
+  ansible.builtin.template:
+    src: acng.conf.j2
+    dest: /etc/apt-cacher-ng/acng.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: true
+  notify: Restart apt-cacher-ng
+
+# TODO add only from local address 192.168...
+- name: UFW allow apt proxy server in
+  community.general.ufw:
+    rule: allow
+    port: "{{ apt_cacher_ng_port }}"
+    proto: tcp
+    direction: in
+    comment: apt proxy server
