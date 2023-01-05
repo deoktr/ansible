@@ -19,7 +19,6 @@
     backup: true
   notify: Restart apt-cacher-ng
 
-# TODO restrict to only local address 192.168...
 - name: UFW allow apt proxy server in
   community.general.ufw:
     rule: allow
