@@ -16,12 +16,11 @@
     group: ansible
     mode: 0700
 
-# TODO create unique ssh keys for each servers, like for the password
 - name: Create ansible authorized_keys to enable ssh
   ansible.builtin.copy:
-    src: ansible_authorized_keys
     dest: /home/ansible/.ssh/authorized_keys
+    content: "{{ ansible_authorized_keys }}\n"
     owner: ansible
     group: ansible
     mode: 0600
-    backup: true
+  when: ansible_authorized_keys
