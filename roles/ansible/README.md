@@ -10,4 +10,4 @@
 
 ## TODO
 
-* Restrict SSH connection to ansible user only to ansible server IP
+- Restrict SSH connection to ansible user only to ansible server IP

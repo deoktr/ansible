@@ -3,12 +3,5 @@
     name: apparmor
     state: latest
 
-- name: Ensure AppArmor is enabled in the bootloader configuration
-  ansible.builtin.replace:
-    dest: /etc/default/grub
-    regexp: '^(GRUB_CMDLINE_LINUX=(?!.*apparmor)\"[^\"]*)(\".*)'
-    replace: '\1 apparmor=1 security=apparmor\2'
-  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
-  notify:
-    - Update GRUB
-    - Reboot
+- ansible.builtin.import_tasks:
+    file: grub.yml
