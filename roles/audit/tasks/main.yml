@@ -40,5 +40,6 @@
     state: directory
     mode: 0750
 
-- ansible.builtin.import_tasks:
+- name: Import audit GRUB tasks
+  ansible.builtin.import_tasks:
     file: grub.yml

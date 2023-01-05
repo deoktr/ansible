@@ -3,5 +3,6 @@
     name: apparmor
     state: latest
 
-- ansible.builtin.import_tasks:
+- name: Import apparmor GRUB tasks
+  ansible.builtin.import_tasks:
     file: grub.yml

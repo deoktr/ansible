@@ -70,7 +70,6 @@ docker rmi ubuntu_sshd_image
 ## TODO
 
 - If any package is not up to date update it and restart it
-- Add timeout to remote shell with `TMOUT`, will it break Tmux ?
 - Add option to disable user instead of deleting
 - Remove every file permissions for non root users on logs, or at least write
 - Remove debian_chroot from .bashrc
