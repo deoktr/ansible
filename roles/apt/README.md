@@ -1,6 +1,6 @@
 # apt
 
-Add the apt cache server.
+Add the apt proxy server.
 
 ## Variables
 
