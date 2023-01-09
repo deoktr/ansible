@@ -41,20 +41,6 @@
     group: root
     mode: 0644
 
-- name: Create authorized_keys to enable ssh
-  ansible.builtin.copy:
-    src: "users/{{ item }}/authorized_keys"
-    dest: "/home/{{ item }}/.ssh/"
-    owner: "{{ item }}"
-    group: "{{ item }}"
-    mode: 0600
-    backup: true
-  loop: "{{ \
-         updated_users.results | \
-         selectattr('state', 'equalto', 'present') | \
-         map(attribute='item') | \
-         map(attribute='name') | \
-         list \
-  }}"
-  ignore_errors: true
-  when: users
+- name: Add SSH authorized_keys
+  ansible.builtin.import_tasks:
+    file: sshd.yml

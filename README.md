@@ -2,6 +2,14 @@
 
 Linux hardening ansible roles for Debian based Linux server.
 
+The main idea of those roles is to control everything that is going on the
+server, for example: not a single port should be opened if it's not needed and
+not in use, not a single package should be installed if it's not needed. Also
+every roles should work independantly of each other, I should always be able to
+configure ONLY ONE package, for example if I only want to configure chrony I
+should be able to WITHOUT having to install other packages. Ansible managed
+files should have the appropriate header placed on top.
+
 - [ANSSI Guide hardening GNU/Linux](https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/)
 - [NIST National Checklist for Red Hat Enterprise Linux](https://ncp.nist.gov/checklist/909)
 - [OpenSCAP](https://github.com/OpenSCAP/openscap)
