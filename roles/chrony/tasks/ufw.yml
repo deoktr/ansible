@@ -1,0 +1,7 @@
+- name: UFW allow NTP out
+  community.general.ufw:
+    rule: allow
+    port: 123
+    proto: udp
+    direction: out
+    comment: NTP

@@ -30,3 +30,7 @@
     mode: 0644
     backup: true
   notify: Restart chrony
+
+- name: Import UFW tasks
+  ansible.builtin.import_tasks:
+    file: ufw.yml
