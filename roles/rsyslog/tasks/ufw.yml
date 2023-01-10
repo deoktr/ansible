@@ -1,0 +1,8 @@
+- name: UFW allow syslog server out
+  community.general.ufw:
+    rule: allow
+    port: "{{ rsyslog_server_port }}"
+    proto: "{{ rsyslog_server_proto }}"
+    direction: out
+    to_ip: "{{ rsyslog_server_host }}"
+    comment: Allow syslog

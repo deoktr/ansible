@@ -1,1 +1,5 @@
-rsyslog_server:
+rsyslog_server_host:
+
+rsyslog_server_port: 514
+
+rsyslog_server_proto: tcp

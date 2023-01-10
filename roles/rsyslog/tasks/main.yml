@@ -39,10 +39,10 @@
     group: root
     mode: 0640
     backup: true
-  when: rsyslog_server
+  when: rsyslog_server_host
   notify: Restart rsyslog
 
-- name: Enable remote rsyslog
-  ansible.builtin.debug:
-    msg: Please add a remote rsyslog server.
-  when: not rsyslog_server
+- name: UFW allow rsyslog server out
+  ansible.builtin.import_tasks:
+    file: ufw.yml
+  when: rsyslog_server_host
