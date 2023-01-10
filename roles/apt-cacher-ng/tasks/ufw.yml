@@ -4,5 +4,6 @@
     port: "{{ apt_cacher_ng_port }}"
     proto: tcp
     direction: in
-    from_ip: "{{ apt_cacher_ng_from_ip }}"
+    from_ip: "{{ item }}"
     comment: apt proxy server
+  with_items: "{{ apt_cacher_ng_from_ip }}"
