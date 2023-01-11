@@ -1,6 +1,7 @@
 ---
 
-- hosts: "*"
+- name: Common setup
+  hosts: all
   become: true
   roles:
     # must be included at the top
@@ -17,6 +18,10 @@
 
     - role: ufw
       tags: ufw
+
+    # setup apt
+    - role: apt
+      tags: apt
 
     - role: sudo
       tags: sudo
@@ -57,8 +62,14 @@
     - role: network
       tags: network
 
-    - role: apt
-      tags: apt
+    - role: resolvconf
+      tags: resolvconf
+
+  post_tasks:
+    - name: Enable UFW
+      community.general.ufw:
+        state: enabled
+      tags: ufw
 
 
 - hosts: honeypots

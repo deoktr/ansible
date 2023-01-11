@@ -6,15 +6,15 @@
 # Include configuration files found in /etc/chrony/conf.d.
 confdir /etc/chrony/conf.d
 
-{% if chrony_servers %}
-{% for chrony_server in chrony_servers %}
-server {{ chrony_server }} iburst
+{% if ntp_pools %}
+{% for ntp_pool in ntp_pools %}
+pool {{ ntp_pool }} iburst
 {% endfor %}
 {% endif %}
 
-{% if chrony_pools %}
-{% for chrony_pool in chrony_pools %}
-pool 2.debian.pool.ntp.org iburst
+{% if ntp_servers %}
+{% for ntp_server in ntp_servers %}
+server {{ ntp_server }} iburst
 {% endfor %}
 {% endif %}
 

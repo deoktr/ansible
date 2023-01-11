@@ -1,0 +1,19 @@
+- name: Ensure resolvconf is installed
+  ansible.builtin.package:
+    name: resolvconf
+    state: latest
+
+- name: Configure resolvconf base
+  ansible.builtin.template:
+    src: base.j2
+    dest: /etc/resolvconf/resolv.conf.d/base
+    mode: 0644
+
+- name: Resolvconf restart
+  ansible.builtin.service:
+    name: resolvconf
+    state: restarted
+
+- name: Setup UFW for DNS
+  ansible.builtin.import_tasks:
+    file: ufw.yml

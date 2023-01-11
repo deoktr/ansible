@@ -1,0 +1,9 @@
+- name: UFW allow out 53
+  community.general.ufw:
+    rule: allow
+    port: 53
+    direction: out
+    comment: DNS
+    to_ip: "{{ item }}"
+  loop: "{{ dns_servers }}"
+  when: dns_servers

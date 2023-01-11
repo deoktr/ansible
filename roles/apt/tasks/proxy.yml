@@ -9,8 +9,8 @@
 - name: UFW allow apt proxy server
   community.general.ufw:
     rule: allow
-    port: "{{ apt_server_port }}"
+    port: "{{ apt_proxy_port }}"
     proto: tcp
     direction: out
-    to_ip: "{{ apt_server_addr }}"
+    to_ip: "{{ apt_proxy_addr }}"
     comment: apt proxy

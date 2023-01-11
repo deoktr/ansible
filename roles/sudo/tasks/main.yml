@@ -1,3 +1,8 @@
+- name: Ensure sudo is installed
+  ansible.builtin.package:
+    name: sudo
+    state: latest
+
 - name: Ensure group sudo exists
   ansible.builtin.group:
     name: sudo

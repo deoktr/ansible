@@ -1,0 +1,28 @@
+- name: UFW allow loopback interface in
+  community.general.ufw:
+    rule: allow
+    interface: lo
+    direction: in
+    comment: loopback interface
+
+- name: UFW allow loopback interface out
+  community.general.ufw:
+    rule: allow
+    interface: lo
+    direction: out
+    comment: loopback interface
+
+- name: UFW deny 127.0.0.0/8 in
+  community.general.ufw:
+    rule: deny
+    src: 127.0.0.0/8
+    direction: in
+    comment: loopback
+
+# IPv6 is disabled
+# - name: UFW deny ::1 in
+#   community.general.ufw:
+#     rule: deny
+#     src: '::1'
+#     direction: in
+#     comment: loopback

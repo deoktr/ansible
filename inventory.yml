@@ -47,12 +47,17 @@ servers:
       ansible_host: 192.168.56.109
       ansible_user: ansible
       ansible_become_pass: Se2f99lyvUUCNALIWVzl
-      apt_server_addr: 192.168.56.108
+      apt_proxy_addr: 192.168.56.108
     debian110:
       ansible_host: 192.168.56.110
       ansible_user: ansible
       ansible_become_pass: 2sEQ5ggwH.Lg37K8klPq
-      apt_server_addr: 192.168.56.108
+      apt_proxy_addr: 192.168.56.108
+    debian112:
+      ansible_host: 192.168.56.112
+      ansible_user: ansible
+      ansible_become_pass: ",Nsr_nXrkfqIalv2tnSb"
+      apt_proxy_addr: 192.168.56.108
 
 update_servers:
   hosts:

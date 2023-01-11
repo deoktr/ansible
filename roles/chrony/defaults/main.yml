@@ -1,4 +1,4 @@
-chrony_pools:
+ntp_pools:
   - 2.debian.pool.ntp.org
 
-chrony_servers:
+ntp_servers:

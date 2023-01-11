@@ -1,3 +1,4 @@
+# TODO restrict to_ip
 - name: UFW allow NTP out
   community.general.ufw:
     rule: allow
