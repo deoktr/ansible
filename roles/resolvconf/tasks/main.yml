@@ -8,11 +8,7 @@
     src: base.j2
     dest: /etc/resolvconf/resolv.conf.d/base
     mode: 0644
-
-- name: Resolvconf restart
-  ansible.builtin.service:
-    name: resolvconf
-    state: restarted
+  notify: Restart resolvconf
 
 - name: Setup UFW for DNS
   ansible.builtin.import_tasks:

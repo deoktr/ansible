@@ -78,7 +78,10 @@
     - role: shared
 
     - role: suricata
-      tags: users
+      tags: suricata
+
+    - role: ssh_honeypot
+      tags: ssh_honeypot
 
 
 - hosts: update_servers

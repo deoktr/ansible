@@ -43,4 +43,4 @@
 
 - name: Add SSH authorized_keys
   ansible.builtin.import_tasks:
-    file: sshd.yml
+    file: ssh.yml

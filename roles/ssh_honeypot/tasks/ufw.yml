@@ -4,4 +4,4 @@
     port: 22
     proto: tcp
     direction: in
-    comment: 'SSH honeypot port'
+    comment: "SSH honeypot port"

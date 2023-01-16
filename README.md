@@ -87,6 +87,7 @@ docker rmi ubuntu_sshd_image
     Maybe don't change the ssh port ?
 - Control the presence of SSH server with a variable
 - Add option to enable IPv6
+- Add role to configure rsyslog server
 
 ## Debian
 
