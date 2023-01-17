@@ -1,4 +1,4 @@
-# change to ssh_port
+# TODO change to ssh_port
 ansible_port: 22
 
 ssh_users:
@@ -7,4 +7,5 @@ ssh_group_name: sshusers
 
 ssh_group_gid: 1700
 
-ssh_from_ip: any  #  192.168.0.0/16
+# can be 'any' or a list of IP or IP ranges
+ssh_from_ip: 192.168.0.0/16

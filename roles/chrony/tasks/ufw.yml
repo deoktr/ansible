@@ -1,8 +1,19 @@
-# TODO restrict to_ip
 - name: UFW allow NTP out
   community.general.ufw:
     rule: allow
     port: 123
     proto: udp
     direction: out
-    comment: NTP
+    comment: NTP pool
+  when: ntp_pools
+
+- name: UFW allow NTP out
+  community.general.ufw:
+    rule: allow
+    port: 123
+    proto: udp
+    direction: out
+    to_ip: "{{ item }}"
+    comment: NTP server
+  loop: "{{ ntp_servers }}"
+  when: ntp_servers

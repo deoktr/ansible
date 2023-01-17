@@ -24,6 +24,15 @@
 #      ansible_port: 21122
 #      ansible_become_pass: '{{ linode_honey03_pass }}'
 
+
+sshd_forward:
+  hosts:
+    debian109:
+      ansible_host: 192.168.56.109
+      ansible_user: ansible
+      ansible_become_pass: Se2f99lyvUUCNALIWVzl
+      apt_proxy_addr: 192.168.56.108
+
 servers:
   hosts:
     # docker01:
@@ -43,11 +52,6 @@ servers:
     #   ansible_host: 192.168.56.104
     #   ansible_user: ansible
     #   ansible_become_pass: AzCkpul6VIUbyrL9UY,T
-    debian109:
-      ansible_host: 192.168.56.109
-      ansible_user: ansible
-      ansible_become_pass: Se2f99lyvUUCNALIWVzl
-      apt_proxy_addr: 192.168.56.108
     debian110:
       ansible_host: 192.168.56.110
       ansible_user: ansible
@@ -57,6 +61,11 @@ servers:
       ansible_host: 192.168.56.112
       ansible_user: ansible
       ansible_become_pass: ",Nsr_nXrkfqIalv2tnSb"
+      apt_proxy_addr: 192.168.56.108
+    debian114:
+      ansible_host: 192.168.56.114
+      ansible_user: ansible
+      ansible_become_pass: "-u8Dn:qGyvDwSPDXs:6C"
       apt_proxy_addr: 192.168.56.108
 
 update_servers:

@@ -91,3 +91,12 @@
 
     - role: apt-cacher-ng
       tags: apt-cacher-ng
+
+
+- hosts: sshd_forward
+  become: true
+  roles:
+    - role: shared
+
+    - role: sshd_forward
+      tags: sshd_forward

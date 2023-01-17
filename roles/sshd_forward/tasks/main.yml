@@ -1,0 +1,13 @@
+- name: Configure SSH server forward
+  ansible.builtin.template:
+    src: forward.conf.j2
+    dest: /etc/ssh/sshd_config.d/forward.conf
+    owner: root
+    group: root
+    mode: 0600
+    validate: /usr/sbin/sshd -t -f %s
+  notify: Reload sshd
+
+- name: Setup UFW to allow SSH forward
+  ansible.builtin.import_tasks:
+    file: ufw.yml
