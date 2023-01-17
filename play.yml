@@ -72,6 +72,7 @@
       tags: ufw
 
 
+# Setup low interaction honeypot
 - hosts: honeypots
   become: true
   roles:
@@ -84,6 +85,7 @@
       tags: ssh_honeypot
 
 
+# Setup apt proxy server
 - hosts: update_servers
   become: true
   roles:
@@ -93,6 +95,7 @@
       tags: apt-cacher-ng
 
 
+# Setup SSH forward server
 - hosts: sshd_forward
   become: true
   roles:
