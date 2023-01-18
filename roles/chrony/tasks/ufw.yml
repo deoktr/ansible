@@ -1,4 +1,4 @@
-- name: UFW allow NTP out
+- name: UFW allow NTP out to pools
   community.general.ufw:
     rule: allow
     port: 123
@@ -7,7 +7,7 @@
     comment: NTP pool
   when: ntp_pools
 
-- name: UFW allow NTP out
+- name: UFW allow NTP out to servers
   community.general.ufw:
     rule: allow
     port: 123
@@ -15,5 +15,5 @@
     direction: out
     to_ip: "{{ item }}"
     comment: NTP server
-  loop: "{{ ntp_servers }}"
+  with_items: "{{ ntp_servers }}"
   when: ntp_servers

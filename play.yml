@@ -81,8 +81,8 @@
     - role: suricata
       tags: suricata
 
-    - role: ssh_honeypot
-      tags: ssh_honeypot
+    - role: sshd_honeypot
+      tags: sshd_honeypot
 
 
 # Setup apt proxy server
