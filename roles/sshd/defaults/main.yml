@@ -8,6 +8,4 @@ ssh_group_name: sshusers
 ssh_group_gid: 1700
 
 # can be 'any' or a list of IP or IP ranges
-ssh_from_ip:
-  - 192.168.0.0/16
-  - 10.0.0.0/8
+ssh_from_ip: "{{ local_net }}"

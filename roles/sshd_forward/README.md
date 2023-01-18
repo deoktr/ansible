@@ -8,4 +8,4 @@ Configure SSH server to accept forwarding.
 ## Varialbes
 
 - `ssh_fwd_port` port that are allowed to be forwarded, default: 22
-- `ssh_fwd_ip` a list of IP or IP ranges thtat will be allowed to be forwarded, default: 192.168.0.0/16
+- `ssh_fwd_ip` a list of IP or IP ranges thtat will be allowed to be forwarded, default: `local_net` (10.0.0.0/8)
