@@ -5,3 +5,7 @@ pass_warn_age: 7
 shell_timeout: 900
 
 users:
+
+remove_users: []
+
+default_ssh_key_type: ed25519

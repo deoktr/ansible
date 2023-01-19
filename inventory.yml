@@ -25,13 +25,18 @@
 #      ansible_become_pass: '{{ linode_honey03_pass }}'
 
 
-sshd_forward:
+bastions:
   hosts:
-    SSH_TUN:
+    bastion:
       ansible_host: 192.168.56.118
       ansible_user: d
       ansible_become_pass: d
       apt_proxy_addr: 10.0.1.7
+      users:
+        - name: bob
+          uid: 1042
+          generate_ssh_key: true
+          authorized_keys: change_me
 
 servers:
   hosts:
@@ -59,4 +64,4 @@ update_servers:
       ansible_host: 192.168.56.117
       ansible_user: d
       ansible_become_pass: d
-      ssh_from_ip: 10.0.1.8  # SSH tunnel server
+      ssh_from_ip: 10.0.1.8  # Bastion

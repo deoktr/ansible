@@ -5,5 +5,5 @@
     proto: tcp
     direction: in
     from_ip: "{{ item }}"
-    comment: SSH
+    comment: SSH in
   with_items: "{{ ssh_from_ip }}"

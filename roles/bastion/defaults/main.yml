@@ -1,0 +1,3 @@
+bastion_to_ip: "{{ local_net }}"
+
+bastion_to_port: 22

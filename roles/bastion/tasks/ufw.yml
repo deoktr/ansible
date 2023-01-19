@@ -1,0 +1,9 @@
+- name: UFW allow SSH tunneling
+  community.general.ufw:
+    rule: allow
+    to_port: "{{ bastion_to_port }}"
+    proto: tcp
+    direction: out
+    dest: "{{ item }}"
+    comment: SSH out
+  with_items: "{{ bastion_to_ip }}"

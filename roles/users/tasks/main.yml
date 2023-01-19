@@ -16,23 +16,6 @@
     mode: 0644
     backup: true
 
-- name: Add users
-  ansible.builtin.user:
-    name: "{{ item.name }}"
-    comment: "{{ item.comment | default('') }}"
-    password: "{{ lookup('password', 'credentials/' + item.name + '/password.txt encrypt=md5_crypt') }}"
-    uid: "{{ item.uid }}"
-    shell: /bin/bash
-    password_expire_max: 30
-    update_password: on_create
-    remove: "{{ item.remove | default(false) }}"  # remove home if the user is deleted
-    state: "{{ item.state | default('present') }}"  # to remove an account set state to 'absent'
-    expires: "{{ item.expires | default(-1) }}"
-  with_items: "{{ users }}"
-  register: updated_users
-  notify: "updated users"
-  when: users
-
 - name: Configure shell timeout
   ansible.builtin.template:
     src: autologout.sh.j2
@@ -41,6 +24,38 @@
     group: root
     mode: 0644
 
-- name: Add SSH authorized_keys
-  ansible.builtin.import_tasks:
-    file: ssh.yml
+- name: Add users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    comment: "{{ item.comment | default('') }}"
+    password: "{{ lookup('password', 'credentials/' + item.name + '/' + ansible_host + '.txt encrypt=md5_crypt') }}"
+    uid: "{{ item.uid }}"
+    shell: /bin/bash
+    password_expire_max: 30
+    update_password: on_create
+    expires: "{{ item.expires | default(-1) }}"
+    force: "{{ item.force | default(false) }}"
+    generate_ssh_key: "{{ item.generate_ssh_key | default(false) }}"
+    ssh_key_type: "{{ item.ssh_key_type | default(default_ssh_key_type) }}"
+    ssh_key_comment: "{{ item.ssh_key_comment | default(item.name) }}"
+  with_items: "{{ users }}"
+  register: updated_users
+  notify: "updated users"
+  when: users
+
+- name: Set SSH authorized_keys
+  ansible.posix.authorized_key:
+    user: "{{ item.name }}"
+    state: present
+    key: "{{ item.authorized_keys }}"
+    exclusive: True
+  with_items: "{{ users | selectattr('authorized_keys', 'defined') }}"
+  when: users
+
+- name: Remove users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    remove: true
+    state: absent
+  loop: "{{ remove_users }}"
+  when: remove_users

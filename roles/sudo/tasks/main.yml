@@ -20,7 +20,6 @@
     name: ansible
     groups: sudo
     append: true
-  notify: Reboot
 
 - name: Add users to sudo group
   ansible.builtin.user:

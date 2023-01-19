@@ -71,9 +71,9 @@
         state: enabled
       tags: ufw
 
-
 # Setup low interaction honeypot
-- hosts: honeypots
+- name: Honeypot setup
+  hosts: honeypots
   become: true
   roles:
     - role: shared
@@ -86,7 +86,8 @@
 
 
 # Setup apt proxy server
-- hosts: update_servers
+- name: Update server setup
+  hosts: update_servers
   become: true
   roles:
     - role: shared
@@ -95,11 +96,12 @@
       tags: apt-cacher-ng
 
 
-# Setup SSH forward server
-- hosts: sshd_forward
+# Setup SSH tunnel server
+- name: Bastion setup
+  hosts: bastions
   become: true
   roles:
     - role: shared
 
-    - role: sshd_forward
-      tags: sshd_forward
+    - role: bastion
+      tags: bastion

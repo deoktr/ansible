@@ -1,9 +1,0 @@
-- name: UFW allow SSH forward
-  community.general.ufw:
-    rule: allow
-    to_port: "{{ ssh_fwd_port }}"
-    proto: tcp
-    direction: out
-    dest: "{{ item }}"
-    comment: SSH forward out
-  with_items: "{{ ssh_fwd_ip }}"

@@ -1,3 +1,0 @@
-ssh_fwd_ip: "{{ local_net }}"
-
-ssh_fwd_port: 22
