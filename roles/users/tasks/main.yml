@@ -41,6 +41,7 @@
   with_items: "{{ users }}"
   register: updated_users
   notify: "updated users"
+  ignore_errors: true
   when: users
 
 - name: Set SSH authorized_keys
