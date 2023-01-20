@@ -6,14 +6,8 @@
 
 - name: Ensure SSH group exists
   ansible.builtin.group:
-    name: "{{ ssh_group_name }}"
-    gid: "{{ ssh_group_gid }}"
-
-- name: Add ansible user to SSH group
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    groups: "{{ ssh_group_name }}"
-    append: true
+    name: "{{ sshd_group_name }}"
+    gid: "{{ sshd_group_gid }}"
 
 - name: Configure SSH
   ansible.builtin.template:
@@ -35,10 +29,9 @@
 - name: Add ssh users to ssh group
   ansible.builtin.user:
     name: "{{ item }}"
-    groups: "{{ ssh_group_name }}"
+    groups: "{{ sshd_group_name }}"
     append: true
-  with_items: "{{ ssh_users }}"
-  when: ssh_users
+  loop: "{{ sshd_users }}"
 
 - name: Setup UFW to allow SSH
   ansible.builtin.import_tasks:

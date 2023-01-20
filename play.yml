@@ -13,9 +13,6 @@
     #   become: true
     #   tags: setup
 
-    - role: ansible
-      tags: ansible
-
     - role: ufw
       tags: ufw
 

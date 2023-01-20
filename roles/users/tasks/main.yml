@@ -48,7 +48,7 @@
     user: "{{ item.name }}"
     state: present
     key: "{{ item.authorized_keys }}"
-    exclusive: True
+    exclusive: true
   with_items: "{{ users | selectattr('authorized_keys', 'defined') }}"
   when: users
 

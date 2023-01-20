@@ -3,6 +3,6 @@
   ansible.builtin.fetch:
     src: "/home/{{ item.name }}/.ssh/id_ed25519.pub"
     dest: credentials/bastion/ssh_pub_keys/{{ item.name }}
-    flat: yes
+    flat: true
   with_items: "{{ users }}"
   when: users

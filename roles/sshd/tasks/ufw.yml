@@ -1,9 +1,9 @@
-- name: UFW allow SSH
+- name: UFW allow SSH in
   community.general.ufw:
     rule: limit
-    port: "{{ ansible_port }}"
+    port: "{{ sshd_port }}"
     proto: tcp
     direction: in
     from_ip: "{{ item }}"
     comment: SSH in
-  with_items: "{{ ssh_from_ip }}"
+  with_items: "{{ sshd_from_ip }}"

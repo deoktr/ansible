@@ -7,8 +7,8 @@ Configure SSH server to accept tunneling.
 
 ## Varialbes
 
-- `ssh_fwd_port` port that are allowed to be tunneling, default: 22
-- `ssh_fwd_ip` a list of IP or IP ranges thtat will be allowed to be tunneling, default: `local_net` (10.0.0.0/8)
+- `bastion_to_port` port that are allowed to be tunneling, default: `22`
+- `bastion_to_ip` a list of IP or IP ranges thtat will be allowed to be tunneling, default: `local_net`
 
 ## How to
 
@@ -32,10 +32,10 @@ Configure SSH server to accept tunneling.
 ```
 
 5. Set other users authorized_keys with the users role
-6. Autorize users to connect to SSH by adding them to the `ssh_users` group and running the sshd role
+6. Autorize users to connect to SSH by adding them to the `sshd_users` group and running the sshd role
 
 ```yaml
-ssh_users:
+sshd_users:
   - bob
 ```
 
@@ -48,4 +48,6 @@ ssh -J bob@bastion bob@internal
 
 ## TODO
 
+- Make it dependant of sshd, ufw and users role
 - Configure fail2ban
+- Maybe change variables to be a dict containing IP and port so we can specify different ports for each servers

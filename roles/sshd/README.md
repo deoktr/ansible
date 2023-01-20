@@ -8,11 +8,11 @@ Configure OpenSSH.
 
 ## Varialbes
 
-- `ansible_port` Anssible/SSH port, default: 22
-- `ssh_users` list of users that should have access to SSH
-- `ssh_group_name` SSH group name, default: sshusers
-- `ssh_group_gid` SSH group gid, default: 1700
-- `ssh_from_ip` a list of IP or IP ranges that will be able to access SSH, default: 10.0.0.0/8
+- `sshd_port` SSH port, default: `ansible_port` or 22
+- `sshd_users` list of users that should have access to SSH
+- `sshd_group_name` SSH group name, default: `sshusers`
+- `sshd_group_gid` SSH group gid, default: `1700`
+- `sshd_from_ip` a list of IP or IP ranges that will be able to access SSH, default: `local_net`
 
 ## TODO
 

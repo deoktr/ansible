@@ -27,16 +27,12 @@
 
 bastions:
   hosts:
-    bastion:
-      ansible_host: 192.168.56.118
+    bastion_01:
+      ansible_host: bastion
       ansible_user: d
       ansible_become_pass: d
-      apt_proxy_addr: 10.0.1.7
-      users:
-        - name: bob
-          uid: 1042
-          generate_ssh_key: true
-          authorized_keys: change_me
+      apt_proxy_addr: 10.0.1.7  # update server
+      users: "{{ bastion_users }}"
 
 servers:
   hosts:
@@ -60,8 +56,8 @@ servers:
 
 update_servers:
   hosts:
-    MAJ_LIN:
-      ansible_host: 192.168.56.117
+    maj_lin_01:
+      ansible_host: maj_lin
       ansible_user: d
       ansible_become_pass: d
-      ssh_from_ip: 10.0.1.8  # Bastion
+      sshd_from_ip: 10.0.1.8  # Bastion
