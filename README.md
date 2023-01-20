@@ -89,6 +89,7 @@ docker rmi ubuntu_sshd_image
 - Add option to enable IPv6
 - Add role to configure rsyslog server
 - Add rsyslog server
+- Add tag 'security'
 
 ## Debian
 

@@ -102,3 +102,6 @@
 
     - role: bastion
       tags: bastion
+
+    - role: fail2ban
+      tags: fail2ban
