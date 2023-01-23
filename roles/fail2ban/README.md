@@ -11,3 +11,7 @@ fail2ban-client status sshd
 ```bash
 fail2ban-client set sshd unbanip 10.0.1.9
 ```
+
+## TODO
+
+- Ensure logs are sent to syslog
