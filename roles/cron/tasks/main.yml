@@ -5,7 +5,7 @@
 
 - name: Ensure cron is running and enabled
   ansible.builtin.service:
-    name: cron
+    name: "{{ cron_service | d('cron') }}"
     state: started
     enabled: true
 
@@ -16,6 +16,10 @@
     owner: root
     group: root
     mode: 0600
+  with_first_found:
+    - files:
+        - /etc/crontab
+      skip: true
 
 - name: Ensure permissions on /etc/cron.* are configured
   ansible.builtin.file:

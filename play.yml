@@ -3,6 +3,8 @@
 - name: Common setup
   hosts: all
   become: true
+  vars_files:
+    - "vars/{{ ansible_facts['os_family'] }}.yml"
   roles:
     # must be included at the top
     - role: shared

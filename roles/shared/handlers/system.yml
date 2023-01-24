@@ -1,3 +1,6 @@
 - name: Reboot
   ansible.builtin.reboot:
-  when: ansible_virtualization_role != "guest" or ansible_virtualization_type != "docker"
+  when:
+    - ansible_virtualization_role != "host"
+    - ansible_virtualization_role != "guest"
+    - ansible_virtualization_type != "docker"
