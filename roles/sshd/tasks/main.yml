@@ -2,7 +2,6 @@
   ansible.builtin.package:
     name: openssh-server
     state: latest
-  notify: Reload sshd
 
 - name: Ensure SSH group exists
   ansible.builtin.group:

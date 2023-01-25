@@ -1,0 +1,44 @@
+- name: Ensure oathtool is installed
+  ansible.builtin.package:
+    name:
+      - oathtool
+      - libpam-oath
+    state: latest
+
+- name: Ensure /lib/security/ directory exist
+  ansible.builtin.file:
+    path: /lib/security/
+    state: directory
+
+- name: Create libpam-oath link
+  ansible.builtin.file:
+    src: /usr/lib/x86_64-linux-gnu/security/pam_oath.so
+    dest: /lib/security/pam_oath.so
+    state: link
+
+- name: Configure oath private keys
+  ansible.builtin.template:
+    src: users.oath.j2
+    dest: /etc/users.oath
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Configure SSH for pam_oath
+  ansible.builtin.template:
+    src: ssh_pam_oath.j2
+    dest: /etc/ssh/sshd_config.d/ssh_pam_oath.conf
+    owner: root
+    group: root
+    mode: 0600
+    validate: /usr/sbin/sshd -t -f %s
+  notify: Reload sshd
+
+- name: Configure pam_oath access
+  ansible.builtin.template:
+    src: access-local.conf.j2
+    dest: /etc/security/access-local.conf
+    owner: root
+    group: root
+    mode: 0600
+    backup: true

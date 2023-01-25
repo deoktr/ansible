@@ -127,4 +127,11 @@
       tags: bastion
 
     - role: fail2ban
-      tags: fail2ban
+      tags:
+        - fail2ban
+        - bastion
+
+    - role: pam_oath
+      tags:
+        - pam_oath
+        - bastion

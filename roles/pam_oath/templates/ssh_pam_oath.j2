@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+UsePAM yes
+ChallengeResponseAuthentication yes
+
+# Force OATH request-response even if there is a working public key
+# authentication and password authentication
+AuthenticationMethods publickey,keyboard-interactive:pam
+KbdInteractiveAuthentication yes
+PasswordAuthentication yes

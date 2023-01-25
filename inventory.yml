@@ -33,8 +33,8 @@ bastions:
       ansible_become_pass: "{{ bastion_become_pass }}"
       users: "{{ bastion_users }}"
 
-servers:
-  hosts:
+# servers:
+#   hosts:
     # docker01:
     #   ansible_host: 172.17.0.2
     #   ansible_user: root
@@ -52,17 +52,17 @@ servers:
     #   ansible_host: 192.168.56.104
     #   ansible_user: ansible
     #   ansible_become_pass: AzCkpul6VIUbyrL9UY,T
-    sys_log_01:
-      ansible_host: syslog
-      ansible_user: bob
-      ansible_become_pass: d
-      sshd_from_ip: 10.0.1.8  # Bastion
+    # sys_log_01:
+    #   ansible_host: syslog
+    #   ansible_user: bob
+    #   ansible_become_pass: d
+    #   sshd_from_ip: 10.0.1.8  # Bastion
 
-update_servers:
-  hosts:
-    maj_lin_01:
-      ansible_host: maj_lin
-      ansible_user: d
-      ansible_become_pass: d
-      apt_proxy_addr:  # empty because this is the update server
-      sshd_from_ip: 10.0.1.8  # Bastion
+# update_servers:
+#   hosts:
+#     maj_lin_01:
+#       ansible_host: maj_lin
+#       ansible_user: d
+#       ansible_become_pass: d
+#       apt_proxy_addr:  # empty because this is the update server
+#       sshd_from_ip: 10.0.1.8  # Bastion

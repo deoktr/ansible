@@ -1,0 +1,10 @@
+sshd_port: "{{ ansible_port | default(22) }}"
+
+sshd_users: []
+
+sshd_group_name: sshusers
+
+sshd_group_gid: 1700
+
+# can be 'any' or a list of IP or IP ranges
+sshd_from_ip: "{{ local_net }}"
