@@ -3,8 +3,29 @@
 - name: Common setup
   hosts: all
   become: true
-  vars_files:
-    - "vars/{{ ansible_facts['os_family'] }}.yml"
+
+  pre_tasks:
+    - name: Load a variable file based on the OS type, or a default if not found.
+      ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+      vars:
+        params:
+          files:
+            - "{{ansible_distribution}}.yml"
+            - "{{ansible_os_family}}.yml"
+            - default.yml
+          paths:
+            - "vars"
+      tags: always
+
+    - name: Debug distribution
+      ansible.builtin.debug:
+        msg:
+          - "{{ ansible_distribution }}"
+          - "{{ ansible_os_family }}"
+      tags:
+        - never
+        - get_distrib_infos
+
   roles:
     # must be included at the top
     - role: shared

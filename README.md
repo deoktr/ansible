@@ -23,6 +23,12 @@ Run the playbook:
 ansible-playbook --ask-vault-password -i inventory.yaml play.yaml
 ```
 
+Run locally:
+
+```bash
+sudo ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 play.yml
+```
+
 ## Variables
 
 To add variables create a file called `all` in `group_vars`:

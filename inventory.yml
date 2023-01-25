@@ -29,9 +29,8 @@ bastions:
   hosts:
     bastion_01:
       ansible_host: bastion
-      ansible_user: d
-      ansible_become_pass: d
-      apt_proxy_addr: 10.0.1.7  # update server
+      ansible_user: "{{ bastion_user }}"
+      ansible_become_pass: "{{ bastion_become_pass }}"
       users: "{{ bastion_users }}"
 
 servers:
@@ -65,4 +64,5 @@ update_servers:
       ansible_host: maj_lin
       ansible_user: d
       ansible_become_pass: d
+      apt_proxy_addr:  # empty because this is the update server
       sshd_from_ip: 10.0.1.8  # Bastion
