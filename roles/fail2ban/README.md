@@ -12,6 +12,10 @@ fail2ban-client status sshd
 fail2ban-client set sshd unbanip 10.0.1.9
 ```
 
+## Links
+
+- https://github.com/nbigot/ansible-fail2ban
+
 ## TODO
 
 - Ensure logs are sent to syslog
