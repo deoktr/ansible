@@ -46,8 +46,16 @@ sshd_users:
 ssh -J bob@bastion bob@internal
 ```
 
+## Links
+
+- https://engineering.fb.com/2016/09/12/security/scalable-and-secure-access-with-ssh/
+- https://www.syloe.com/rebonds-ssh/
+- https://serverfault.com/questions/1012205/how-to-properly-make-an-ssh-bastion-with-fail2ban-in-a-docker-container#1032094
+- https://stackoverflow.com/questions/41553511/can-ansible-deploy-docker-containers-remotely#41553682
+
 ## TODO
 
 - Make it dependant of sshd, ufw and users role
 - Configure fail2ban
 - Maybe change variables to be a dict containing IP and port so we can specify different ports for each servers
+- Start the SSH jump server on a docker container

@@ -32,6 +32,7 @@ bastions:
       ansible_user: "{{ bastion_user }}"
       ansible_become_pass: "{{ bastion_become_pass }}"
       users: "{{ bastion_users }}"
+      sudo_users:  # nobody should be sudoer on the bastion !
 
 # servers:
 #   hosts:
