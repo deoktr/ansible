@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+#
+# This file configure remote logging
+#
+
+*.* @{% if rsyslog_server_proto=='tcp' %}@{% endif %}{{ rsyslog_server_host }}:{{ rsyslog_server_port }}

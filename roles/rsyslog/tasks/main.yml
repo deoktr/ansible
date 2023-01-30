@@ -30,11 +30,11 @@
   notify: Restart rsyslog
 
 # TODO maybe add a check when the rsyslog_server variable is not present so
-# that the 00-omfwd file is removed if the variable is removed
+# that the 00-remote file is removed if the variable is removed
 - name: Configure remote rsyslog
   ansible.builtin.template:
-    src: rsyslog.d/00-omfwd.conf.j2
-    dest: /etc/rsyslog.d/00-omfwd.conf
+    src: rsyslog.d/00-remote.conf.j2
+    dest: /etc/rsyslog.d/00-remote.conf
     owner: root
     group: root
     mode: 0640
