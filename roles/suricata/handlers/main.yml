@@ -4,4 +4,4 @@
     state: reloaded
 
 - name: Suricata update rules
-  ansible.builtin.shell: suricata-update
+  ansible.builtin.command: suricata-update

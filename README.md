@@ -97,6 +97,7 @@ docker rmi ubuntu_sshd_image
 - Add rsyslog server
 - Add tag 'security'
 - Add squid server setup: https://www.linode.com/docs/guides/squid-http-proxy-debian-10/ , https://dominikrys.com/posts/squid-transparent-proxy/
+- Variable to enable IPv6
 
 ## Debian
 

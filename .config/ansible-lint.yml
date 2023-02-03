@@ -1,6 +1,5 @@
 skip_list:
   - package-latest  # Package installs should not use latest.
-  - command-instead-of-shell
 
 exclude_paths:
   - ../roles/suricata/files/suricata.yaml

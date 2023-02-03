@@ -9,6 +9,9 @@
   ansible.builtin.file:
     path: /lib/security/
     state: directory
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Create libpam-oath link
   ansible.builtin.file:

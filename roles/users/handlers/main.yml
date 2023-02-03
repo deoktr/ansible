@@ -1,7 +1,7 @@
 # we only want to expire passwords if the user is not the current (used to
 # modify the server via Ansible)
 - name: Expire new passwords
-  ansible.builtin.shell:
+  ansible.builtin.command:
     cmd: "passwd --expire {{ item }}"
   loop: "{{ \
          updated_users.results | \
