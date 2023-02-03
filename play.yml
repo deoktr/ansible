@@ -26,63 +26,85 @@
         - never
         - get_distrib_infos
 
-  roles:
+  tasks:
     # must be included at the top
-    - role: shared
+    - ansible.builtin.import_role:
+        name: shared
+      tags: shared
 
-    # should run it only once when installing
-    # to avoid removing necessary packages
-    # - role: setup
-    #   become: true
-    #   tags: setup
+    # use flag setup for a first use of ansible roles
+    - ansible.builtin.import_role:
+        name: setup
+      tags:
+        - setup
+        - never
 
-    - role: ufw
+    - ansible.builtin.import_role:
+        name: ufw
       tags: ufw
 
-    # setup apt
-    - role: apt
+    - ansible.builtin.import_role:
+        name: apt
       tags: apt
 
-    - role: sudo
+    - ansible.builtin.import_role:
+        name: sudo
       tags: sudo
 
-    - role: sshd
+    - ansible.builtin.import_role:
+        name: sshd
       tags: sshd
 
-    - role: pam
+    - ansible.builtin.import_role:
+        name: pam
       tags: pam
 
-    - role: chrony
+    - ansible.builtin.import_role:
+        name: chrony
       tags: chrony
 
-    - role: audit
+    - ansible.builtin.import_role:
+        name: audit
       tags: audit
 
-    - role: sysctl
+    - ansible.builtin.import_role:
+        name: sysctl
       tags: sysctl
 
-    - role: grub
+    - ansible.builtin.import_role:
+        name: grub
       tags: grub
 
-    - role: motd
+    - ansible.builtin.import_role:
+        name: sysctl
+      tags: sysctl
+
+    - ansible.builtin.import_role:
+        name: motd
       tags: motd
 
-    - role: cron
+    - ansible.builtin.import_role:
+        name: cron
       tags: cron
 
-    - role: apparmor
+    - ansible.builtin.import_role:
+        name: apparmor
       tags: apparmor
 
-    - role: rsyslog
+    - ansible.builtin.import_role:
+        name: rsyslog
       tags: rsyslog
 
-    - role: users
+    - ansible.builtin.import_role:
+        name: users
       tags: users
 
-    - role: network
+    - ansible.builtin.import_role:
+        name: network
       tags: network
 
-    - role: resolvconf
+    - ansible.builtin.import_role:
+        name: resolvconf
       tags: resolvconf
 
   post_tasks:
@@ -135,3 +157,4 @@
       tags:
         - pam_oath
         - bastion
+        - never  # TODO

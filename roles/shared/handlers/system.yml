@@ -6,7 +6,7 @@
     - inventory_hostname not in groups['bastions']
   listen: Reboot
 
-- name: Reboot bastion
+- name: Reboot bastions
   ansible.builtin.reboot:
   when:
     - ansible_virtualization_role != "host"
