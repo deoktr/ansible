@@ -9,16 +9,6 @@
     state: started
     enabled: true
 
-- name: Configure journald to send logs to rsyslog
-  ansible.builtin.template:
-    src: journald.conf.j2
-    dest: /etc/systemd/journald.conf
-    owner: root
-    group: root
-    mode: 0640
-    backup: true
-  notify: Restart journald
-
 - name: Configure rsyslog
   ansible.builtin.template:
     src: rsyslog.conf.j2
@@ -29,8 +19,6 @@
     backup: true
   notify: Restart rsyslog
 
-# TODO maybe add a check when the rsyslog_server variable is not present so
-# that the 00-remote file is removed if the variable is removed
 - name: Configure remote rsyslog
   ansible.builtin.template:
     src: rsyslog.d/00-remote.conf.j2
@@ -42,7 +30,17 @@
   when: rsyslog_server_host
   notify: Restart rsyslog
 
+- name: Configure rsyslog aggregation server
+  ansible.builtin.template:
+    src: rsyslog.d/00-aggregator.conf.j2
+    dest: /etc/rsyslog.d/00-aggregator.conf
+    owner: root
+    group: root
+    mode: 0640
+    backup: true
+  when: rsyslog_enable_udp_reception or rsyslog_enable_tcp_reception
+  notify: Restart rsyslog
+
 - name: UFW allow rsyslog server out
   ansible.builtin.import_tasks:
     file: ufw.yml
-  when: rsyslog_server_host

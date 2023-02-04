@@ -96,6 +96,10 @@
       tags: rsyslog
 
     - ansible.builtin.import_role:
+        name: systemd
+      tags: systemd
+
+    - ansible.builtin.import_role:
         name: users
       tags: users
 
@@ -156,5 +160,4 @@
     - role: pam_oath
       tags:
         - pam_oath
-        - bastion
         - never  # TODO

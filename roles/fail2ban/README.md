@@ -19,3 +19,4 @@ fail2ban-client set sshd unbanip 10.0.1.9
 ## TODO
 
 - Ensure logs are sent to syslog
+- Use variable for jails

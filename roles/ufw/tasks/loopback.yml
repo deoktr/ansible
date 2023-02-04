@@ -3,21 +3,21 @@
     rule: allow
     interface: lo
     direction: in
-    comment: loopback interface
+    comment: lo interface allow in
 
 - name: UFW allow loopback interface out
   community.general.ufw:
     rule: allow
     interface: lo
     direction: out
-    comment: loopback interface
+    comment: lo interface allow out
 
 - name: UFW deny 127.0.0.0/8 in
   community.general.ufw:
     rule: deny
     src: 127.0.0.0/8
     direction: in
-    comment: loopback
+    comment: 127/8 deny in
 
 # IPv6 is disabled
 # - name: UFW deny ::1 in

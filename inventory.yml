@@ -29,8 +29,8 @@ bastions:
   hosts:
     bastion_01:
       ansible_host: bastion
-      ansible_user: d
-      ansible_become_pass: d
+      ansible_user: "{{ bastion_ansible_user }}"
+      ansible_become_pass: "{{ bastion_ansible_become_pass }}"
       users: "{{ bastion_users }}"
       sudo_users:  # nobody should be sudoer on the bastion !
       sshd_from_ip: 192.168.0.0/16
@@ -56,15 +56,17 @@ servers:
     #   ansible_become_pass: AzCkpul6VIUbyrL9UY,T
     sys_log_01:
       ansible_host: syslog
-      ansible_user: bob
-      ansible_become_pass: d
+      ansible_user: ansible
+      ansible_become_pass: 73t:W9V5EONu_3J9JFqa
       rsyslog_server_host:  # itself
+      rsyslog_enable_tcp_reception: true
+      rsyslog_enable_udp_reception: false
 
 update_servers:
   hosts:
     maj_lin_01:
       ansible_host: maj_lin
-      ansible_user: d
-      ansible_become_pass: d
+      ansible_user: ansible
+      ansible_become_pass: D6oM8wLPGta51,DgXp_y
       apt_proxy_addr:  # itself
       use_apt_proxy: false  # itself

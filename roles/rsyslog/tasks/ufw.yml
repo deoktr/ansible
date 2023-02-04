@@ -5,4 +5,25 @@
     proto: "{{ rsyslog_server_proto }}"
     direction: out
     to_ip: "{{ rsyslog_server_host }}"
-    comment: Allow syslog
+    comment: rsyslog server
+  when: rsyslog_server_host
+
+- name: UFW allow syslog server in UDP
+  community.general.ufw:
+    rule: allow
+    port: "{{ rsyslog_server_port }}"
+    proto: udp
+    from_ip: "{{ item }}"
+    comment: rsyslog reception udp
+  when: rsyslog_enable_udp_reception
+  with_items: "{{ rsyslog_reception_from_ip }}"
+
+- name: UFW allow syslog server in TCP
+  community.general.ufw:
+    rule: allow
+    port: "{{ rsyslog_server_port }}"
+    proto: tcp
+    from_ip: "{{ item }}"
+    comment: rsyslog reception tcp
+  when: rsyslog_enable_tcp_reception
+  with_items: "{{ rsyslog_reception_from_ip }}"

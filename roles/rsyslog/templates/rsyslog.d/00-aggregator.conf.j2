@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+#
+# This file configure the log aggregation server
+#
+
+$template DynamicFile,"/var/log/aggregator/%HOSTNAME%/%programname%.log"
+*.* -?DynamicFile

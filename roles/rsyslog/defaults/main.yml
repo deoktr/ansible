@@ -3,3 +3,10 @@ rsyslog_server_host:
 rsyslog_server_port: 514
 
 rsyslog_server_proto: tcp
+
+# rsyslog reception server
+rsyslog_enable_tcp_reception: false
+
+rsyslog_enable_udp_reception: false
+
+rsyslog_reception_from_ip: "{{ local_net }}"
