@@ -30,7 +30,7 @@
     # must be included at the top
     - ansible.builtin.import_role:
         name: shared
-      tags: shared
+      tags: always
 
     # use flag setup for a first use of ansible roles
     - ansible.builtin.import_role:
@@ -117,17 +117,22 @@
         state: enabled
       tags: ufw
 
+
 # Setup low interaction honeypot
 - name: Honeypot setup
   hosts: honeypots
   become: true
-  roles:
-    - role: shared
+  tasks:
+    - ansible.builtin.import_role:
+        name: shared
+      tags: always
 
-    - role: suricata
+    - ansible.builtin.import_role:
+        name: suricata
       tags: suricata
 
-    - role: sshd_honeypot
+    - ansible.builtin.import_role:
+        name: sshd_honeypot
       tags: sshd_honeypot
 
 
@@ -135,10 +140,13 @@
 - name: Update server setup
   hosts: update_servers
   become: true
-  roles:
-    - role: shared
+  tasks:
+    - ansible.builtin.import_role:
+        name: shared
+      tags: always
 
-    - role: apt-cacher-ng
+    - ansible.builtin.import_role:
+        name: apt-cacher-ng
       tags: apt-cacher-ng
 
 
@@ -146,18 +154,23 @@
 - name: Bastion setup
   hosts: bastions
   become: true
-  roles:
-    - role: shared
+  tasks:
+    - ansible.builtin.import_role:
+        name: shared
+      tags: always
 
-    - role: bastion
+    - ansible.builtin.import_role:
+        name: bastion
       tags: bastion
 
-    - role: fail2ban
+    - ansible.builtin.import_role:
+        name: fail2ban
       tags:
         - fail2ban
         - bastion
 
-    - role: pam_oath
+    - ansible.builtin.import_role:
+        name: pam_oath
       tags:
         - pam_oath
-        - never  # TODO
+        - never  # TODO finish pam_oath and remove this
