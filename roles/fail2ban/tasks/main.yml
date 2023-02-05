@@ -3,12 +3,6 @@
     name: fail2ban
     state: latest
 
-- name: Ensure the fail2ban service is running and enabled
-  ansible.builtin.service:
-    name: fail2ban
-    state: started
-    enabled: true
-
 - name: Configure fail2ban
   ansible.builtin.template:
     src: fail2ban.local.j2
@@ -28,3 +22,9 @@
     mode: 0644
     backup: true
   notify: Restart fail2ban
+
+- name: Ensure the fail2ban service is running and enabled
+  ansible.builtin.service:
+    name: fail2ban
+    state: started
+    enabled: true

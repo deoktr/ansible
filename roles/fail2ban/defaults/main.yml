@@ -1,14 +1,4 @@
-fail2ban_overalljails: "false"
-
-fail2ban_ignoreips:
-  - 127.0.0.1/8
-  - ::1
-
-fail2ban_bantime: 10m
-
-fail2ban_findtime: 10m
-
-fail2ban_maxretry: 5
+# fail2ban.local
 
 fail2ban_loglevel: INFO
 
@@ -25,3 +15,34 @@ fail2ban_dbfile: /var/lib/fail2ban/fail2ban.sqlite3
 fail2ban_dbpurgeage: 1d
 
 fail2ban_dbmaxmatches: 10
+
+# jail.local
+
+fail2ban_bantime_factor: 1
+
+fail2ban_bantime_rndtime: 64
+
+fail2ban_bantime_formula: 'ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)'
+
+fail2ban_bantime_overalljails: "false"
+
+fail2ban_ignoreips:
+  - 127.0.0.1/8
+  - ::1
+
+fail2ban_bantime: 10m
+
+fail2ban_findtime: 10m
+
+fail2ban_maxretry: 5
+
+fail2ban_backend: auto
+
+fail2ban_action: '%(action_)s'
+
+fail2ban_services:
+  - name: sshd
+    mode: aggressive
+    port: ssh
+    logpath: "%(sshd_log)s"
+    backend: "%(sshd_backend)s"
