@@ -14,10 +14,6 @@
     state: started
     enabled: true
 
-- name: Enable UFW and set logging level
-  community.general.ufw:
-    logging: medium
-
 - name: UFW default deny outgoing
   community.general.ufw:
     policy: deny

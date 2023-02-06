@@ -1,28 +1,12 @@
-#honey_master:
-#  hosts:
-#    linode_master01:
-#      ansible_host: 139.162.255.26
-#      ansible_user: '{{ linode_master01_user }}'
-#      ansible_port: 28399
-#      ansible_become_pass: '{{ linode_master01_pass }}'
-
-#honeypots:
-#  hosts:
-#    linode-honey01:
-#      ansible_host: 172.104.152.115
-#      ansible_user: '{{ linode_honey01_user }}'
-#      ansible_port: 52439
-#      ansible_become_pass: '{{ linode_honey01_pass }}'
-#    linode-honey02:
-#      ansible_host: 172.105.56.97
-#      ansible_user: '{{ linode_honey02_user }}'
-#      ansible_port: 6989
-#      ansible_become_pass: '{{ linode_honey02_pass }}'
-#    linode-honey03:
-#      ansible_host: 172.104.169.135
-#      ansible_user: '{{ linode_honey03_user }}'
-#      ansible_port: 21122
-#      ansible_become_pass: '{{ linode_honey03_pass }}'
+servers:
+  hosts:
+    sys_log_01:
+      ansible_host: syslog
+      ansible_user: ansible
+      ansible_become_pass: 73t:W9V5EONu_3J9JFqa
+      rsyslog_server_host:  # itself
+      rsyslog_enable_tcp_reception: true
+      rsyslog_enable_udp_reception: false
 
 
 bastions:
@@ -34,33 +18,8 @@ bastions:
       users: "{{ bastion_users }}"
       sudo_users:  # nobody should be sudoer on the bastion !
       sshd_from_ip: 192.168.0.0/16
+      pass_max_days: 30
 
-servers:
-  hosts:
-    # docker01:
-    #   ansible_host: 172.17.0.2
-    #   ansible_user: root
-    #   ansible_become_pass: root
-    # vm0103:
-    #   ansible_host: 192.168.56.103
-    #   ansible_user: ansible
-    #   ansible_become_pass: fes0egj-m5czqlscIutg
-    # vm106:
-    #   ansible_host: 192.168.56.106
-    #   ansible_user: ansible
-    #   ansible_become_pass: clZ3eJ3.7KWP6iK4v.,m
-    #   apt_server: http://192.168.1.242:3142
-    # vm104:
-    #   ansible_host: 192.168.56.104
-    #   ansible_user: ansible
-    #   ansible_become_pass: AzCkpul6VIUbyrL9UY,T
-    sys_log_01:
-      ansible_host: syslog
-      ansible_user: ansible
-      ansible_become_pass: 73t:W9V5EONu_3J9JFqa
-      rsyslog_server_host:  # itself
-      rsyslog_enable_tcp_reception: true
-      rsyslog_enable_udp_reception: false
 
 update_servers:
   hosts:

@@ -17,6 +17,12 @@ files should have the appropriate header placed on top.
 
 ## Usage
 
+Ping servers:
+
+```bash
+ansible all -i inventory.yml -m ping
+```
+
 Run the playbook:
 
 ```bash
@@ -53,26 +59,6 @@ ansible-lint roles
 ```
 
 Note that the configuration for the linter is located in [.config/ansible-lint.yaml](./.config/ansible-lint.yml).
-
-## Docker
-
-### Build
-
-```bash
-docker build -t ubuntu_sshd_image .
-docker run -d -P --add-host=host.docker.internal:host-gateway --name ubuntu_sshd_container ubuntu_sshd_image
-docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ubuntu_sshd_container
-ssh-keygen -f "~/.ssh/known_hosts" -R "172.17.0.2"
-ssh-copy-id root@172.17.0.2
-```
-
-The password is `root`.
-
-You will be able to ping the host with:
-
-```bash
-ping host.docker.internal
-```
 
 ### Clean
 
