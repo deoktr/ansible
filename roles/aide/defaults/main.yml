@@ -1,0 +1,8 @@
+aide_remove_rules:
+  - 99_aide_root
+  - 70_aide_dev
+  - 70_aide_etc
+  - 70_aide_proc_sys
+  - 70_aide_run
+  - 70_aide_tmp
+  - 70_aide_var

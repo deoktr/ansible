@@ -34,12 +34,6 @@
     - Merge auditd configuration
     - Reboot
 
-- name: Ensure audit log directory mode is 0750
-  ansible.builtin.file:
-    path: /var/log/audit
-    state: directory
-    mode: 0750
-
 - name: Import audit GRUB tasks
   ansible.builtin.import_tasks:
     file: grub.yml

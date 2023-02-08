@@ -3,6 +3,12 @@
     name: aide
     state: latest
 
+- name: Remove aide rules
+  ansible.builtin.file:
+    path: "/etc/aide/aide.conf.d/{{ item }}"
+    state: absent
+  loop: "{{ aide_remove_rules }}"
+
 - name: Initialize aide
   ansible.builtin.command:
     cmd: aideinit
@@ -13,5 +19,5 @@
 - name: Schedule aide check
   ansible.builtin.cron:
     name: aide check
-    job: aide --check
+    job: aide --check --config /etc/aide/aide.conf
     special_time: daily
