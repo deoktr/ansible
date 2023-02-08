@@ -1,0 +1,6 @@
+- name: Copy new aide database
+  ansible.builtin.copy:
+    src: /var/lib/aide/aide.db.new
+    dest: /var/lib/aide/aide.db
+    mode: 0600
+    remote_src: yes

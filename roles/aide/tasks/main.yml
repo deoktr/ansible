@@ -1,0 +1,17 @@
+- name: Install aide
+  ansible.builtin.package:
+    name: aide
+    state: latest
+
+- name: Initialize aide
+  ansible.builtin.command:
+    cmd: aideinit
+    creates: /var/lib/aide/aide.db.new
+  notify:
+    - Copy new aide database
+
+- name: Schedule aide check
+  ansible.builtin.cron:
+    name: aide check
+    job: aide --check
+    special_time: daily

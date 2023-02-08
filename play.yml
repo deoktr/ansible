@@ -114,6 +114,10 @@
         name: logrotate
       tags: logrotate
 
+    - ansible.builtin.import_role:
+        name: aide
+      tags: aide
+
   post_tasks:
     - name: Enable UFW
       community.general.ufw:

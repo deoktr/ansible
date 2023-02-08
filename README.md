@@ -84,7 +84,8 @@ docker rmi ubuntu_sshd_image
 - Add tag 'security'
 - Add squid server setup: https://www.linode.com/docs/guides/squid-http-proxy-debian-10/ , https://dominikrys.com/posts/squid-transparent-proxy/
 - Variable to enable IPv6
-- Add logrotate role: https://www.redhat.com/sysadmin/setting-logrotate
+- Add aide role
+- Add logwatch role: https://github.com/robertdebock/ansible-role-logwatch
 
 ## Debian
 
