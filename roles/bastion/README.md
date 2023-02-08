@@ -55,7 +55,5 @@ ssh -J bob@bastion bob@internal
 
 ## TODO
 
-- Make it dependant of sshd, ufw and users role
-- Configure fail2ban
 - Maybe change variables to be a dict containing IP and port so we can specify different ports for each servers
 - Start the SSH jump server on a docker container

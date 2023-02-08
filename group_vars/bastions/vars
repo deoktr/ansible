@@ -1,0 +1,35 @@
+# TODO on bastion ansible should have 2 very distinct users:
+#   one to proxyjump to other servers, without sudo priviledges but allow ssh
+#   one to administer the bastion, with sudo but without ssh allowed
+# maybe also use 2 different SSH keys, so that if one get stolen everything is
+# not compromised ?
+
+bastion_01_ansible_become_pass: "{{ vault_bastion_01_ansible_become_pass }}"
+
+pass_max_days: 30
+
+pass_warn_age: 5
+
+sshd_from_ip: 192.168.0.0/16
+
+# nobody should be sudoer on the bastion !
+sudo_users: ansible
+
+sshd_users:
+  - ansible-ssh
+  - bob
+
+users:
+  - name: ansible
+    uid: 1042
+    generate_ssh_key: true
+    authorized_keys: "{{ ansible_authorized_keys }}"
+  - name: ansible-ssh
+    uid: 1043
+    generate_ssh_key: true
+    authorized_keys: "{{ ansible_authorized_keys }}"
+
+  - name: bob
+    uid: 1042
+    generate_ssh_key: true
+    authorized_keys: "{{ bob_authorized_keys }}"
