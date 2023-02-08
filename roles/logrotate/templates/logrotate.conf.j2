@@ -1,0 +1,25 @@
+{{ ansible_managed | comment }}
+
+# global options do not affect preceding include directives
+
+# rotate log files frequency
+{{ logrotate_frequency }}
+
+# keep 4 weeks worth of backlogs
+rotate {{ logrotate_keep }}
+
+# create new (empty) log files after rotating old ones
+create
+
+{% if logrotate_dateext %}
+# use date as a suffix of the rotated file
+dateext
+{% endif %}
+
+{% if logrotate_compress %}
+# compress log files
+compress
+{% endif %}
+
+# packages drop log rotation information into this directory
+include /etc/logrotate.d

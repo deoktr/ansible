@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 -a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>={{ uid_min }} -F auid!=unset -k perm_chng
 -a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid>={{ uid_min }} -F auid!=unset -k perm_chng

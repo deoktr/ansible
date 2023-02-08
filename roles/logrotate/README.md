@@ -1,0 +1,3 @@
+# logrotate
+
+Configure logrotate.

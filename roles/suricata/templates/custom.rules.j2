@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 # Specific alert for custom SSH port
 alert ip any any -> $HOME_NET {{ ansible_port }} (msg:"Custom SSH port {{ ansible_port }} connection"; priority:2; classtype:bad-unknown; sid:1; rev:1;)

@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 -a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -k time_change
 -a always,exit -F arch=b32 -S adjtimex,settimeofday,clock_settime -k time_change

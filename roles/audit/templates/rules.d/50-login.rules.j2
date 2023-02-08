@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 -w /var/log/lastlog -p wa -k login
 -w /var/run/faillock -p wa -k login

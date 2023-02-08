@@ -1,0 +1,7 @@
+logrotate_frequency: weekly
+
+logrotate_keep: 4
+
+logrotate_dateext: true
+
+logrotate_compress: false

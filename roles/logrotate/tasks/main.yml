@@ -1,0 +1,13 @@
+- name: Ensure logrotate is installed
+  ansible.builtin.package:
+    name: logrotate
+    state: latest
+
+- name: Configure logrotate
+  ansible.builtin.template:
+    src: logrotate.conf.j2
+    dest: /etc/logrotate.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: true

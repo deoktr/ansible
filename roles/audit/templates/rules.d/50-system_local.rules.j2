@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 -a always,exit -F arch=b64 -S sethostname,setdomainname -k system_locale
 -a always,exit -F arch=b32 -S sethostname,setdomainname -k system_locale
