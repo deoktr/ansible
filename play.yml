@@ -171,7 +171,6 @@
         name: fail2ban
       tags:
         - fail2ban
-        - bastion
 
     - ansible.builtin.import_role:
         name: pam_oath

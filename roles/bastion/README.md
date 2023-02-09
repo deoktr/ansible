@@ -9,6 +9,9 @@ Configure SSH server to accept tunneling.
 
 - `bastion_to_port` port that are allowed to be tunneling, default: `22`
 - `bastion_to_ip` a list of IP or IP ranges thtat will be allowed to be tunneling, default: `local_net`
+- `bastion_jump_users` a list of usernames that should be able to proxyjump
+- `bastion_jump_group_gid` name of the group to allow users to proxyjump
+- `bastion_jump_group_name` name of the group to allow users to proxyjump, default: sshjump
 
 ## How to
 
@@ -52,8 +55,11 @@ ssh -J bob@bastion bob@internal
 - https://www.syloe.com/rebonds-ssh/
 - https://serverfault.com/questions/1012205/how-to-properly-make-an-ssh-bastion-with-fail2ban-in-a-docker-container#1032094
 - https://stackoverflow.com/questions/41553511/can-ansible-deploy-docker-containers-remotely#41553682
+- https://www.golinuxcloud.com/ssh-proxy/
 
 ## TODO
 
 - Maybe change variables to be a dict containing IP and port so we can specify different ports for each servers
 - Start the SSH jump server on a docker container
+- Lock users in a chroot of their homes on the bastion server
+- Restrict users to only use SSH while connected

@@ -1,5 +1,6 @@
 - name: Ensure libpam-pwquality is installed
   ansible.builtin.package:
+    # TODO make the name OS specific
     name: libpam-pwquality
     state: latest
   when: ansible_distribution=="Debian"

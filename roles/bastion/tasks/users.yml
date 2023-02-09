@@ -1,3 +1,15 @@
+- name: Ensure SSH proxy jump group exists
+  ansible.builtin.group:
+    name: "{{ bastion_jump_group_name }}"
+    gid: "{{ bastion_jump_group_gid }}"
+
+- name: Add users to SSH proxy jump group
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: "{{ bastion_jump_group_name }}"
+    append: true
+  loop: "{{ bastion_jump_users }}"
+
 # TODO change id_ed25519
 - name: Download ssh pub keys
   ansible.builtin.fetch:

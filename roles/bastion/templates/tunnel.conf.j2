@@ -1,4 +1,7 @@
 {{ ansible_managed | comment }}
 
-PermitTunnel yes
-AllowTcpForwarding yes
+Match Group {{ bastion_jump_group_name }}
+  # TODO create chroot for each users
+  # ChrootDirectory %h
+  PermitTunnel yes
+  AllowTcpForwarding yes

@@ -20,7 +20,7 @@ files should have the appropriate header placed on top.
 Ping servers:
 
 ```bash
-ansible all -i inventory.yml -m ping
+ansible all -i inventory.yml --ask-vault-pass -m ping
 ```
 
 Run the playbook:
