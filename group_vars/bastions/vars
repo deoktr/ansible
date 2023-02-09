@@ -3,6 +3,9 @@
 #   one to administer the bastion, with sudo but without ssh allowed
 # maybe also use 2 different SSH keys, so that if one get stolen everything is
 # not compromised ?
+#
+# Add vault_ vars into vault file in the same directory
+# https://docs.ansible.com/ansible/latest/vault_guide/vault_encrypting_content.html#creating-encrypted-variables
 
 bastion_01_ansible_become_pass: "{{ vault_bastion_01_ansible_become_pass }}"
 

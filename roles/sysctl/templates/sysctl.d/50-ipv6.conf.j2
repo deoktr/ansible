@@ -1,5 +1,9 @@
 {{ ansible_managed | comment }}
 
+{% if sysctl_disable_ipv6 %}
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+{% else %}
 net.ipv6.conf.all.forwarding = 0
 
 net.ipv6.conf.all.accept_redirects = 0
@@ -10,3 +14,4 @@ net.ipv6.conf.default.accept_source_route = 0
 
 net.ipv6.conf.all.accept_ra = 0
 net.ipv6.conf.default.accept_ra = 0
+{% endif %}

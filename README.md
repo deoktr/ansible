@@ -86,6 +86,7 @@ docker rmi ubuntu_sshd_image
 - Variable to enable IPv6
 - Add aide role
 - Add logwatch role: https://github.com/robertdebock/ansible-role-logwatch
+- Add zabbix role: https://github.com/robertdebock/ansible-playbook-zabbix
 
 ## Debian
 

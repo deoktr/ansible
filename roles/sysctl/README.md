@@ -2,6 +2,10 @@
 
 Configure sysctl in `/etc/sysctl.d/`.
 
+## Variables
+
+- `sysctl_disable_ipv6` (true) disable IPv6 on the machine
+
 ## Problems
 
 Sysctl can be configured from many different directories (see man), and on new

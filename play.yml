@@ -75,10 +75,6 @@
       tags: grub
 
     - ansible.builtin.import_role:
-        name: sysctl
-      tags: sysctl
-
-    - ansible.builtin.import_role:
         name: motd
       tags: motd
 
