@@ -1,0 +1,46 @@
+# https://github.com/linuxserver/docker-openssh-server
+# https://github.com/linuxserver/docker-mods/tree/openssh-server-ssh-tunnel
+# https://github.com/linuxserver/docker-openssh-server/issues/43
+#
+# docker run -d \
+#   --name=openssh-server \
+#   --hostname=openssh-server `#optional` \
+#   -e PUID=1000 \
+#   -e PGID=1000 \
+#   -e TZ=Europe/London \
+#   -e PUBLIC_KEY=yourpublickey `#optional` \
+#   -e PUBLIC_KEY_FILE=/path/to/file `#optional` \
+#   -e PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys `#optional` \
+#   -e PUBLIC_KEY_URL=https://github.com/username.keys `#optional` \
+#   -e SUDO_ACCESS=false `#optional` \
+#   -e PASSWORD_ACCESS=false `#optional` \
+#   -e USER_PASSWORD=password `#optional` \
+#   -e USER_PASSWORD_FILE=/path/to/file `#optional` \
+#   -e USER_NAME=linuxserver.io `#optional` \
+#   -p 2222:2222 \
+#   -v /path/to/appdata/config:/config \
+#   --restart unless-stopped \
+#   lscr.io/linuxserver/openssh-server:latest
+
+- name: Restart a container
+  community.docker.docker_container:
+    name: openssh-server
+    image: lscr.io/linuxserver/openssh-server:latest
+    hostname: openssh-jumpserver
+    state: started
+    restart_policy: unless-stopped
+    log_driver: syslog  # TODO test if it works
+    log_options:
+      tag: ssh_jump
+      # syslog-address: tcp://my-syslog-server:514
+      # syslog-facility: daemon
+    ports:
+      - "2222:2222"
+    volumes:
+      - /etc/sshjump/sshd_config:/config
+    env:
+        PUID: 1000
+        PGID: 1000
+        TZ: Europe/London
+        SUDO_ACCESS: false
+        PASSWORD_ACCESS: false

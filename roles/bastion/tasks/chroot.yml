@@ -1,0 +1,65 @@
+# https://www.tecmint.com/restrict-ssh-user-to-directory-using-chrooted-jail/
+# VERY bad implementation of chroot jail for SSH users but... eh I don't care
+# TODO add ability for user to use ssh to manually jump to another server
+
+- name: Create main user's jails directory
+  ansible.builtin.file:
+    path: "/home/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0640
+  loop: "{{ bastion_jump_users }}"
+
+- name: Create jail user's dev directory
+  ansible.builtin.file:
+    path: "/home/{{ item }}/dev"
+    state: directory
+    owner: root
+    group: root
+    mode: 0640
+  loop: "{{ bastion_jump_users }}"
+
+- name: Create dev jail directory
+  ansible.builtin.shell: |
+    mknod -m 666 null c 1 3
+    mknod -m 666 tty c 5 0
+    mknod -m 666 zero c 1 5
+    mknod -m 666 random c 1 8
+  args:
+    chdir: "/home/{{ item }}/dev"
+  loop: "{{ bastion_jump_users }}"
+  register: result
+  changed_when: "result.rc == 0"
+  failed_when: "result.rc != 0 and result.rc != 1"
+
+- name: Run script to create chroot
+  ansible.builtin.shell: |
+    CHROOT="/home/{{ item }}"
+    executables='/bin/bash'
+    for e in $executables
+      do
+        cp --parents $e $CHROOT
+        for i in $( ldd $e | grep -v dynamic | cut -d " " -f 3 | sed 's/://' | sort | uniq )
+          do
+            touch $i
+            cp --parents $i $CHROOT
+          done
+      done
+    # ARCH amd64
+    if [ -f /lib64/ld-linux-x86-64.so.2 ]; then
+       cp --parents /lib64/ld-linux-x86-64.so.2 /$CHROOT
+    fi
+    # ARCH i386
+    if [ -f  /lib/ld-linux.so.2 ]; then
+       cp --parents /lib/ld-linux.so.2 /$CHROOT
+    fi
+  loop: "{{ bastion_jump_users }}"
+
+- name: Set jail permissions
+  ansible.builtin.shell: |
+    chown root:root -R .
+    chmod 0755 -R .
+  args:
+    chdir: "/home/{{ item }}"
+  loop: "{{ bastion_jump_users }}"

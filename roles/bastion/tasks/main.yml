@@ -9,3 +9,11 @@
 - name: Manage bastion users
   ansible.builtin.import_tasks:
     file: users.yml
+
+# - name: Manage bastion chroot
+#   ansible.builtin.import_tasks:
+#     file: chroot.yml
+
+# - name: Setup docker container
+#   ansible.builtin.import_tasks:
+#     file: docker.yml
