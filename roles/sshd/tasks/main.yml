@@ -6,7 +6,7 @@
 - name: Ensure SSH group exists
   ansible.builtin.group:
     name: "{{ sshd_group_name }}"
-    gid: "{{ sshd_group_gid }}"
+    gid: "{{ sshd_group_gid | default(omit) }}"
 
 - name: Configure SSH
   ansible.builtin.template:

@@ -5,26 +5,21 @@
 
 - name: Ensure group sudo exists
   ansible.builtin.group:
-    name: sudo
+    name: "{{ sudo_group_name }}"
+    gid: "{{ sudo_group_gid | default(omit) }}"
     state: present
 
 - name: Restrict permissions for sudo executable
   ansible.builtin.file:
     path: /usr/bin/sudo
     owner: root
-    group: sudo
+    group: "{{ sudo_group_name }}"
     mode: u=rws,g=rx,o-rwx
-
-- name: Add Ansible user to sudo group
-  ansible.builtin.user:
-    name: ansible
-    groups: sudo
-    append: true
 
 - name: Add users to sudo group
   ansible.builtin.user:
     name: "{{ item }}"
-    groups: sudo
+    groups: "{{ sudo_group_name }}"
     append: true
   with_items: "{{ sudo_users }}"
   when: sudo_users

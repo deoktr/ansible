@@ -67,6 +67,15 @@ docker rm ubuntu_sshd_container
 docker rmi ubuntu_sshd_image
 ```
 
+## Tags
+
+Use tags `I` with number going form `I0` to `I4`, 0 beeing the less impactfull
+and 4 the most.
+
+Example: MOTD is set to `I0` because it's impact is non existent. But UFW is
+set to `I4` because if set up without allowing network services (opening ports)
+this can break a server.
+
 ## TODO
 
 - If any package is not up to date update it and restart it

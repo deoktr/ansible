@@ -4,6 +4,6 @@ bastion_to_port: 22
 
 bastion_jump_users:
 
-bastion_jump_group_gid: 69
+# bastion_jump_group_gid:
 
 bastion_jump_group_name: sshjump

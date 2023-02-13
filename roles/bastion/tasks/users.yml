@@ -1,7 +1,7 @@
 - name: Ensure SSH proxy jump group exists
   ansible.builtin.group:
     name: "{{ bastion_jump_group_name }}"
-    gid: "{{ bastion_jump_group_gid }}"
+    gid: "{{ bastion_jump_group_gid | default(omit) }}"
 
 - name: Add users to SSH proxy jump group
   ansible.builtin.user:

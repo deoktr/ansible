@@ -40,7 +40,9 @@
 
     - ansible.builtin.import_role:
         name: ufw
-      tags: ufw
+      tags:
+        - ufw
+        - I4
 
     - ansible.builtin.import_role:
         name: apt
@@ -48,96 +50,114 @@
 
     - ansible.builtin.import_role:
         name: sudo
-      tags: sudo
+      tags:
+        - sudo
+        - I1
 
     - ansible.builtin.import_role:
         name: sshd
-      tags: sshd
+      tags:
+        - sshd
+        - I3
 
     - ansible.builtin.import_role:
         name: pam
-      tags: pam
+      tags:
+        - pam
+        - I3
 
     - ansible.builtin.import_role:
         name: chrony
-      tags: chrony
+      tags:
+        - chrony
+        - I2
 
     - ansible.builtin.import_role:
         name: audit
-      tags: audit
+      tags:
+        - audit
+        - I1
 
     - ansible.builtin.import_role:
         name: sysctl
-      tags: sysctl
+      tags:
+        - sysctl
+        - I3
 
     - ansible.builtin.import_role:
         name: grub
-      tags: grub
+      tags:
+        - grub
+        - I3
 
     - ansible.builtin.import_role:
         name: motd
-      tags: motd
+      tags:
+        - motd
+        - I0
 
     - ansible.builtin.import_role:
         name: cron
-      tags: cron
+      tags:
+        - cron
+        - I0
 
     - ansible.builtin.import_role:
         name: apparmor
-      tags: apparmor
+      tags:
+        - apparmor
+        - I1
 
     - ansible.builtin.import_role:
         name: rsyslog
-      tags: rsyslog
+      tags:
+        - rsyslog
+        - I0
 
     - ansible.builtin.import_role:
         name: systemd
-      tags: systemd
+      tags:
+        - systemd
+        - I0
 
     - ansible.builtin.import_role:
         name: users
-      tags: users
+      tags:
+        - users
+        - I1
 
     - ansible.builtin.import_role:
         name: network
-      tags: network
+      tags:
+        - network
+        - I1
 
     - ansible.builtin.import_role:
         name: resolvconf
-      tags: resolvconf
+      tags:
+        - resolvconf
+        - I2
 
     - ansible.builtin.import_role:
         name: logrotate
-      tags: logrotate
+      tags:
+        - logrotate
+        - I0
 
     - ansible.builtin.import_role:
         name: aide
-      tags: aide
+      tags:
+        - aide
+        - I2
 
   post_tasks:
     - name: Enable UFW
       community.general.ufw:
         state: enabled
         logging: medium
-      tags: ufw
-
-
-# Setup low interaction honeypot
-- name: Honeypot setup
-  hosts: honeypots
-  become: true
-  tasks:
-    - ansible.builtin.import_role:
-        name: shared
-      tags: always
-
-    - ansible.builtin.import_role:
-        name: suricata
-      tags: suricata
-
-    - ansible.builtin.import_role:
-        name: sshd_honeypot
-      tags: sshd_honeypot
+      tags:
+        - ufw
+        - I4
 
 
 # Setup apt proxy server
@@ -171,9 +191,34 @@
         name: fail2ban
       tags:
         - fail2ban
+        - bastion
+
+    - ansible.builtin.import_role:
+        name: suricata
+      tags:
+        - suricata
+        - bastion
 
     - ansible.builtin.import_role:
         name: pam_oath
       tags:
         - pam_oath
         - never  # TODO finish pam_oath and remove this
+
+
+# Setup low interaction honeypot
+- name: Honeypot setup
+  hosts: honeypots
+  become: true
+  tasks:
+    - ansible.builtin.import_role:
+        name: shared
+      tags: always
+
+    - ansible.builtin.import_role:
+        name: suricata
+      tags: suricata
+
+    - ansible.builtin.import_role:
+        name: sshd_honeypot
+      tags: sshd_honeypot
