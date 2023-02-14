@@ -6,12 +6,17 @@ suricata_home_net: "{{ local_net }}"
 # can also be string 'any'
 suricata_external_net: "!$HOME_NET"
 
+# regular|syslog|unix_dgram|unix_stream|redis
+suricata_eve_log_filetype: regular
+
 # you should probably change this
 suricata_default_interface: eth0
 
 suricata_af_packet_interface: "{{ suricata_default_interface }}"
 
 suricata_pcap_interface: "{{ suricata_default_interface }}"
+
+suricata_netmap_interface: "{{ suricata_default_interface }}"
 
 suricata_pfring_interface: "{{ suricata_default_interface }}"
 
