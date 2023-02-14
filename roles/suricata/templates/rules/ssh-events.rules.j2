@@ -1,4 +1,11 @@
 {{ ansible_managed | comment }}
-
-# Specific alert for custom SSH port
-alert ip any any -> $HOME_NET {{ ssh_port }} (msg:"Custom SSH port {{ ssh_port }} connection"; priority:2; classtype:bad-unknown; sid:1; rev:1;)
+# SSH app layer event rules
+#
+# SID's fall in the 2228000+ range. See https://redmine.openinfosecfoundation.org/projects/suricata/wiki/AppLayer
+#
+# These sigs fire at most once per connection.
+#
+alert ssh any any -> any any (msg:"SURICATA SSH invalid banner"; flow:established; app-layer-event:ssh.invalid_banner; classtype:protocol-command-decode; sid:2228000; rev:1;)
+alert ssh any any -> any any (msg:"SURICATA SSH too long banner"; flow:established; app-layer-event:ssh.long_banner; classtype:protocol-command-decode; sid:2228001; rev:1;)
+alert ssh any any -> any any (msg:"SURICATA SSH invalid record"; flow:established; app-layer-event:ssh.invalid_record; classtype:protocol-command-decode; sid:2228002; rev:1;)
+alert ssh any any -> any any (msg:"SSH possible brute forcing"; flags: S+; threshold: type both, track by_src, count 5, seconds 30; sid:2228003; rev: 1;)
