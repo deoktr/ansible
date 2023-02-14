@@ -1645,7 +1645,7 @@ capture:
 #
 netmap:
    # To specify OS endpoint add plus sign at the end (e.g. "eth0+")
- - interface: eth2
+   - interface: {{ suricata_netmap_interface }}
    # Number of capture threads. "auto" uses number of RSS queues on interface.
    # Warning: unless the RSS hashing is symmetrical, this will lead to
    # accuracy issues.
