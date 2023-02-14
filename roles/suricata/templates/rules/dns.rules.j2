@@ -1,0 +1,8 @@
+{{ ansible_managed | comment }}
+# DNS app layer event rules
+#
+# SID's fall in the 2240000-2240999 range. See https://redmine.openinfosecfoundation.org/projects/suricata/wiki/AppLayer
+#
+# These sigs fire at most once per connection.
+#
+alert dns any any -> any any (msg:"DNS LOOKUP for example.com"; dns.query; content:"example.com"; nocase; sid:2240000;)

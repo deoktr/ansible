@@ -16,3 +16,4 @@ out 443) to collect new rules.
 ## TODO
 
 - Add configuration for GeoIP
+- Check if Ansible trigger any suricata rules by mistake
