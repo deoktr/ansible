@@ -1,0 +1,64 @@
+ssh_port: "{{ ansible_port | default(22) }}"
+
+# can also be string 'any'
+suricata_home_net: "{{ local_net }}"
+
+# can also be string 'any'
+suricata_external_net: "!$HOME_NET"
+
+# you should probably change this
+suricata_default_interface: eth0
+
+suricata_af_packet_interface: "{{ suricata_default_interface }}"
+
+suricata_pcap_interface: "{{ suricata_default_interface }}"
+
+suricata_pfring_interface: "{{ suricata_default_interface }}"
+
+suricata_rfb_enabled: "yes"
+
+suricata_mqtt_enabled: "no"
+
+suricata_krb5_enabled: "yes"
+
+suricata_snmp_enabled: "yes"
+
+suricata_ikev2_enabled: "yes"
+
+suricata_tls_enabled: "yes"
+
+suricata_dcerpc_enabled: "yes"
+
+suricata_ftp_enabled: "yes"
+
+suricata_ssh_enabled: "yes"
+
+suricata_http2_enabled: "yes"
+
+suricata_smtp_enabled: "yes"
+
+suricata_imap_enabled: "detection-only"
+
+suricata_smb_enabled: "yes"
+
+suricata_nfs_enabled: "yes"
+
+suricata_tftp_enabled: "yes"
+
+suricata_dns_tcp_enabled: "yes"
+
+suricata_dns_udp_enabled: "yes"
+
+suricata_http_enabled: "yes"
+
+suricata_modbus_enabled: "no"
+
+suricata_dnp3_enabled: "no"
+
+suricata_enip_enabled: "no"
+
+suricata_ntp_enabled: "yes"
+
+suricata_dhcp_enabled: "yes"
+
+suricata_sip_enabled: "no"

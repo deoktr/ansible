@@ -1,36 +1,39 @@
 - name: Install suricata
   ansible.builtin.package:
-    name:
-      - suricata
+    name: suricata
     state: latest
+  register: suricata_installed
 
 - name: Configure suricata
-  ansible.builtin.copy:
-    src: suricata.yaml
+  ansible.builtin.template:
+    src: suricata.yaml.j2
     dest: /etc/suricata/suricata.yaml
     owner: root
     group: root
     mode: 0644
     backup: true
-  notify:
-    - Reload suricata
+  notify: Reload suricata
 
 - name: Add suricata custom rules
   ansible.builtin.template:
-    src: custom.rules.j2
-    dest: /var/lib/suricata/rules/custom.rules
+    src: "{{ item }}"
+    dest: "/etc/suricata/rules/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
     mode: 0644
     backup: true
-  notify:
-    - Reload suricata
+  with_fileglob:
+    - templates/rules/*.j2
+  notify: Reload suricata
 
 - name: Ensure suricata is running and enabled
   ansible.builtin.service:
     name: suricata
     state: started
     enabled: true
+  # skip when suricata was just installed, otherwise this will cause an error:
+  # suricata.service: Start request repeated too quickly.
+  when: not suricata_installed.changed
 
 - name: Suricata update cron job
   ansible.builtin.cron:
@@ -38,5 +41,4 @@
     hour: 3
     minute: 30
     job: suricata-update
-  notify:
-    - Suricata update rules
+  notify: Suricata update rules

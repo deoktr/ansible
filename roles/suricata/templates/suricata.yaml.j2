@@ -1,6 +1,7 @@
 %YAML 1.1
 ---
 
+{{ ansible_managed | comment }}
 # Suricata configuration file. In addition to the comments describing all
 # options in this file, full documentation can be found at:
 # https://suricata.readthedocs.io/en/latest/configuration/suricata-yaml.html
@@ -12,14 +13,9 @@
 vars:
   # more specific is better for alert accuracy and performance
   address-groups:
-    HOME_NET: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]"
-    #HOME_NET: "[192.168.0.0/16]"
-    #HOME_NET: "[10.0.0.0/8]"
-    #HOME_NET: "[172.16.0.0/12]"
-    #HOME_NET: "any"
+    HOME_NET: "{% if suricata_home_net == "any" %}any{% else %}[{{ suricata_home_net | join(',') }}]{% endif %}"
 
-    EXTERNAL_NET: "!$HOME_NET"
-    #EXTERNAL_NET: "any"
+    EXTERNAL_NET: "{{ suricata_external_net }}"
 
     HTTP_SERVERS: "$HOME_NET"
     SMTP_SERVERS: "$HOME_NET"
@@ -307,7 +303,7 @@ outputs:
       append: yes
       #extended: yes     # enable this for extended logging information
       #custom: yes       # enable the custom logging format (defined by customformat)
-      #customformat: "%{%D-%H:%M:%S}t.%z %{X-Forwarded-For}i %H %m %h %u %s %B %a:%p -> %A:%P"
+      #customformat: {% raw %}"%{%D-%H:%M:%S}t.%z %{X-Forwarded-For}i %H %m %h %u %s %B %a:%p -> %A:%P"{% endraw %}
       #filetype: regular # 'regular', 'unix_stream' or 'unix_dgram'
 
   # a line based log of TLS handshake parameters (no alerts)
@@ -317,7 +313,7 @@ outputs:
       append: yes
       #extended: yes     # Log extended information like fingerprint
       #custom: yes       # enabled the custom logging format (defined by customformat)
-      #customformat: "%{%D-%H:%M:%S}t.%z %a:%p -> %A:%P %v %n %d %D"
+      #customformat: {% raw %}"%{%D-%H:%M:%S}t.%z %a:%p -> %A:%P %v %n %d %D"{% endraw %}
       #filetype: regular # 'regular', 'unix_stream' or 'unix_dgram'
       # output TLS transaction where the session is resumed using a
       # session id
@@ -578,7 +574,7 @@ logging:
 
 # Linux high speed capture support
 af-packet:
-  - interface: eth0
+  - interface: {{ suricata_af_packet_interface }}
     # Number of receive threads. "auto" uses the number of cores
     #threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
@@ -658,7 +654,7 @@ af-packet:
 
 # Cross platform libpcap capture support
 pcap:
-  - interface: eth0
+  - interface: {{ suricata_pcap_interface }}
     # On Linux, pcap will try to use mmap'ed capture and will use "buffer-size"
     # as total memory used by the ring. So set this to something bigger
     # than 1% of your bandwidth.
@@ -715,21 +711,20 @@ pcap-file:
 app-layer:
   protocols:
     rfb:
-      enabled: yes
+      enabled: {{ suricata_rfb_enabled }}
       detection-ports:
         dp: 5900, 5901, 5902, 5903, 5904, 5905, 5906, 5907, 5908, 5909
-    # MQTT, disabled by default.
     mqtt:
-      # enabled: no
-      # max-msg-length: 1mb
+      enabled: {{ suricata_mqtt_enabled }}
+      max-msg-length: 1mb
     krb5:
-      enabled: yes
+      enabled: {{ suricata_krb5_enabled }}
     snmp:
-      enabled: yes
+      enabled: {{ suricata_snmp_enabled }}
     ikev2:
-      enabled: yes
+      enabled: {{ suricata_ikev2_enabled }}
     tls:
-      enabled: yes
+      enabled: {{ suricata_tls_enabled }}
       detection-ports:
         dp: 443
 
@@ -752,20 +747,20 @@ app-layer:
       #encryption-handling: default
 
     dcerpc:
-      enabled: yes
+      enabled: {{ suricata_dcerpc_enabled }}
     ftp:
-      enabled: yes
+      enabled: {{ suricata_ftp_enabled }}
       # memcap: 64mb
     rdp:
       #enabled: yes
     ssh:
-      enabled: yes
+      enabled: {{ suricata_ssh_enabled }}
       #hassh: yes
     # HTTP2: Experimental HTTP 2 support. Disabled by default.
     http2:
-      enabled: no
+      enabled: {{ suricata_http2_enabled }}
     smtp:
-      enabled: yes
+      enabled: {{ suricata_smtp_enabled }}
       raw-extraction: no
       # Configure SMTP-MIME Decoder
       mime:
@@ -794,9 +789,9 @@ app-layer:
         content-inspect-min-size: 32768
         content-inspect-window: 4096
     imap:
-      enabled: detection-only
+      enabled: {{ suricata_imap_enabled }}
     smb:
-      enabled: yes
+      enabled: {{ suricata_smb_enabled }}
       detection-ports:
         dp: 139, 445
 
@@ -804,20 +799,20 @@ app-layer:
       #stream-depth: 0
 
     nfs:
-      enabled: yes
+      enabled: {{ suricata_nfs_enabled }}
     tftp:
-      enabled: yes
+      enabled: {{ suricata_tftp_enabled }}
     dns:
       tcp:
-        enabled: yes
+        enabled: {{ suricata_dns_tcp_enabled }}
         detection-ports:
           dp: 53
       udp:
-        enabled: yes
+        enabled: {{ suricata_dns_udp_enabled }}
         detection-ports:
           dp: 53
     http:
-      enabled: yes
+      enabled: {{ suricata_http_enabled }}
       # memcap:                   Maximum memory capacity for HTTP
       #                           Default is unlimited, values can be 64mb, e.g.
 
@@ -932,7 +927,7 @@ app-layer:
       # If the limit is reached, the app-layer-event:modbus.flooded; will match.
       #request-flood: 500
 
-      enabled: no
+      enabled: {{ suricata_modbus_enabled }}
       detection-ports:
         dp: 502
       # According to MODBUS Messaging on TCP/IP Implementation Guide V1.0b, it
@@ -946,25 +941,25 @@ app-layer:
 
     # DNP3
     dnp3:
-      enabled: no
+      enabled: {{ suricata_dnp3_enabled }}
       detection-ports:
         dp: 20000
 
     # SCADA EtherNet/IP and CIP protocol support
     enip:
-      enabled: no
+      enabled: {{ suricata_enip_enabled }}
       detection-ports:
         dp: 44818
         sp: 44818
 
     ntp:
-      enabled: yes
+      enabled: {{ suricata_ntp_enabled }}
 
     dhcp:
-      enabled: yes
+      enabled: {{ suricata_dhcp_enabled }}
 
     sip:
-      #enabled: no
+      enabled: {{ suricata_sip_enabled }}
 
 # Limit for the maximum number of asn1 frames to decode (default 256)
 asn1-max-frames: 256
@@ -1692,7 +1687,7 @@ netmap:
 # PF_RING configuration: for use with native PF_RING support
 # for more info see http://www.ntop.org/products/pf_ring/
 pfring:
-  - interface: eth0
+  - interface: {{ suricata_pfring_interface }}
     # Number of receive threads. If set to 'auto' Suricata will first try
     # to use CPU (core) count and otherwise RSS queue count.
     threads: auto
@@ -1860,7 +1855,9 @@ default-rule-path: /var/lib/suricata/rules
 
 rule-files:
   - suricata.rules
-  - custom.rules
+{% for file in lookup('fileglob', 'templates/rules/*.j2', wantlist=true) %}
+  - /etc/suricata/rules/{{ file | basename | regex_replace('\\.j2$', '') }}
+{% endfor %}
 
 ##
 ## Auxiliary configuration files.
