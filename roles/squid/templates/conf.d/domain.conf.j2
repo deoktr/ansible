@@ -1,10 +1,14 @@
 {{ ansible_managed | comment }}
 
+{% if squid_domain_whitelist %}
 # whitelist
 # put first to allow thos hosts, then check the blacklist
 acl domain_whitelist dstdomain "/etc/squid/domain_whitelist.txt"
 http_access allow all domain_whitelist
+{% endif %}
 
+{% if squid_domain_blacklist %}
 # blacklist
 acl domain_blacklist dstdomain "/etc/squid/domain_blacklist.txt"
 http_access deny all domain_blacklist
+{% endif %}
