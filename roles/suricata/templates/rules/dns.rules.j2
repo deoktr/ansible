@@ -5,4 +5,6 @@
 #
 # These sigs fire at most once per connection.
 #
-alert dns any any -> any any (msg:"DNS LOOKUP for example.com"; dns.query; content:"example.com"; nocase; sid:2240000;)
+# TODO Doesn't work for some reason
+# alert dns any any -> any any (msg:"DNS LOOKUP for example.com"; dns.query; content:"example.com"; nocase; sid:2240100;)
+# alert dns any any -> any any (msg:"Loopback DNS response"; content:"|7F 00 00 01|"; sid:2240101;)

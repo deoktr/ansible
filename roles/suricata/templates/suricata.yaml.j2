@@ -17,32 +17,32 @@ vars:
 
     EXTERNAL_NET: "{{ suricata_external_net }}"
 
-    HTTP_SERVERS: "$HOME_NET"
-    SMTP_SERVERS: "$HOME_NET"
-    SQL_SERVERS: "$HOME_NET"
-    DNS_SERVERS: "$HOME_NET"
-    TELNET_SERVERS: "$HOME_NET"
-    AIM_SERVERS: "$EXTERNAL_NET"
-    DC_SERVERS: "$HOME_NET"
-    DNP3_SERVER: "$HOME_NET"
-    DNP3_CLIENT: "$HOME_NET"
-    MODBUS_CLIENT: "$HOME_NET"
-    MODBUS_SERVER: "$HOME_NET"
-    ENIP_CLIENT: "$HOME_NET"
-    ENIP_SERVER: "$HOME_NET"
+    HTTP_SERVERS: "{{ suricata_http_servers }}"
+    SMTP_SERVERS: "{{ suricata_smtp_servers }}"
+    SQL_SERVERS: "{{ suricata_sql_servers }}"
+    DNS_SERVERS: "{{ suricata_dns_servers }}"
+    TELNET_SERVERS: "{{ suricata_telnet_servers }}"
+    AIM_SERVERS: "{{ suricata_aim_servers }}"
+    DC_SERVERS: "{{ suricata_dc_servers }}"
+    DNP3_SERVER: "{{ suricata_dnp3_server }}"
+    DNP3_CLIENT: "{{ suricata_dnp3_client }}"
+    MODBUS_CLIENT: "{{ suricata_modbus_client }}"
+    MODBUS_SERVER: "{{ suricata_modbus_server }}"
+    ENIP_CLIENT: "{{ suricata_enip_client }}"
+    ENIP_SERVER: "{{ suricata_enip_server }}"
 
   port-groups:
-    HTTP_PORTS: "80"
-    SHELLCODE_PORTS: "!80"
-    ORACLE_PORTS: 1521
-    SSH_PORTS: 22
-    DNP3_PORTS: 20000
-    MODBUS_PORTS: 502
-    FILE_DATA_PORTS: "[$HTTP_PORTS,110,143]"
-    FTP_PORTS: 21
-    GENEVE_PORTS: 6081
-    VXLAN_PORTS: 4789
-    TEREDO_PORTS: 3544
+    HTTP_PORTS: "{{ suricata_http_ports }}"
+    SHELLCODE_PORTS: "{{ suricata_shellcode_ports }}"
+    ORACLE_PORTS: {{ suricata_oracle_ports }}
+    SSH_PORTS: {{ suricata_ssh_ports }}
+    DNP3_PORTS: {{ suricata_dnp3_ports }}
+    MODBUS_PORTS: {{ suricata_modbus_ports }}
+    FILE_DATA_PORTS: "{{ suricata_file_data_ports }}"
+    FTP_PORTS: {{ suricata_ftp_ports }}
+    GENEVE_PORTS: {{ suricata_geneve_ports }}
+    VXLAN_PORTS: {{ suricata_vxlan_ports }}
+    TEREDO_PORTS: {{ suricata_teredo_ports }}
 
 ##
 ## Step 2: Select outputs to enable

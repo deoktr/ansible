@@ -6,6 +6,32 @@ suricata_home_net: "{{ local_net }}"
 # can also be string 'any'
 suricata_external_net: "!$HOME_NET"
 
+suricata_http_servers: "$HOME_NET"
+suricata_smtp_servers: "$HOME_NET"
+suricata_sql_servers: "$HOME_NET"
+suricata_dns_servers: "$HOME_NET"
+suricata_telnet_servers: "$HOME_NET"
+suricata_aim_servers: "$EXTERNAL_NET"
+suricata_dc_servers: "$HOME_NET"
+suricata_dnp3_server: "$HOME_NET"
+suricata_dnp3_client: "$HOME_NET"
+suricata_modbus_client: "$HOME_NET"
+suricata_modbus_server: "$HOME_NET"
+suricata_enip_client: "$HOME_NET"
+suricata_enip_server: "$HOME_NET"
+
+suricata_http_ports: "80"
+suricata_shellcode_ports: "!80"
+suricata_oracle_ports: 1521
+suricata_ssh_ports: 22
+suricata_dnp3_ports: 20000
+suricata_modbus_ports: 502
+suricata_file_data_ports: "[$HTTP_PORTS,110,143]"
+suricata_ftp_ports: 21
+suricata_geneve_ports: 6081
+suricata_vxlan_ports: 4789
+suricata_teredo_ports: 3544
+
 # regular|syslog|unix_dgram|unix_stream|redis
 suricata_eve_log_filetype: regular
 
