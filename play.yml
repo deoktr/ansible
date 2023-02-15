@@ -160,8 +160,8 @@
         - I4
 
 
-# Setup apt proxy server
-- name: Update server setup
+# Setup update proxy server
+- name: Update proxy server setup
   hosts: update_servers
   become: true
   tasks:
@@ -172,6 +172,20 @@
     - ansible.builtin.import_role:
         name: apt-cacher-ng
       tags: apt-cacher-ng
+
+
+# Setup HTTP proxy server
+- name: HTTP proxy server setup
+  hosts: proxy_servers
+  become: true
+  tasks:
+    - ansible.builtin.import_role:
+        name: shared
+      tags: always
+
+    - ansible.builtin.import_role:
+        name: squid
+      tags: squid
 
 
 # Setup SSH tunnel server

@@ -1,0 +1,7 @@
+{{ ansible_managed | comment }}
+
+{% if squid_domain_blacklist %}
+{% for domain in squid_domain_blacklist %}
+{{ domain }}
+{% endfor %}
+{% endif %}

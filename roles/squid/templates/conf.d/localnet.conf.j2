@@ -1,0 +1,7 @@
+{{ ansible_managed | comment }}
+
+# TODO change in favor of acl
+
+{% if squid_allow_localnet %}
+http_access allow localnet
+{% endif %}

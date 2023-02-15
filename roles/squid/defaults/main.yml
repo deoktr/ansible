@@ -1,0 +1,7 @@
+squid_http_port: 3128
+
+squid_allow_localnet: true
+
+squid_domain_blacklist:
+
+squid_domain_whitelist:
