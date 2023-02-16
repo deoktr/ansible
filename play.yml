@@ -150,6 +150,12 @@
         - aide
         - I2
 
+    - ansible.builtin.import_role:
+        name: security
+      tags:
+        - security
+        - never
+
   post_tasks:
     - name: Enable UFW
       community.general.ufw:
