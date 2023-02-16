@@ -31,7 +31,7 @@
       # sudo version 1.8.0 to 1.9.12p1
       when: sudo_vuln_cve
 
-    - name: Check if CVE-2023-22809 is patched
+    - name: Check if CVE-2023-22809 is mitigated and not needed
       ansible.builtin.stat:
         dest: /etc/sudoers.d/cve-2023-22809
       register: sudo_cve_patched

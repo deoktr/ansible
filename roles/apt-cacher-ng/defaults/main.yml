@@ -1,3 +1,5 @@
 apt_cacher_ng_port: 3142
 
 apt_cacher_ng_from_ip: "{{ local_net }}"
+
+apt_cacher_ng_pass_through_pattern: "^((bugs|deb|security)\\.debian\\.org|changelogs\\.ubuntu\\.com):443$"

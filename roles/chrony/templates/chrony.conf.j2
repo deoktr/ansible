@@ -18,6 +18,12 @@ server {{ ntp_server }} iburst
 {% endfor %}
 {% endif %}
 
+{% if chrony_as_server_networks %}
+{% for chrony_as_server_network in chrony_as_server_networks %}
+alllow {{ chrony_as_server_network }}
+{% endfor %}
+{% endif %}
+
 # Use time sources from DHCP.
 sourcedir /run/chrony-dhcp
 

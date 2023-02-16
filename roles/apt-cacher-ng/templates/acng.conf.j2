@@ -445,7 +445,7 @@ ExThreshold: 4
 # PassThroughPattern: .* # this would allow CONNECT to everything
 #
 # Default: ^(bugs\.debian\.org|changelogs\.ubuntu\.com):443$
-# PassThroughPattern: ^(bugs\.debian\.org|changelogs\.ubuntu\.com):443$
+PassThroughPattern: {{ apt_cacher_ng_pass_through_pattern }}
 
 # It's possible that an evil client requests a volatile file but does not
 # retrieve the response and keeps the connection effectively stuck over

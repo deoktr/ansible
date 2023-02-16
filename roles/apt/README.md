@@ -10,3 +10,8 @@ set to `true` and `apt_proxy_addr` must be set.
 - `use_apt_proxy` whether to use the apt proxy or not, default: `true`
 - `apt_proxy_addr` IP or FQDN, example: `192.168.1.242`
 - `apt_proxy_port` default: `3142`
+
+## TODO
+
+- configure sources.list
+- configure sources.list to use tor only: https://wiki.debian.org/SourcesList#Using_Tor_with_Apt
