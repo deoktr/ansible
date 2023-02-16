@@ -2,3 +2,5 @@ ntp_pools:
   - 2.debian.pool.ntp.org
 
 ntp_servers:
+
+chrony_as_server_networks:

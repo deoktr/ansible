@@ -6,7 +6,7 @@ uninstall_package_list:
   - prelink         # can interfer with AIDE
   - apport          # can expose sensitive datas
   - gdm3            # GNOME display manager
-  - chrony          # use ntp instead
+  - ntp             # use chrony instead
   - avahi-daemon    # auto network discovery
   - cups            # printing
   - isc-dhcp-server  # DHCP server

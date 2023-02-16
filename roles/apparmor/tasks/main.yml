@@ -3,6 +3,11 @@
     name: apparmor
     state: latest
 
+- name: Ensure apparmor-utils is installed
+  ansible.builtin.package:
+    name: apparmor-utils
+    state: latest
+
 - name: Import apparmor GRUB tasks
   ansible.builtin.import_tasks:
     file: grub.yml
