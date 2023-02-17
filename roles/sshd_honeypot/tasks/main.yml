@@ -1,5 +1,0 @@
-- name: UFW tasks
-  ansible.builtin.import_tasks: ufw.yml
-
-- name: Honeypot tasks
-  ansible.builtin.import_tasks: honeypot.yml

@@ -5,3 +5,5 @@ Match Group {{ bastion_jump_group_name }}
   # ChrootDirectory %h
   PermitTunnel yes
   AllowTcpForwarding yes
+  # users can still proxy jump but can't get a shell on this server
+  ForceCommand /bin/false

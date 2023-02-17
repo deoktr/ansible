@@ -1,6 +1,9 @@
 # Bastion
 
-Configure SSH server to accept tunneling.
+Configure SSH server to accept proxy jump. The bastion SSH interface should be
+on another port, example 2222 and should be only accessible from and
+administration network on a specific interface. Not to be confused with the
+bastion's SSH server which should be on port 22.
 
 - Configure SSH to allow tunneling
 - Configure UFW to allow tunneling to specified hosts
@@ -15,12 +18,13 @@ Configure SSH server to accept tunneling.
 
 ## How to
 
-1. Create a user for the bastion with an `authorized_keys` and `generate_ssh_key` set to true
+1. Create a user for the bastion with an `authorized_keys`, `generate_ssh_key` set to true and `shell` set to `/bin/false`
 
 ```yaml
   - name: bob
     generate_ssh_key: true
     authorized_keys: ssh-ed25519 user_key...
+    shell: /bin/false
 ```
 
 2. Create users on the bastion with the users role
@@ -33,6 +37,9 @@ Configure SSH server to accept tunneling.
       {{ lookup('file', 'credentials/bastion/ssh_pub_keys/bob') }}
       ssh-ed25519 user_key...
 ```
+
+You can add `command='/bin/false'` at the beginning of each lines to be
+absolutely sure that no user will be able to get a shell on the server.
 
 5. Set other users authorized_keys with the users role
 6. Autorize users to connect to SSH by adding them to the `sshd_users` group and running the sshd role
@@ -63,3 +70,5 @@ ssh -J bob@bastion bob@internal
 - Start the SSH jump server on a docker container
 - Lock users in a chroot of their homes on the bastion server
 - Restrict users to only use SSH while connected
+- Generate unique certificates for each connections to remote servers
+- Setup RevokedKeys https://man.openbsd.org/OpenBSD-current/man5/sshd_config.5#RevokedKeys

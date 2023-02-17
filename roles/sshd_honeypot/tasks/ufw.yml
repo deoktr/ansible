@@ -1,7 +1,0 @@
-- name: UFW allow SSH honeypot port
-  community.general.ufw:
-    rule: allow
-    port: 22
-    proto: tcp
-    direction: in
-    comment: "SSH honeypot port"
