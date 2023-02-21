@@ -26,16 +26,16 @@
 # Note: When the value for CacheDir is changed, change the file
 # /lib/systemd/system/apt-cacher-ng.service too
 #
-CacheDir: /var/cache/apt-cacher-ng
+CacheDir: {{ apt_cacher_ng_cache_dir }}
 
 # Log file directory, can be set empty to disable logging
 #
-LogDir: /var/log/apt-cacher-ng
+LogDir: {{ apt_cacher_ng_log_dir }}
 
 # A place to look for additional configuration and resource files if they are not
 # found in the configuration directory
 #
-SupportDir: /usr/lib/apt-cacher-ng
+SupportDir: {{ apt_cacher_ng_support_dir }}
 
 # TCP server port for incoming http (or HTTP proxy) connections.
 # Can be set to 9999 to emulate apt-proxy. Value of 0 turns off TCP server
@@ -55,6 +55,9 @@ Port: {{ apt_cacher_ng_port }}
 # Default: listens on all interfaces and protocols
 #
 # BindAddress: localhost 192.168.7.254 publicNameOnMainInterface
+{% if apt_cacher_ng_bind_address is defined %}
+BindAddress: {{ apt_cacher_ng_bind_address | join(' ') }}
+{% endif %}
 
 # The specification of another HTTP proxy which shall be used for downloads.
 # It can include user name and password but see the manual for limitations.
@@ -63,6 +66,11 @@ Port: {{ apt_cacher_ng_port }}
 #
 # Proxy: http://www-proxy.example.net:3128
 # Proxy: https://username:proxypassword@proxy.example.net:3129
+{% if apt_cacher_ng_proxy is defined %}
+{% for proxy in apt_cacher_ng_proxy %}
+Proxy: {{ proxy }}
+{% endfor %}
+{% endif %}
 
 # Repository remapping. See manual for details.
 # In this example, some backends files might be generated during package
@@ -88,7 +96,7 @@ Remap-secdeb: security.debian.org security.debian.org/debian-security deb.debian
 #
 # Default: not set, should be set by the system administrator
 #
-ReportPage: acng-report.html
+ReportPage: {{ apt_cacher_ng_report_page }}
 
 # Socket file for accessing through local UNIX socket instead of TCP/IP. Can be
 # used with inetd (via bridge tool in.acng from apt-cacher-ng package), is also
@@ -295,7 +303,7 @@ ExThreshold: 4
 
 # Network timeout for outgoing connections, in seconds.
 #
-# NetworkTimeout: 40
+NetworkTimeout: {{ apt_cacher_ng_network_timeout }}
 
 # Fast fallback timeout, in seconds. This is the time to wait before
 # alternative target addresses for a client connection are tried, which can be
@@ -352,6 +360,11 @@ ExThreshold: 4
 #
 # LocalDirs: woo /data/debarchive/woody ; hamm /data/debarchive/hamm
 # LocalDirs: acng-doc /usr/share/doc/apt-cacher-ng
+{% if apt_cacher_ng_local_dirs is defined %}
+{% for local_dirs in apt_cacher_ng_local_dirs %}
+LocalDirs: {{ local_dirs }}
+{% endfor %}
+{% endif %}
 
 # Precache a set of files referenced by specified index files. This can be used
 # to create a partial mirror usable for offline work. There are certain limits
@@ -461,7 +474,7 @@ PassThroughPattern: {{ apt_cacher_ng_pass_through_pattern }}
 # Keep outgoing connections alive and reuse them for later downloads from
 # the same server as long as possible.
 #
-# ReuseConnections: 1
+ReuseConnections: 1
 
 # Maximum number of requests sent in a batch to remote servers before the first
 # response is expected. Using higher values can greatly improve average

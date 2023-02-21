@@ -3,3 +3,13 @@ apt_cacher_ng_port: 3142
 apt_cacher_ng_from_ip: "{{ local_net }}"
 
 apt_cacher_ng_pass_through_pattern: "^((bugs|deb|security)\\.debian\\.org|changelogs\\.ubuntu\\.com):443$"
+
+apt_cacher_ng_cache_dir: /var/cache/apt-cacher-ng
+
+apt_cacher_ng_log_dir: /var/log/apt-cacher-ng
+
+apt_cacher_ng_support_dir: /usr/lib/apt-cacher-ng
+
+apt_cacher_ng_report_page: acng-report.html
+
+apt_cacher_ng_network_timeout: 40

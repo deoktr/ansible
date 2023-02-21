@@ -4,7 +4,7 @@
     port: "{{ squid_http_port }}"
     proto: tcp
     direction: in
-    comment: http proxy
+    comment: HTTP proxy
 
 - name: UFW allow HTTP out proxy server
   community.general.ufw:
@@ -12,7 +12,7 @@
     port: 80
     proto: tcp
     direction: out
-    comment: http out squid proxy
+    comment: HTTP out squid proxy
 
 - name: UFW allow HTTPS out proxy server
   community.general.ufw:
@@ -20,4 +20,4 @@
     port: 443
     proto: tcp
     direction: out
-    comment: https out squid proxy
+    comment: HTTPS out squid proxy
