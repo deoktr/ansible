@@ -6,13 +6,14 @@ Configure OpenSSH.
 - Configure OpenSSH
 - Manager SSH permissions with group
 
-## Varialbes
+## Variables
 
-- `sshd_port` SSH port, default: `ansible_port` or 22
-- `sshd_users` list of users that should have access to SSH
-- `sshd_group_name` SSH group name, default: `sshusers`
-- `sshd_group_gid` SSH group gid, default: `1700`
-- `sshd_from_ip` a list of IP or IP ranges that will be able to access SSH, default: `local_net`
+| name              | type      | default       | description                                             |
+| ---               | ---       | ---           | ---                                                     |
+| `sshd_port`       | int       | `22`          |                                                         |
+| `sshd_users`      | list[str] | `[]`          |                                                         |
+| `sshd_group_name` | str       | `sshusers`    |                                                         |
+| `sshd_from_ip`    | list[str] | **local_net** | list of IP or IP ranges that will be able to access SSH |
 
 ## TODO
 

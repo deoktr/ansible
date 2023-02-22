@@ -4,7 +4,9 @@ Configure MOTD.
 
 ## Variables
 
-- `motd_content`: the content of the MOTD.
+| name           | type | default                      | description |
+| ---            | ---  | ---                          | ---         |
+| `motd_content` | str  | *see defualts/main.yml file* |             |
 
 ## TODO
 

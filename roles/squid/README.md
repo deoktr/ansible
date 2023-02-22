@@ -2,6 +2,15 @@
 
 Install and configure Squid proxy server.
 
+## Variables
+
+| name                     | type      | default | description |
+| ---                      | ---       | ---     | ---         |
+| `squid_http_port`        | int       | `3128`  |             |
+| `squid_allow_localnet`   | bool      | `true`  |             |
+| `squid_domain_blacklist` | list[str] | -       |             |
+| `squid_domain_whitelist` | list[str] | -       |             |
+
 ## Clients
 
 Clients must be configured to connect to the proxy ip and port on their local

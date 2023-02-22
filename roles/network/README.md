@@ -4,4 +4,6 @@
 
 ## Variables
 
-- `grub_disable_ipv6` (true) disable IPv6 from GRUB
+| name                | type | default | description |
+| ---                 | ---  | ---     | ---         |
+| `grub_disable_ipv6` | bool | `true`  |             |

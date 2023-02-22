@@ -8,13 +8,15 @@ bastion's SSH server which should be on port 22.
 - Configure SSH to allow tunneling
 - Configure UFW to allow tunneling to specified hosts
 
-## Varialbes
+## Variables
 
-- `bastion_to_port` port that are allowed to be tunneling, default: `22`
-- `bastion_to_ip` a list of IP or IP ranges thtat will be allowed to be tunneling, default: `local_net`
-- `bastion_jump_users` a list of usernames that should be able to proxyjump
-- `bastion_jump_group_gid` name of the group to allow users to proxyjump
-- `bastion_jump_group_name` name of the group to allow users to proxyjump, default: sshjump
+| name                      | type      | default       | description |
+| ---                       | ---       | ---           | ---         |
+| `bastion_to_port`         | int       | `22`          |             |
+| `bastion_to_ip`           | list[str] | **local_net** |             |
+| `bastion_jump_users`      | list[str] | -             |             |
+| `bastion_jump_group_gid`  | int       | -             |             |
+| `bastion_jump_group_name` | str       | `sshjump`     |             |
 
 ## How to
 

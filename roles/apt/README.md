@@ -7,9 +7,11 @@ set to `true` and `apt_proxy_addr` must be set.
 
 ## Variables
 
-- `use_apt_proxy` whether to use the apt proxy or not, default: `true`
-- `apt_proxy_addr` IP or FQDN, example: `192.168.1.242`
-- `apt_proxy_port` default: `3142`
+| name             | type | default | description |
+| ---              | ---  | ---     | ---         |
+| `use_apt_proxy`  | bool | `true`  |             |
+| `apt_proxy_addr` | str  | -       |             |
+| `apt_proxy_port` | int  | `3142`  |             |
 
 ## TODO
 
