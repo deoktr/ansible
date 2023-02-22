@@ -1,6 +1,10 @@
+pass_max_days: 365
+
 pass_min_days: 1
 
 pass_warn_age: 7
+
+uid_min: 1000
 
 shell_timeout: 900
 

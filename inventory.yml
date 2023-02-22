@@ -2,7 +2,7 @@ servers:
   hosts:
     sys_log_01:
       ansible_host: syslog
-      ansible_become_pass: 73t:W9V5EONu_3J9JFqa
+      ansible_become_pass: sug6r-OZdJPdSqGHHa,3
       rsyslog_server_host:  # itself
       rsyslog_enable_tcp_reception: true
       rsyslog_enable_udp_reception: false
@@ -31,6 +31,6 @@ update_servers:
   hosts:
     maj_lin_01:
       ansible_host: maj_lin
-      ansible_become_pass: D6oM8wLPGta51,DgXp_y
+      ansible_become_pass: GWx0Q:liE.hKRFpyUG.M
       apt_proxy_addr:  # itself
       use_apt_proxy: false  # itself

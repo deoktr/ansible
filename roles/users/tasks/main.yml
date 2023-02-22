@@ -28,11 +28,12 @@
   ansible.builtin.user:
     name: "{{ item.name }}"
     comment: "{{ item.comment | default('') }}"
-    password: "{{ lookup('password', 'credentials/' + item.name + '/' + ansible_host + '.txt encrypt=md5_crypt') }}"
+    password: "{{ item.password | default(lookup('password', 'credentials/' + item.name + '/' + ansible_host + '.txt encrypt=md5_crypt')) }}"
     uid: "{{ item.uid | default(omit) }}"
     shell: "{{ item.shell | default('/bin/bash') }}"
-    password_expire_max: 30
-    update_password: on_create
+    password_expire_max: "{{ item.password_expire_max | default(pass_max_days) }}"
+    password_expire_min: "{{ item.password_expire_min | default(pass_min_days) }}"
+    update_password: "{{ item.update_password | default('on_create') }}"
     expires: "{{ item.expires | default(-1) }}"
     force: "{{ item.force | default(false) }}"
     generate_ssh_key: "{{ item.generate_ssh_key | default(false) }}"
@@ -40,8 +41,7 @@
     ssh_key_comment: "{{ item.ssh_key_comment | default(item.name) }}"
     ssh_key_passphrase: "{{ item.ssh_key_passphrase | default(omit) }}"
   with_items: "{{ users }}"
-  register: updated_users
-  notify: "updated users"
+  notify: expire_passwords
   ignore_errors: true
   when: users
 
