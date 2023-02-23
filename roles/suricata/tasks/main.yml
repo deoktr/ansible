@@ -38,7 +38,6 @@
 - name: Suricata update cron job
   ansible.builtin.cron:
     name: suricata update
-    hour: 3
-    minute: 30
+    special_time: daily
     job: suricata-update
   notify: Suricata update rules

@@ -42,7 +42,6 @@
     ssh_key_passphrase: "{{ item.ssh_key_passphrase | default(omit) }}"
   with_items: "{{ users }}"
   notify: expire_passwords
-  ignore_errors: true
   when: users
 
 - name: Set SSH authorized_keys

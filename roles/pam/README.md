@@ -9,3 +9,9 @@
   - sshd
   - su-l
   - su
+
+## Variables
+
+| name                         | type | default                | description                        |
+| ---                          | ---  | ---                    | ---                                |
+| `pam_good_password_template` | str  | `good-password.txt.j2` | Template for good password message |

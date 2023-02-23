@@ -1,0 +1,1 @@
+pam_good_password_template: good-password.txt.j2
