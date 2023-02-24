@@ -33,6 +33,7 @@
     group: root
     mode: 0440
     backup: true
+    validate: '/usr/sbin/visudo -cf %s'
 
 - name: Ensure sudo config folder exists
   ansible.builtin.file:

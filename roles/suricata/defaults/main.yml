@@ -1,5 +1,8 @@
 ssh_port: "{{ ansible_port | default(22) }}"
 
+suricata_user: root
+suricata_group: root
+
 # can also be string 'any'
 suricata_home_net: "{{ local_net }}"
 
@@ -61,6 +64,8 @@ suricata_tls_enabled: "yes"
 suricata_dcerpc_enabled: "yes"
 
 suricata_ftp_enabled: "yes"
+
+suricata_rdp_enabled: "yes"
 
 suricata_ssh_enabled: "yes"
 

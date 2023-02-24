@@ -9,6 +9,8 @@
 | name                           | type             | default                        | description |
 | ---                            | ---              | ---                            | ---         |
 | `ssh_port`                     | int              | **ansible_port or 22**         |             |
+| `suricata_user`                | str              | `root`                         |             |
+| `suricata_group`               | str              | `root`                         |             |
 | `suricata_home_net`            | str or list[str] | **local_net**                  |             |
 | `suricata_external_net`        | str              | `!$HOME_NET`                   |             |
 | `suricata_http_servers`        | str              | `$HOME_NET`                    |             |
@@ -49,6 +51,7 @@
 | `suricata_tls_enabled`         | str              | `yes`                          |             |
 | `suricata_dcerpc_enabled`      | str              | `yes`                          |             |
 | `suricata_ftp_enabled`         | str              | `yes`                          |             |
+| `suricata_rdp_enabled`         | str              | `yes`                          |             |
 | `suricata_ssh_enabled`         | str              | `yes`                          |             |
 | `suricata_http2_enabled`       | str              | `yes`                          |             |
 | `suricata_smtp_enabled`        | str              | `yes`                          |             |
