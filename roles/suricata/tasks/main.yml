@@ -12,6 +12,7 @@
     group: root
     mode: 0644
     backup: true
+    validate: 'suricata -T -c %s -v'
   notify: Reload suricata
 
 - name: Add suricata custom rules

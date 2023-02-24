@@ -1,13 +1,13 @@
 {{ ansible_managed | comment }}
 
 # GeoIP to and from home net
-alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from RU"; geoip: src,RU; priority:4; classtype:bad-unknown; sid:100; rev:1;)
-alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from CN"; geoip: src,CN; priority:4; classtype:bad-unknown; sid:101; rev:1;)
-alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from IR"; geoip: src,IR; priority:4; classtype:bad-unknown; sid:102; rev:1;)
-alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from RO"; geoip: src,RO; priority:4; classtype:bad-unknown; sid:103; rev:1;)
-alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from HU"; geoip: src,HU; priority:4; classtype:bad-unknown; sid:104; rev:1;)
-alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to RU"; geoip: dst,RU; priority:4; classtype:bad-unknown; sid:200; rev:1;)
-alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to CN"; geoip: dst,CN; priority:4; classtype:bad-unknown; sid:201; rev:1;)
-alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to IR"; geoip: dst,IR; priority:4; classtype:bad-unknown; sid:202; rev:1;)
-alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to RO"; geoip: dst,RO; priority:4; classtype:bad-unknown; sid:203; rev:1;)
-alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to HU"; geoip: dst,HU; priority:4; classtype:bad-unknown; sid:204; rev:1;)
+# alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from RU"; geoip: src,RU; priority:4; classtype:bad-unknown; sid:100; rev:1;)
+# alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from CN"; geoip: src,CN; priority:4; classtype:bad-unknown; sid:101; rev:1;)
+# alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from IR"; geoip: src,IR; priority:4; classtype:bad-unknown; sid:102; rev:1;)
+# alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from RO"; geoip: src,RO; priority:4; classtype:bad-unknown; sid:103; rev:1;)
+# alert ip any any -> $HOME_NET any (msg:"LOCAL GeoIP detected from HU"; geoip: src,HU; priority:4; classtype:bad-unknown; sid:104; rev:1;)
+# alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to RU"; geoip: dst,RU; priority:4; classtype:bad-unknown; sid:200; rev:1;)
+# alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to CN"; geoip: dst,CN; priority:4; classtype:bad-unknown; sid:201; rev:1;)
+# alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to IR"; geoip: dst,IR; priority:4; classtype:bad-unknown; sid:202; rev:1;)
+# alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to RO"; geoip: dst,RO; priority:4; classtype:bad-unknown; sid:203; rev:1;)
+# alert ip $HOME_NET any -> any any (msg:"LOCAL GeoIP detected to HU"; geoip: dst,HU; priority:4; classtype:bad-unknown; sid:204; rev:1;)

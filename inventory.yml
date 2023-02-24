@@ -24,7 +24,7 @@ bastions:
       suricata_home_net:
         - 10.0.0.0/8
         - 192.168.0.0/16
-      suricata_dns_servers: "!$HOME_NET"
+      # suricata_dns_servers: "$!HOME_NET"
 
 
 update_servers:
