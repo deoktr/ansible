@@ -14,7 +14,7 @@ Defaults	env_reset, timestamp_timeout=15
 Defaults	timestamp_timeout=15
 Defaults	env_reset
 Defaults	mail_badpass
-Defaults	logfile="/var/log/sudo.log"
+Defaults	logfile="{{ sudo_logfile }}"
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 
 Defaults:{{ ansible_user }}	!noexec  # noexec breaks ansible
