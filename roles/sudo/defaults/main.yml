@@ -3,3 +3,8 @@ sudo_group_name: sudo
 sudo_users: "{{ ansible_user | default() }}"
 
 ansible_user: ansible
+
+sudo_custom_lecture: True
+
+sudo_lecture: |
+  Always make sure the command you type is correct !
