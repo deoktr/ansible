@@ -165,6 +165,13 @@
         - ufw
         - I4
 
+    # use flag clean to remove any configuration backup files
+    - ansible.builtin.import_role:
+        name: clean
+      tags:
+        - clean
+        - never
+
 
 # Setup update proxy server
 - name: Update proxy server setup

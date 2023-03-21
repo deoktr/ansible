@@ -1,0 +1,13 @@
+- name: Find old backup files
+  ansible.builtin.find:
+    paths: "{{ item.split('/')[:-1] | join('/') }}"
+    patterns: "^{{ item.split('/')[-1] }}(\\.\\d{4}\\.\\d{4}-\\d{2}-\\d{2}@\\d{2}:\\d{2}:\\d{2}~)$"
+    use_regex: yes
+  with_items: "{{ config_list }}"
+  register: backup_files
+
+- name: Removing backup configuration
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items: "{{ backup_files.results | map(attribute='files') | flatten | map(attribute='path') }}"

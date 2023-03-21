@@ -1,5 +1,5 @@
 {{ ansible_managed | comment }}
 
-deny = 4
-fail_interval = 900
-unlock_time = 600
+deny = {{ pam_faillock_deny }}
+fail_interval = {{ pam_faillock_fail_interval }}
+unlock_time = {{ pam_faillock_unlock_time }}
