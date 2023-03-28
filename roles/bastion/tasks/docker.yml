@@ -39,8 +39,8 @@
     volumes:
       - /etc/sshjump/sshd_config:/config
     env:
-        PUID: 1000
-        PGID: 1000
-        TZ: Europe/London
-        SUDO_ACCESS: false
-        PASSWORD_ACCESS: false
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/London
+      SUDO_ACCESS: false
+      PASSWORD_ACCESS: false

@@ -1,6 +1,7 @@
 {{ ansible_managed | comment }}
 
 Match Group {{ bastion_jump_group_name }}
+  AllowGroups {{ bastion_jump_group_name }}
   # TODO create chroot for each users
   # ChrootDirectory %h
   PermitTunnel yes
