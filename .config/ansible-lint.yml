@@ -4,3 +4,4 @@ skip_list:
 exclude_paths:
   - ../roles/suricata/files/suricata.yaml
   - ../roles/motd/defaults/main.yml
+  - ../roles/bastion/tasks/chroot.yml
