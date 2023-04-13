@@ -9,6 +9,11 @@
     state: started
     enabled: true
 
+- name: Check if /etc/crontab exists
+  ansible.builtin.stat:
+    path: /etc/crontab
+  register: crontab_stat
+
 - name: Ensure permissions on /etc/crontab are configured
   ansible.builtin.file:
     path: /etc/crontab
@@ -16,10 +21,7 @@
     owner: root
     group: root
     mode: 0600
-  with_first_found:
-    - files:
-        - /etc/crontab
-      skip: true
+  when: crontab_stat.stat.exists
 
 - name: Ensure permissions on /etc/cron.* are configured
   ansible.builtin.file:
