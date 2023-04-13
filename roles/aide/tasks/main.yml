@@ -2,22 +2,39 @@
   ansible.builtin.package:
     name: aide
     state: latest
+  notify:
+    - Initialize aide database
 
-- name: Remove aide rules
+- name: Creates disabled aide rules directory
+  ansible.builtin.file:
+    path: /etc/aide/aide.conf.d.disabled/
+    state: directory
+
+- name: Get list of aide rules to disable
+  ansible.builtin.stat:
+    path: "/etc/aide/aide.conf.d/{{ item }}"
+  loop: "{{ aide_remove_rules }}"
+  register: aide_remove_rules_stat
+
+- name: Move disabled aide rules to aide.conf.d.disabled
+  ansible.builtin.copy:
+    src: "/etc/aide/aide.conf.d/{{ item }}"
+    dest: "/etc/aide/aide.conf.d.disabled/{{ item }}"
+    remote_src: yes
+  loop: "{{ \
+      aide_remove_rules_stat.results | \
+      selectattr('stat.exists', 'equalto', true) | \
+       map(attribute='item') \
+  }}"
+
+- name: Remove disabled aide rules from aide.conf.d
   ansible.builtin.file:
     path: "/etc/aide/aide.conf.d/{{ item }}"
     state: absent
   loop: "{{ aide_remove_rules }}"
 
-- name: Initialize aide
-  ansible.builtin.command:
-    cmd: aideinit
-    creates: /var/lib/aide/aide.db.new
-  notify:
-    - Copy new aide database
-
 - name: Schedule aide check
   ansible.builtin.cron:
     name: aide check
-    job: aide --check --config /etc/aide/aide.conf
+    job: /usr/bin/aide --config /etc/aide/aide.conf --check
     special_time: daily

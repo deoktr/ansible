@@ -13,7 +13,7 @@ Configure aide.
 Check aide with:
 
 ```bash
-aide --check --config /etc/aide/aide.conf
+aide --config /etc/aide/aide.conf --check
 ```
 
 ## TODO
