@@ -47,3 +47,4 @@ For more informations on variables please check the [ansible doc](https://docs.a
 ## TODO
 
 - Add option to disable password expiry, can be especially usefull when creating Ansible user
+- Apply password expiry to root automatically

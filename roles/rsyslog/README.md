@@ -7,14 +7,14 @@ Configure rsyslog.
 
 ## Variables
 
-| name                           | type      | default       | description |
-| ---                            | ---       | ---           | ---         |
-| `rsyslog_server_host`          | str       | -             |             |
-| `rsyslog_server_port`          | int       | `514`         |             |
-| `rsyslog_server_proto`         | str       | `tcp`         |             |
-| `rsyslog_enable_tcp_reception` | bool      | `false`       |             |
-| `rsyslog_enable_udp_reception` | bool      | `false`       |             |
-| `rsyslog_reception_from_ip`    | list[str] | **local_net** |             |
+| name                           | type      | default       | description    |
+| ---                            | ---       | ---           | ---            |
+| `rsyslog_server_host`          | str       | -             |                |
+| `rsyslog_server_port`          | int       | `514`         |                |
+| `rsyslog_server_proto`         | str       | `tcp`         | `tcp` or `udp` |
+| `rsyslog_enable_tcp_reception` | bool      | `false`       |                |
+| `rsyslog_enable_udp_reception` | bool      | `false`       |                |
+| `rsyslog_reception_from_ip`    | list[str] | **local_net** |                |
 
 # TODO
 

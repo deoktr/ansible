@@ -1,11 +1,8 @@
-- name: Ensure apparmor is installed
+- name: Ensure apparmor and apparmor-utils are installed
   ansible.builtin.package:
-    name: apparmor
-    state: latest
-
-- name: Ensure apparmor-utils is installed
-  ansible.builtin.package:
-    name: apparmor-utils
+    name:
+      - apparmor
+      - apparmor-utils
     state: latest
 
 - name: Import apparmor GRUB tasks
