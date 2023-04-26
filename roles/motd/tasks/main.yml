@@ -4,7 +4,7 @@
     content: "{{ motd_content }}\n\n"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   with_items:
     - /etc/motd
     - /etc/issue

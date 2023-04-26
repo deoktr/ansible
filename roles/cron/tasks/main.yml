@@ -20,7 +20,7 @@
     state: file
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
   when: crontab_stat.stat.exists
 
 - name: Ensure permissions on /etc/cron.* are configured
@@ -29,7 +29,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0700
+    mode: "0700"
   with_items:
     - d
     - hourly

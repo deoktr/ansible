@@ -4,7 +4,7 @@
     dest: /etc/apt/apt.conf.d/00aptproxy
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: UFW allow apt proxy server
   community.general.ufw:

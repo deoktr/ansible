@@ -14,7 +14,7 @@
     dest: /etc/ssh/sshd_config
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
     validate: /usr/sbin/sshd -t -f %s
     backup: true
   notify: Reload sshd
@@ -23,7 +23,7 @@
   ansible.builtin.file:
     path: /etc/ssh/sshd_config.d
     state: directory
-    mode: 0755
+    mode: "0755"
 
 - name: Add ssh users to ssh group
   ansible.builtin.user:

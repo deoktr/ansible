@@ -11,7 +11,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
 - name: Create libpam-oath link
   ansible.builtin.file:
@@ -25,7 +25,7 @@
     dest: /etc/users.oath
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
 
 - name: Configure SSH for pam_oath
   ansible.builtin.template:
@@ -33,7 +33,7 @@
     dest: /etc/ssh/sshd_config.d/ssh_pam_oath.conf
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
     validate: /usr/sbin/sshd -t -f %s
   notify: Reload sshd
 
@@ -43,5 +43,5 @@
     dest: /etc/security/access-local.conf
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
     backup: true

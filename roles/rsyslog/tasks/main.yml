@@ -15,7 +15,7 @@
     dest: /etc/rsyslog.conf
     owner: root
     group: root
-    mode: 0640
+    mode: "0640"
     backup: true
   notify: Restart rsyslog
 
@@ -25,7 +25,7 @@
     dest: /etc/rsyslog.d/00-remote.conf
     owner: root
     group: root
-    mode: 0640
+    mode: "0640"
     backup: true
   when: rsyslog_server_host
   notify: Restart rsyslog
@@ -36,7 +36,7 @@
     dest: /etc/rsyslog.d/00-aggregator.conf
     owner: root
     group: root
-    mode: 0640
+    mode: "0640"
     backup: true
   when: rsyslog_enable_udp_reception or rsyslog_enable_tcp_reception
   notify: Restart rsyslog

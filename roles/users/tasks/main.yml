@@ -4,7 +4,7 @@
     dest: /etc/login.defs
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
 
 - name: Configure useradd default
@@ -13,7 +13,7 @@
     dest: /etc/default/useradd
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
 
 - name: Configure shell timeout
@@ -22,7 +22,7 @@
     dest: /etc/profile.d/autologout.sh
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Add users
   ansible.builtin.user:

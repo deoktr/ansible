@@ -15,7 +15,7 @@
     dest: /etc/squid/squid.conf
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
   notify: Reload squid
 
@@ -25,7 +25,7 @@
     dest: "/etc/squid/conf.d/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: false  # leaving old files can cause the config to be invalid
   with_fileglob:
     - templates/conf.d/*.j2
@@ -37,7 +37,7 @@
     dest: /etc/squid/domain_blacklist.txt
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Reload squid  # TODO check if this is needed or not
 
 - name: Add squid domain whitelist
@@ -46,7 +46,7 @@
     dest: /etc/squid/domain_whitelist.txt
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   notify: Reload squid  # TODO check if this is needed or not
 
 - name: UFW tasks

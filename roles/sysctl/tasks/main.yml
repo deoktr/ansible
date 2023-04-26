@@ -7,7 +7,7 @@
     dest: /etc/sysctl.conf
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
   notify: Reboot
 
@@ -17,7 +17,7 @@
     dest: "/etc/sysctl.d/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
   with_fileglob:
     - templates/sysctl.d/*.j2

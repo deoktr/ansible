@@ -10,7 +10,7 @@
     dest: /etc/suricata/suricata.yaml
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
     validate: 'suricata -T -c %s -v'
   notify: Reload suricata
@@ -21,7 +21,7 @@
     dest: "/etc/suricata/rules/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
   with_fileglob:
     - templates/rules/*.j2

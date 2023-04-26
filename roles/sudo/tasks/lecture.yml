@@ -4,7 +4,7 @@
     dest: /usr/share/doc/sudo_lecture.txt
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Configure sudo lecture
   ansible.builtin.template:
@@ -12,6 +12,6 @@
     dest: /etc/sudoers.d/lecture
     owner: root
     group: root
-    mode: 0440
+    mode: "0440"
     backup: true
     validate: '/usr/sbin/visudo -cf %s'

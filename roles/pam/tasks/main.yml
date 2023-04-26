@@ -11,7 +11,7 @@
     dest: /usr/share/doc/good-password.txt
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Add pam lib configs
   ansible.builtin.template:
@@ -19,7 +19,7 @@
     dest: "/etc/security/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
   with_fileglob:
     - templates/security/*.j2
@@ -30,7 +30,7 @@
     dest: "/etc/pam.d/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
   with_fileglob:
     - templates/pam.d/*.j2

@@ -7,7 +7,7 @@
   ansible.builtin.template:
     src: base.j2
     dest: /etc/resolvconf/resolv.conf.d/base
-    mode: 0644
+    mode: "0644"
   notify: Restart resolvconf
 
 - name: Setup UFW for DNS

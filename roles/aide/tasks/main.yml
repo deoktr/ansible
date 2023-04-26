@@ -20,7 +20,7 @@
   ansible.builtin.copy:
     src: "/etc/aide/aide.conf.d/{{ item }}"
     dest: "/etc/aide/aide.conf.d.disabled/{{ item }}"
-    remote_src: yes
+    remote_src: true
   loop: "{{ \
       aide_remove_rules_stat.results | \
       selectattr('stat.exists', 'equalto', true) | \

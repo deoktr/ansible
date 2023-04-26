@@ -17,7 +17,7 @@
     dest: /etc/audit/auditd.conf
     owner: root
     group: root
-    mode: 0640
+    mode: "0640"
     backup: true
   notify: Reboot
 
@@ -27,7 +27,7 @@
     dest: "/etc/audit/rules.d/{{ item | basename | regex_replace('\\.j2$', '') }}"
     owner: root
     group: root
-    mode: 0640
+    mode: "0640"
   with_fileglob:
     - templates/rules.d/*.j2
   notify:
