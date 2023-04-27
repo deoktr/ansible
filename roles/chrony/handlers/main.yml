@@ -1,4 +1,4 @@
 - name: Restart chrony
   ansible.builtin.service:
-    name: chrony
+    name: "{{ chrony_service | d('chrony') }}"
     state: restarted

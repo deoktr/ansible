@@ -1,4 +1,4 @@
-- name: Add pam password user doc
+- name: Add sudo lecture message
   ansible.builtin.copy:
     content: "{{ sudo_lecture }}\n"
     dest: /usr/share/doc/sudo_lecture.txt

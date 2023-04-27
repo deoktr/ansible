@@ -1,3 +1,11 @@
 # Arch linux specific vars
 
 cron_service: cronie
+
+chrony_service: chronyd
+
+chrony_conf_path: /etc/chrony.conf
+
+chrony_user: chrony
+
+chrony_keyfile: /etc/chrony.keys

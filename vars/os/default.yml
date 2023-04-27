@@ -1,1 +1,9 @@
 cron_service: cron
+
+chrony_service: chrony
+
+chrony_conf_path: /etc/chrony/chrony.conf
+
+chrony_user: _chrony
+
+chrony_keyfile: /etc/chrony/chrony.keys

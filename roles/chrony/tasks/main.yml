@@ -3,12 +3,6 @@
     name: chrony
     state: latest
 
-- name: Ensure the chrony service is running and enabled
-  ansible.builtin.service:
-    name: chrony
-    state: started
-    enabled: true
-
 - name: Ensure ntp is not installed
   ansible.builtin.package:
     name: ntp
@@ -24,12 +18,18 @@
 - name: Configure chrony
   ansible.builtin.template:
     src: chrony.conf.j2
-    dest: /etc/chrony/chrony.conf
+    dest: "{{ chrony_conf_path | d('/etc/chrony/chrony.conf') }}"
     owner: root
     group: root
     mode: "0644"
     backup: true
   notify: Restart chrony
+
+- name: Ensure the chrony service is running and enabled
+  ansible.builtin.service:
+    name: "{{ chrony_service | d('chrony') }}"
+    state: started
+    enabled: true
 
 - name: Import UFW tasks
   ansible.builtin.import_tasks:
