@@ -6,7 +6,7 @@ Configure aide.
 
 | name                | type      | default                      | description                           |
 | ---                 | ---       | ---                          | ---                                   |
-| `aide_remove_rules` | list[str] | *see defualts/main.yml file* | List of defualt aide rules do disable |
+| `aide_remove_rules` | list[str] | *see default/main.yml file* | List of default aide rules do disable |
 
 ## Usage
 
