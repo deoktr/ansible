@@ -5,6 +5,7 @@
 - name: Setup UFW to allow SSH tunnel
   ansible.builtin.import_tasks:
     file: ufw.yml
+  when: "'ufw' in ansible_facts.packages"
 
 - name: Manage bastion users
   ansible.builtin.import_tasks:

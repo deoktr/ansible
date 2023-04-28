@@ -44,3 +44,4 @@
 - name: UFW allow rsyslog server out
   ansible.builtin.import_tasks:
     file: ufw.yml
+  when: "'ufw' in ansible_facts.packages"

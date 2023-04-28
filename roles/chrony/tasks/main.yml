@@ -34,3 +34,4 @@
 - name: Import UFW tasks
   ansible.builtin.import_tasks:
     file: ufw.yml
+  when: "'ufw' in ansible_facts.packages"

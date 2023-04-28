@@ -25,6 +25,12 @@
         - never
         - get_distrib_infos
 
+    - name: Gather the package facts
+      ansible.builtin.package_facts:
+        manager: auto
+      tags:
+        - always
+
   tasks:
     # must be included at the top
     - ansible.builtin.import_role:

@@ -35,3 +35,4 @@
 - name: Setup UFW to allow SSH
   ansible.builtin.import_tasks:
     file: ufw.yml
+  when: "'ufw' in ansible_facts.packages"
