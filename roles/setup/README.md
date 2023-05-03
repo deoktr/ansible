@@ -3,6 +3,7 @@
 General setup, update packages, uninstall not needed.
 
 List to uninstall:
+
 - telnet
 - sendmail
 - talk

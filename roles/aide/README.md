@@ -4,8 +4,8 @@ Configure aide.
 
 ## Variables
 
-| name                | type      | default                      | description                           |
-| ---                 | ---       | ---                          | ---                                   |
+| name                | type      | default                     | description                           |
+| ---                 | ---       | ---                         | ---                                   |
 | `aide_remove_rules` | list[str] | *see default/main.yml file* | List of default aide rules do disable |
 
 ## Usage

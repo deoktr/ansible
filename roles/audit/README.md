@@ -1,5 +1,7 @@
 # audit
 
+Install, configure, start, enable, add rules and configure GRUB to start audit.
+
 ## Variables
 
 | name                 | type | default | description                      |
