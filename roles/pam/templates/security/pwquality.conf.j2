@@ -1,9 +1,12 @@
 {{ ansible_managed | comment }}
 
-minlen = 16
-dcredit = -1
-ucredit = -1
-ocredit = -1
-lcredit = -1
-gecoscheck = 1
-maxrepeat = 3
+minlen = {{ pam_pwquality_minlen }}
+dcredit = {{ pam_pwquality_dcredit }}
+ucredit = {{ pam_pwquality_ucredit }}
+ocredit = {{ pam_pwquality_ocredit }}
+lcredit = {{ pam_pwquality_lcredit }}
+gecoscheck = {{ pam_pwquality_gecoscheck }}
+maxrepeat = {{ pam_pwquality_maxrepeat }}
+{% if pam_pwquality_badwords %}
+badwords = {{ pam_pwquality_badwords | join(" ") }}
+{% endif %}

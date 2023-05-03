@@ -5,3 +5,21 @@ pam_faillock_deny: 4
 pam_faillock_fail_interval: 900
 
 pam_faillock_unlock_time: 600
+
+pam_pwquality_minlen: 16
+
+pam_pwquality_dcredit: -1
+
+pam_pwquality_ucredit: -1
+
+pam_pwquality_ocredit: -1
+
+pam_pwquality_lcredit: -1
+
+pam_pwquality_gecoscheck: 1
+
+pam_pwquality_maxrepeat: 3
+
+pam_pwquality_badwords:
+  - admin
+  - security
