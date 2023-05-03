@@ -7,7 +7,7 @@
 
 - name: Add pam password user doc
   ansible.builtin.template:
-    src: "{{ pam_good_password_template }}"
+    src: good-password.txt.j2
     dest: /usr/share/doc/good-password.txt
     owner: root
     group: root

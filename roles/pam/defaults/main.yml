@@ -1,5 +1,3 @@
-pam_good_password_template: good-password.txt.j2
-
 pam_faillock_deny: 4
 
 pam_faillock_fail_interval: 900
