@@ -18,3 +18,4 @@ Configure OpenSSH.
 ## TODO
 
 - Deal with removing of an IP from the `ssh_from_ip` list
+- Ensure the directory `/etc/ssh/sshd_config.d/` exists

@@ -1,0 +1,18 @@
+Host BASTION
+    HostName 192.168.56.125
+
+Host BASTION_PROXY
+    User ansible_jump
+    HostName 192.168.56.125
+
+Host SYSLOG
+    HostName 192.168.56.126
+    ProxyJump MGL_BASTION_PROXY
+
+Host MAJLIN
+    HostName 192.168.56.127
+    ProxyJump MGL_BASTION_PROXY
+
+Host *
+  User ansible
+  IdentitiesOnly yes

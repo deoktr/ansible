@@ -87,15 +87,12 @@ this can break a server.
 - Find a solution for when rebooting if the ssh port changes
     Maybe don't change the ssh port ?
 - Control the presence of SSH server with a variable
-- Add option to enable IPv6
-- Add role to configure rsyslog server
-- Add rsyslog server
 - Add tag 'security'
-- Add squid server setup: https://www.linode.com/docs/guides/squid-http-proxy-debian-10/ , https://dominikrys.com/posts/squid-transparent-proxy/
 - Variable to enable IPv6
 - Add aide role
 - Add logwatch role: https://github.com/robertdebock/ansible-role-logwatch
 - Add zabbix role: https://github.com/robertdebock/ansible-playbook-zabbix
+- Make reboot optional !
 
 ## Debian
 

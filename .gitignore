@@ -2,3 +2,5 @@ credentials/
 group_vars/
 roles/common/files/users/
 deploy_ed25519
+inventory.yml
+ssh.config

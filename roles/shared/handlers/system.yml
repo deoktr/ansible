@@ -1,6 +1,7 @@
 - name: Reboot all
   ansible.builtin.reboot:
   when:
+    - allow_reboot
     - ansible_virtualization_role != "host"
     - ansible_virtualization_type != "docker"
     - inventory_hostname not in groups['bastions']
@@ -9,6 +10,7 @@
 - name: Reboot bastions
   ansible.builtin.reboot:
   when:
+    - allow_reboot
     - ansible_virtualization_role != "host"
     - ansible_virtualization_type != "docker"
     - inventory_hostname in groups['bastions']

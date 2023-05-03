@@ -1,3 +1,5 @@
+allow_reboot: true
+
 pass_max_days: 30
 
 uid_min: 1000

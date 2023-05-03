@@ -9,3 +9,4 @@
     port: http
     direction: out
     comment: HTTP out for apt
+  when: "'ufw' in ansible_facts.packages"

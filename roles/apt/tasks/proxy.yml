@@ -14,3 +14,4 @@
     direction: out
     to_ip: "{{ apt_proxy_addr }}"
     comment: apt proxy
+  when: "'ufw' in ansible_facts.packages"
