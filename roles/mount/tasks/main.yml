@@ -1,14 +1,3 @@
-# get only the uuid
-# - debug:
-#     msg: "{{ ansible_mounts | selectattr('mount', 'equalto', item.path) | map(attribute='uuid') | first }}"
-#   with_items: "{{ mounts }}"
-#   when: mounts
-
-# - debug:
-#     msg: "{{ item }}"
-#   when: item.path in ansible_mounts | map(attribute='mount')
-#   with_items: "{{ mounts }}"
-
 - name: Ensure partition options are correct
   ansible.posix.mount:
     backup: true
