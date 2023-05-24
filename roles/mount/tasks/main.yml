@@ -1,0 +1,22 @@
+# get only the uuid
+# - debug:
+#     msg: "{{ ansible_mounts | selectattr('mount', 'equalto', item.path) | map(attribute='uuid') | first }}"
+#   with_items: "{{ mounts }}"
+#   when: mounts
+
+# - debug:
+#     msg: "{{ item }}"
+#   when: item.path in ansible_mounts | map(attribute='mount')
+#   with_items: "{{ mounts }}"
+
+- name: Ensure partition options are correct
+  ansible.posix.mount:
+    backup: true
+    path: "{{ item.path }}"
+    src: "UUID={{ ansible_mounts | selectattr('mount', 'equalto', item.path) | map(attribute='uuid') | first }}"
+    state: "{{ item.state | default(mount_state_default) }}"
+    opts: "{{ item.options }}"
+    fstype: "{{ ansible_mounts | selectattr('mount', 'equalto', item.path) | map(attribute='fstype') | first }}"
+    passno: "{{ item.passno | default(mount_passno_default) }}"
+  when: item.path in ansible_mounts | map(attribute='mount')
+  with_items: "{{ mounts }}"

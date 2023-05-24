@@ -157,6 +157,12 @@
         - I2
 
     - ansible.builtin.import_role:
+        name: mount
+      tags:
+        - mount
+        - I4
+
+    - ansible.builtin.import_role:
         name: security
       tags:
         - security

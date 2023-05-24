@@ -1,0 +1,23 @@
+mount_state_default: present
+
+mount_passno_default: 2
+
+mounts:
+  - path: /
+    options: "errors=remount-ro"
+    passno: 0
+  - path: /boot
+    options: "nodev,nosuid,noexec,noauto"
+    state: present
+  - path: /home
+    options: "nodev,nosuid"
+  - path: /tmp
+    options: "nodev,nosuid,noexec"
+  - path: /var
+    options: "nodev,nosuid"
+  - path: /var/log
+    options: "nodev,nosuid,noexec"
+  - path: /var/log/audit
+    options: "nodev,nosuid,noexec"
+  - path: /var/tmp
+    options: "nodev,nosuid,noexec"
