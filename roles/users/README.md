@@ -35,7 +35,7 @@ For each users:
 
 Example:
 
-```
+```yaml
 users:
   - name: jeff
     uid: 1003

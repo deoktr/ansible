@@ -21,7 +21,7 @@ For each partition *mounts*:
 
 Example:
 
-```
+```yaml
 mounts:
   - path: /
     options: "errors=remount-ro"
