@@ -18,4 +18,4 @@ aide --config /etc/aide/aide.conf --check
 
 ## TODO
 
-- add ability to put back previously disabled rules
+- Add ability to put back previously disabled rules

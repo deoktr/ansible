@@ -10,4 +10,4 @@ Configure MOTD.
 
 ## TODO
 
-- remove files in /etc/update-motd.d/ or customize it
+- Remove files in `/etc/update-motd.d/` or customize it

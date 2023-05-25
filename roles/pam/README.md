@@ -29,4 +29,4 @@ Configure PAM:
 
 ## TODO
 
-- Make pwquality config editable
+- Make pwquality configuration editable

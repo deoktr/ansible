@@ -2,13 +2,7 @@
 
 Linux hardening Ansible roles for Debian based Linux server.
 
-The main idea of those roles is to control everything that is going on the
-server, for example: not a single port should be opened if it's not needed and
-not in use, not a single package should be installed if it's not needed. Also
-every roles should work independently of each other, I should always be able to
-configure ONLY ONE package, for example if I only want to configure chrony I
-should be able to WITHOUT having to install other packages. Ansible managed
-files should have the appropriate header placed on top.
+The main idea of those roles is to control everything that is going on the server, for example: not a single port should be opened if it's not needed and not in use, not a single package should be installed if it's not needed. Also every roles should work independently of each other, I should always be able to configure ONLY ONE package, for example if I only want to configure chrony I should be able to WITHOUT having to install other packages. Ansible managed files should have the appropriate header placed on top.
 
 - [ANSSI Guide hardening GNU/Linux](https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/)
 - [NIST National Checklist for Red Hat Enterprise Linux](https://ncp.nist.gov/checklist/909)
@@ -69,12 +63,9 @@ docker rmi ubuntu_sshd_image
 
 ## Tags
 
-Use tags `I` with number going form `I0` to `I4`, 0 being the less impactfull
-and 4 the most.
+Use tags `I` with number going form `I0` to `I4`, 0 being the less impactfull and 4 the most.
 
-Example: MOTD is set to `I0` because it's impact is non existent. But UFW is
-set to `I4` because if set up without allowing network services (opening ports)
-this can break a server.
+Example: MOTD is set to `I0` because it's impact is non existent. But UFW is set to `I4` because if set up without allowing network services (opening ports) this can break a server.
 
 ## TODO
 
@@ -96,9 +87,7 @@ this can break a server.
 
 ## Debian
 
-On Debian there is a few things you'll need to do before starting the Ansible
-script, you'll need to install sudo, add it to the user, reboot for the change
-to take effect.
+On Debian there is a few things you'll need to do before starting the Ansible script, you'll need to install sudo, add it to the user, reboot for the change to take effect.
 
 ```bash
 apt install sudo
@@ -106,7 +95,6 @@ usermod -aG sudo $USER
 reboot
 ```
 
-Then you can start the Ansible script, it will stop after changing the Ansible
-user password, update it in inventory and restart it.
+Then you can start the Ansible script, it will stop after changing the Ansible user password, update it in inventory and restart it.
 
 Or you can directly start it from root user via SSH.

@@ -31,4 +31,4 @@ mounts:
     state: present
 ```
 
-For more informations on variables please check the [ansible doc](https://docs.ansible.com/ansible/latest/collections/ansible/posix/mount_module.html).
+For more information on variables please check the [ansible doc](https://docs.ansible.com/ansible/latest/collections/ansible/posix/mount_module.html).

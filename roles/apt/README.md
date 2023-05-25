@@ -2,8 +2,7 @@
 
 Either allow apt from the internet or setup a proxy to get packages.
 
-To use the apt proxy server, 2 variables must be set: `use_apt_proxy` must be
-set to `true` and `apt_proxy_addr` must be set.
+To use the apt proxy server, 2 variables must be set: `use_apt_proxy` must be set to `true` and `apt_proxy_addr` must be set.
 
 ## Variables
 

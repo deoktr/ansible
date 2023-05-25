@@ -1,6 +1,6 @@
 # resolvconf
 
-Configure DNS with resolvectl.
+Configure DNS with resolv.
 
 ## Variables
 

@@ -1,9 +1,6 @@
 # Bastion
 
-Configure SSH server to accept proxy jump. The bastion SSH interface should be
-on another port, example 2222 and should be only accessible from and
-administration network on a specific interface. Not to be confused with the
-bastion's SSH server which should be on port 22.
+Configure SSH server to accept proxy jump. The bastion SSH interface should be on another port, example 2222 and should be only accessible from and administration network on a specific interface. Not to be confused with the bastion's SSH server which should be on port 22.
 
 - Configure SSH to allow tunneling
 - Configure UFW to allow tunneling to specified hosts

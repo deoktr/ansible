@@ -24,7 +24,7 @@ ufw allow out to 10.0.2.6 port 3128 proto tcp comment 'http proxy'
 
 ## Usage
 
-Wth curl:
+With curl:
 
 ```bash
 curl -v -x http://10.0.2.6:3128 http://www.google.com/

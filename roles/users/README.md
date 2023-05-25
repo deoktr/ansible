@@ -42,7 +42,7 @@ users:
     authorized_keys: ...
 ```
 
-For more informations on variables please check the [ansible doc](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html).
+For more information on variables please check the [ansible doc](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html).
 
 ## TODO
 

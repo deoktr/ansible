@@ -1,9 +1,8 @@
 # Security
 
-Security measures to patch certain vulnerabilities when you can't always update
-the system.
+Security measures to patch certain vulnerabilities when you can't always update the system.
 
-## Mitigations
+## Mitigation
 
 ### CVE-2023-22809
 
@@ -17,4 +16,4 @@ Defaults!SUDOEDIT	env_delete+="SUDO_EDITOR VISUAL EDITOR"
 
 ## TODO
 
-Remove specific measures when they are not needed anymore.
+- Remove specific measures when they are not needed anymore.
