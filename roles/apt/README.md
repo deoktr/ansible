@@ -16,3 +16,4 @@ To use the apt proxy server, 2 variables must be set: `use_apt_proxy` must be se
 
 - configure sources.list
 - configure sources.list to use tor only: https://wiki.debian.org/SourcesList#Using_Tor_with_Apt
+- add ability to use multiple proxy servers
