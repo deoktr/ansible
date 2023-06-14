@@ -9,6 +9,7 @@
   ansible.builtin.file:
     path: /etc/aide/aide.conf.d.disabled/
     state: directory
+    mode: "0640"
 
 - name: Get list of aide rules to disable
   ansible.builtin.stat:

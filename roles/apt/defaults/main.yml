@@ -2,4 +2,4 @@ use_apt_proxy: true
 
 apt_proxy_addr:
 
-apt_proxy_port: 3142
+apt_proxy_port: "3142"
