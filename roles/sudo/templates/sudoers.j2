@@ -17,8 +17,6 @@ Defaults	mail_badpass
 Defaults	logfile="{{ sudo_logfile }}"
 Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
 
-Defaults:{{ ansible_user }}	!noexec  # noexec breaks ansible
-
 # Host alias specification
 
 # User alias specification
@@ -26,10 +24,12 @@ Defaults:{{ ansible_user }}	!noexec  # noexec breaks ansible
 # Cmnd alias specification
 
 # User privilege specification
+Defaults:root	!noexec
 root	ALL=(ALL:ALL) ALL
 
 # Allow members of group sudo to execute any command
-%sudo	ALL=(ALL:ALL) ALL
+Defaults:%{{ sudo_group_name }}	!noexec
+%{{ sudo_group_name }}	ALL=(ALL:ALL) ALL
 
 # See sudoers(5) for more information on "@include" directives:
 
