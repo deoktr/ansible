@@ -1,3 +1,8 @@
+- name: Remove apt proxy configuration
+  ansible.builtin.file:
+    dest: /etc/apt/apt.conf.d/90proxy
+    state: absent
+
 # required for apt to connect to remote repository
 # TODO this is not very clean at all ! but we can't filter by domain name and
 # we also can't hardcode the IP of debian servers because they might change

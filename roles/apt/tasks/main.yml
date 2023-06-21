@@ -1,9 +1,9 @@
 - name: Setup apt proxy server
   ansible.builtin.import_tasks:
     file: proxy.yml
-  when: use_apt_proxy and apt_proxy_addr
+  when: use_apt_proxy and apt_proxy_list
 
 - name: Setup apt from internet
   ansible.builtin.import_tasks:
     file: internet.yml
-  when: not (use_apt_proxy and apt_proxy_addr)
+  when: not (use_apt_proxy and apt_proxy_list)

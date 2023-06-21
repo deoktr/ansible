@@ -41,6 +41,16 @@
     state: directory
     mode: "0755"
 
+- name: Configure sudo for ansible
+  ansible.builtin.template:
+    src: sudoers.d/ansible.j2
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: "0440"
+    backup: true
+    validate: '/usr/sbin/visudo -cf %s'
+
 - name: Configure sudo lecture
   ansible.builtin.import_tasks:
     file: lecture.yml

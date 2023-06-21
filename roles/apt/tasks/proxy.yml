@@ -9,9 +9,10 @@
 - name: UFW allow apt proxy server
   community.general.ufw:
     rule: allow
-    port: "{{ apt_proxy_port }}"
+    port: "{{ item.port }}"
     proto: tcp
     direction: out
-    to_ip: "{{ apt_proxy_addr }}"
+    to_ip: "{{ item.host }}"
     comment: apt proxy
   when: "'ufw' in ansible_facts.packages"
+  with_items: "{{ apt_proxy_list }}"

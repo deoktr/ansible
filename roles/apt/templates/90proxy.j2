@@ -1,3 +1,5 @@
 {{ ansible_managed | comment }}
 
-Acquire::http::Proxy "http://{{ apt_proxy_addr }}:{{ apt_proxy_port }}";
+{% for apt_proxy in apt_proxy_list %}
+Acquire::http::Proxy "{{ apt_proxy.proto | default('http') }}://{{ apt_proxy.host }}:{{ apt_proxy.port }}";
+{% endfor %}
