@@ -2,5 +2,5 @@
 
 Configure AppArmor.
 
-- Ensure apparmor is installed
-- Ensure apparmor is enabled in GRUB
+-   Ensure apparmor is installed
+-   Ensure apparmor is enabled in GRUB

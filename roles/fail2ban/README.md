@@ -5,7 +5,7 @@ Fail2ban setup.
 ## Variables
 
 | name                            | type       | default                                                                   | description |
-| ---                             | ---        | ---                                                                       | ---         |
+| ------------------------------- | ---------- | ------------------------------------------------------------------------- | ----------- |
 | `fail2ban_loglevel`             | str        | `INFO`                                                                    |             |
 | `fail2ban_logtarget`            | str        | `SYSLOG`                                                                  |             |
 | `fail2ban_syslogsocket`         | str        | `auto`                                                                    |             |
@@ -38,9 +38,9 @@ fail2ban-client set sshd unbanip 10.0.1.9
 
 ## Links
 
-- https://github.com/nbigot/ansible-fail2ban
+-   https://github.com/nbigot/ansible-fail2ban
 
 ## TODO
 
-- Ensure logs are sent to syslog
-- Use variable for jails
+-   Ensure logs are sent to syslog
+-   Use variable for jails

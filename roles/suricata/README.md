@@ -1,13 +1,13 @@
 # Suricata
 
-- Install Suricata
-- Configure Surcicata
-- Add custom Suricata rules
+-   Install Suricata
+-   Configure Surcicata
+-   Add custom Suricata rules
 
 ## Variables
 
 | name                           | type             | default                        | description |
-| ---                            | ---              | ---                            | ---         |
+| ------------------------------ | ---------------- | ------------------------------ | ----------- |
 | `ssh_port`                     | int              | **ansible_port or 22**         |             |
 | `suricata_user`                | str              | `root`                         |             |
 | `suricata_group`               | str              | `root`                         |             |
@@ -77,5 +77,5 @@ To do `suricata-update` the server need to be connected to the internet (allow o
 
 ## TODO
 
-- Add configuration for GeoIP
-- Check if Ansible trigger any Suricata rules by mistake
+-   Add configuration for GeoIP
+-   Check if Ansible trigger any Suricata rules by mistake

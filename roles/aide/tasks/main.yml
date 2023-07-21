@@ -23,11 +23,7 @@
     dest: "/etc/aide/aide.conf.d.disabled/{{ item }}"
     remote_src: true
     mode: "0644"
-  loop: "{{ \
-      aide_remove_rules_stat.results | \
-      selectattr('stat.exists', 'equalto', true) | \
-       map(attribute='item') \
-  }}"
+  loop: "{{ aide_remove_rules_stat.results | selectattr('stat.exists', 'equalto', true) | map(attribute='item') }}"
 
 - name: Remove disabled aide rules from aide.conf.d
   ansible.builtin.file:

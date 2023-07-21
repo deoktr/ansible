@@ -2,14 +2,14 @@
 
 Configure OpenSSH.
 
-- Install OpenSSH
-- Configure OpenSSH
-- Manager SSH permissions with group
+-   Install OpenSSH
+-   Configure OpenSSH
+-   Manager SSH permissions with group
 
 ## Variables
 
 | name              | type      | default       | description                                             |
-| ---               | ---       | ---           | ---                                                     |
+| ----------------- | --------- | ------------- | ------------------------------------------------------- |
 | `sshd_port`       | int       | `22`          |                                                         |
 | `sshd_users`      | list[str] | `[]`          |                                                         |
 | `sshd_group_name` | str       | `sshusers`    |                                                         |
@@ -17,5 +17,5 @@ Configure OpenSSH.
 
 ## TODO
 
-- Deal with removing of an IP from the `ssh_from_ip` list
-- Ensure the directory `/etc/ssh/sshd_config.d/` exists
+-   Deal with removing of an IP from the `ssh_from_ip` list
+-   Ensure the directory `/etc/ssh/sshd_config.d/` exists

@@ -4,7 +4,7 @@
     state: absent
 
 # required for apt to connect to remote repository
-# TODO this is not very clean at all ! but we can't filter by domain name and
+# TODO: this is not very clean at all ! but we can't filter by domain name and
 # we also can't hardcode the IP of debian servers because they might change
 # the best thing to do is to have a transparent proxy to the internet that will
 # filter domain names

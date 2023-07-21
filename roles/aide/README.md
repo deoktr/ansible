@@ -5,8 +5,8 @@ Configure aide.
 ## Variables
 
 | name                | type      | default                     | description                           |
-| ---                 | ---       | ---                         | ---                                   |
-| `aide_remove_rules` | list[str] | *see default/main.yml file* | List of default aide rules do disable |
+| ------------------- | --------- | --------------------------- | ------------------------------------- |
+| `aide_remove_rules` | list[str] | _see default/main.yml file_ | List of default aide rules do disable |
 
 ## Usage
 
@@ -18,4 +18,4 @@ aide --config /etc/aide/aide.conf --check
 
 ## TODO
 
-- Add ability to put back previously disabled rules
+-   Add ability to put back previously disabled rules

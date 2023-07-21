@@ -14,7 +14,7 @@
     state: stopped
     masked: true
 
-# TODO add an error message if neither chrony_pools nor chrony_servers are set
+# TODO: add an error message if neither chrony_pools nor chrony_servers are set
 - name: Configure chrony
   ansible.builtin.template:
     src: chrony.conf.j2

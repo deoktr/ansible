@@ -5,7 +5,7 @@ Configure sysctl in `/etc/sysctl.d/`.
 ## Variables
 
 | name                  | type | default | description                        |
-| ---                   | ---  | ---     | ---                                |
+| --------------------- | ---- | ------- | ---------------------------------- |
 | `sysctl_disable_ipv6` | bool | `true`  | Disable IPv6 with sysctl variables |
 
 ## Problems

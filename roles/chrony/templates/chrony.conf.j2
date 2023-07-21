@@ -20,7 +20,7 @@ server {{ ntp_server }} iburst
 
 {% if chrony_as_server_networks %}
 {% for chrony_as_server_network in chrony_as_server_networks %}
-alllow {{ chrony_as_server_network }}
+allow {{ chrony_as_server_network }}
 {% endfor %}
 {% endif %}
 

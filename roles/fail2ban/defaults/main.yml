@@ -2,7 +2,7 @@
 
 fail2ban_loglevel: INFO
 
-fail2ban_logtarget: SYSLOG  # /var/log/fail2ban.log
+fail2ban_logtarget: SYSLOG # /var/log/fail2ban.log
 
 fail2ban_syslogsocket: auto
 
@@ -22,7 +22,7 @@ fail2ban_bantime_factor: 1
 
 fail2ban_bantime_rndtime: 64
 
-fail2ban_bantime_formula: 'ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)'
+fail2ban_bantime_formula: "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)"
 
 fail2ban_bantime_overalljails: "false"
 
@@ -38,7 +38,7 @@ fail2ban_maxretry: 5
 
 fail2ban_backend: auto
 
-fail2ban_action: '%(action_)s'
+fail2ban_action: "%(action_)s"
 
 fail2ban_services:
   - name: sshd

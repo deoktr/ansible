@@ -1,5 +1,4 @@
 ---
-
 - name: Common setup
   hosts: all
   become: true
@@ -184,7 +183,6 @@
         - clean
         - never
 
-
 # Setup update proxy server
 - name: Update proxy server setup
   hosts: update_servers
@@ -198,7 +196,6 @@
         name: apt-cacher-ng
       tags: apt-cacher-ng
 
-
 # Setup HTTP proxy server
 - name: HTTP proxy server setup
   hosts: proxy_servers
@@ -211,7 +208,6 @@
     - ansible.builtin.import_role:
         name: squid
       tags: squid
-
 
 # Setup SSH tunnel server
 - name: Bastion setup
@@ -242,6 +238,4 @@
         name: pam_oath
       tags:
         - pam_oath
-        - never  # TODO finish pam_oath and remove this
-
-...
+        - never # TODO: finish pam_oath and remove this
