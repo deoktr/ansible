@@ -28,7 +28,7 @@
   ansible.builtin.user:
     name: "{{ item.name }}"
     comment: "{{ item.comment | default('') }}"
-    password: "{{ item.password | default(lookup('password', 'credentials/' + item.name + '/' + ansible_host + '.txt encrypt=md5_crypt')) }}"
+    password: "{{ item.password | default(lookup('ansible.builtin.password', 'credentials/' + item.name + '/' + ansible_host + '.txt')) }}"
     uid: "{{ item.uid | default(omit) }}"
     shell: "{{ item.shell | default('/bin/bash') }}"
     password_expire_max: "{{ item.password_expire_max | default(pass_max_days) }}"
