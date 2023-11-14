@@ -20,7 +20,7 @@ ansible all -i inventory.yml --ask-vault-pass -m ping
 Run the playbook:
 
 ```bash
-ansible-playbook --ask-vault-password -i inventory.yaml play.yaml
+ansible-playbook --ask-vault-password -i inventory.yaml play.yml
 ```
 
 Run locally:
