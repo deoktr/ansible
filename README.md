@@ -92,3 +92,7 @@ reboot
 Then you can start the Ansible script, it will stop after changing the Ansible user password, update it in inventory and restart it.
 
 Or you can directly start it from root user via SSH.
+
+## License
+
+Ansible deoktr is licensed under [GPLv3](./LICENSE).
