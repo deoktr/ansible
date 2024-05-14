@@ -70,4 +70,4 @@ ssh -J bob@bastion bob@internal
 -   Lock users in a chroot of their homes on the bastion server
 -   Restrict users to only use SSH while connected
 -   Generate unique certificates for each connections to remote servers
--   Setup RevokedKeys https://man.openbsd.org/OpenBSD-current/man5/sshd_config.5#RevokedKeys
+-   Setup RevokedKeys <https://man.openbsd.org/OpenBSD-current/man5/sshd_config.5#RevokedKeys>

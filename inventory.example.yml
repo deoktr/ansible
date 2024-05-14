@@ -1,13 +1,22 @@
 servers:
   hosts:
+    srv_01:
+      ansible_host: SRV_01
+      ansible_user: ansible
+      ansible_become_pass: password123!
+
+    srv_02:
+      ansible_host: SRV_02
+      ansible_user: ansible
+      ansible_become_pass: password123!
+
     syslog:
       ansible_host: SYSLOG
       ansible_user: ansible
       ansible_become_pass: password123!
-      rsyslog_server_host:  # itself
+      rsyslog_server_host: # itself
       rsyslog_enable_tcp_reception: true
       rsyslog_enable_udp_reception: false
-
 
 bastions:
   hosts:
@@ -22,12 +31,10 @@ bastions:
         - 192.168.0.0/16
       suricata_dns_servers: "$!HOME_NET"
 
-
 update_servers:
   hosts:
     majlin:
-      ansible_host: MAJLIN
+      ansible_host: APTPROXY
       ansible_become_pass: password123!
-      apt_proxy_addr:  # itself
-      use_apt_proxy: false  # itself
-
+      apt_proxy_addr: # itself
+      use_apt_proxy: false # itself

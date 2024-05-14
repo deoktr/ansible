@@ -6,10 +6,10 @@ To use the apt proxy server, 2 variables must be set: `use_apt_proxy` must be se
 
 ## Variables
 
-| name             | type      | default | description |
-| ---------------- | --------- | ------- | ----------- |
-| `use_apt_proxy`  | bool      | `false` |             |
-| `apt_proxy_list` | list[str] | []      |             |
+| name             | type      | default | description                      |
+| ---------------- | --------- | ------- | -------------------------------- |
+| `use_apt_proxy`  | bool      | `false` | If we should use a proxy for apt |
+| `apt_proxy_list` | list[str] | []      | List of apt proxy                |
 
 ## TODO
 

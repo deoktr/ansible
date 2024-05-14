@@ -8,4 +8,4 @@ Firewall setup with UFW.
 
 ## TODO
 
--   Create app profiles: https://askubuntu.com/questions/409013/how-do-you-create-an-app-profile-for-ufw#488647
+-   Create app profiles: <https://askubuntu.com/questions/409013/how-do-you-create-an-app-profile-for-ufw#488647>

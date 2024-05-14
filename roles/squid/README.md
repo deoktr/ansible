@@ -38,7 +38,7 @@ pip --proxy http://10.0.2.6:3128 install package
 
 ## Links
 
--   https://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04
+-   <https://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04>
 
 ## TODO
 

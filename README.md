@@ -29,7 +29,7 @@ General roles:
 -   **sysctl**, configure
 -   **systemd**, configure journald
 -   **ufw**, install, configure, and start
--   **users**, manage users and ssh keys, configure login.defs, add autologout
+-   **users**, manage users and ssh keys, configure login.defs, and add autologout script
 
 Other specific roles:
 

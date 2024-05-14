@@ -5,6 +5,14 @@ Host BASTION_PROXY
     User ansible_jump
     HostName 192.168.56.125
 
+Host SRV_01
+    HostName 192.168.56.128
+    ProxyJump BASTION_PROXY
+
+Host SRV_02
+    HostName 192.168.56.129
+    ProxyJump BASTION_PROXY
+
 Host SYSLOG
     HostName 192.168.56.126
     ProxyJump BASTION_PROXY
