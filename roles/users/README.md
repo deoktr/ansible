@@ -47,3 +47,4 @@ For more information on variables please check the [ansible doc](https://docs.an
 ## TODO
 
 -   Apply password expiry to root automatically
+-   Remove users home when removing them, because it will be an unused UID that could then be attributed to another user

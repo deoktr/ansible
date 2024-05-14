@@ -38,7 +38,7 @@ fail2ban-client set sshd unbanip 10.0.1.9
 
 ## Links
 
--   https://github.com/nbigot/ansible-fail2ban
+-   <https://github.com/nbigot/ansible-fail2ban>
 
 ## TODO
 
