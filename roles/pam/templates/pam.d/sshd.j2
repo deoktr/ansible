@@ -5,7 +5,7 @@
 # Standard Un*x authentication.
 @include common-auth
 
-auth    required pam_faillock.so deny=5 unlock_time=300
+auth    required pam_faillock.so deny={{ pam_sshd_faillock_deny }} unlock_time={{ pam_sshd_faillock_unlock_time }} fail_interval={{ pam_sshd_faillock_fail_interval }}
 
 # Disallow non-root logins when /etc/nologin exists.
 account    required     pam_nologin.so

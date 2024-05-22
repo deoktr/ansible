@@ -4,6 +4,6 @@
 
 ## Variables
 
-| name                | type | default | description |
-| ------------------- | ---- | ------- | ----------- |
-| `grub_disable_ipv6` | bool | `true`  |             |
+| name                | type | default |
+| ------------------- | ---- | ------- |
+| `grub_disable_ipv6` | bool | `true`  |

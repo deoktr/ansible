@@ -4,11 +4,11 @@ Manage partition mount options.
 
 ## Variables
 
-| name                   | type                   | default                | description                    |
-| ---------------------- | ---------------------- | ---------------------- | ------------------------------ |
-| `mount_state_default`  | str                    | `present`              | Default value for state        |
-| `mount_passno_default` | int                    | `2`                    | Default valut for passno       |
-| `mounts`               | list[dict] (see below) | _see default/main.yml_ | List of partition with options |
+| name                   | type                   | default                               | description                    |
+| ---------------------- | ---------------------- | ------------------------------------- | ------------------------------ |
+| `mount_state_default`  | str                    | `present`                             | Default value for state        |
+| `mount_passno_default` | int                    | `2`                                   | Default valut for passno       |
+| `mounts`               | list[dict] (see below) | _see [defaults](./defaults/main.yml)_ | List of partition with options |
 
 For each partition _mounts_:
 

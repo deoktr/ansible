@@ -1,8 +1,12 @@
-pam_faillock_deny: 4
+pass_max_days: 30
 
-pam_faillock_fail_interval: 900
+pam_sshd_faillock_deny: 6
 
-pam_faillock_unlock_time: 600
+pam_sshd_faillock_fail_interval: 900
+
+pam_sshd_faillock_unlock_time: 600
+
+pam_faildelay_delay: 3000000
 
 pam_pwquality_minlen: 16
 
@@ -21,3 +25,5 @@ pam_pwquality_maxrepeat: 3
 pam_pwquality_badwords:
   - admin
   - security
+
+pam_pwhistory_remember: 10

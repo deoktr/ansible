@@ -8,12 +8,12 @@ Configure OpenSSH.
 
 ## Variables
 
-| name              | type      | default       | description                                             |
-| ----------------- | --------- | ------------- | ------------------------------------------------------- |
-| `sshd_port`       | int       | `22`          |                                                         |
-| `sshd_users`      | list[str] | `[]`          |                                                         |
-| `sshd_group_name` | str       | `sshusers`    |                                                         |
-| `sshd_from_ip`    | list[str] | **local_net** | list of IP or IP ranges that will be able to access SSH |
+| name              | type      | default     | description                                             |
+| ----------------- | --------- | ----------- | ------------------------------------------------------- |
+| `sshd_port`       | int       | `22`        |                                                         |
+| `sshd_users`      | list[str] | `[]`        |                                                         |
+| `sshd_group_name` | str       | `sshusers`  |                                                         |
+| `sshd_from_ip`    | list[str] | _local_net_ | list of IP or IP ranges that will be able to access SSH |
 
 ## TODO
 

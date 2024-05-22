@@ -6,9 +6,9 @@ Warning: This feature is experimental, this could break things !
 
 ## Variables
 
-| name          | type      | default                     | description                                  |
-| ------------- | --------- | --------------------------- | -------------------------------------------- |
-| `config_list` | list[str] | _see default/main.yml file_ | List of configuration file to delete backups |
+| name          | type      | default                               | description                                  |
+| ------------- | --------- | ------------------------------------- | -------------------------------------------- |
+| `config_list` | list[str] | _see [defaults](./defaults/main.yml)_ | List of configuration file to delete backups |
 
 ## TODO
 

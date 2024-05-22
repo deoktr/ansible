@@ -130,6 +130,7 @@ Or you can directly start it from root user via SSH.
 -   Add logwatch role: https://github.com/robertdebock/ansible-role-logwatch
 -   Add zabbix role: https://github.com/robertdebock/ansible-playbook-zabbix
 -   Make reboot optional !
+-   Add scope to variables, PAM variables should all start with `pam_` for example.
 
 ## License
 

@@ -7,13 +7,13 @@ Configure SSH server to accept proxy jump. The bastion SSH interface should be o
 
 ## Variables
 
-| name                      | type      | default       | description |
-| ------------------------- | --------- | ------------- | ----------- |
-| `bastion_to_port`         | int       | `22`          |             |
-| `bastion_to_ip`           | list[str] | **local_net** |             |
-| `bastion_jump_users`      | list[str] | -             |             |
-| `bastion_jump_group_gid`  | int       | -             |             |
-| `bastion_jump_group_name` | str       | `sshjump`     |             |
+| name                      | type      | default     | description |
+| ------------------------- | --------- | ----------- | ----------- |
+| `bastion_to_port`         | int       | `22`        |             |
+| `bastion_to_ip`           | list[str] | _local_net_ |             |
+| `bastion_jump_users`      | list[str] | -           |             |
+| `bastion_jump_group_gid`  | int       | -           |             |
+| `bastion_jump_group_name` | str       | `sshjump`   |             |
 
 ## How to
 
