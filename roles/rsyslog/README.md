@@ -19,3 +19,4 @@ Configure rsyslog.
 # TODO
 
 -   add a check when the rsyslog_server variable is not present so that the 00-remote file is removed if the variable is removed
+-   add TLS support <https://rsyslog.readthedocs.io/en/latest/tutorials/tls.html>
